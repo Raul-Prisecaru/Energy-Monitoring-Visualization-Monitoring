@@ -1,4 +1,5 @@
 import "./styles/homePageStyle.css"
+import "./styles/background.css"
 function HomePage() {
 
 
