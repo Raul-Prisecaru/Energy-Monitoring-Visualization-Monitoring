@@ -1,5 +1,27 @@
 .TopNavBar {
+    /*Navbar Colour*/
     background: greenyellow;
+    /*Making Corner Round*/
     border-radius: 10px;
+    /*Height for the Navbar*/
     height: 50px ;
+}
+
+
+.TopNavOptions {
+    /*Applying Flexbox*/
+    display: flex;
+
+    /*Content goes from left to right*/
+    flex-direction: row;
+
+    /*Starts at the end (All of the to the Right)*/
+    justify-content: flex-end;
+
+    /*Centering Content on the y axis*/
+    align-content: center;
+
+    /*Gap between Options*/
+    gap: 10px;
+
 }
