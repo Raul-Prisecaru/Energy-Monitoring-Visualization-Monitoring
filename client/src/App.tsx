@@ -1,9 +1,9 @@
-import './App.css'
-
+import HomePage from "./pages/homePage.tsx";
 function App() {
 
   return (
       <div>
+          <HomePage />
       </div>
   )
 }
