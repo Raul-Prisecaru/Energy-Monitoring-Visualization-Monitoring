@@ -9,12 +9,9 @@ function NavBar() {
                 <div className={"TopNavOptions"}>
                     <p>Login</p>
                     <p>Signup</p>
+
+
                 </div>
-
-            </div>
-
-            <div className={"SideNavBar"}>
-
             </div>
         </div>
     )
