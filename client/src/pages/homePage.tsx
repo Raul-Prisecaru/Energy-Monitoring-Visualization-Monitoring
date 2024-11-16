@@ -6,8 +6,13 @@ function HomePage() {
     return (
         <div>
             <div className={"Title"}>
-                <h1>Welcome to your one-stop shop to managing your energy consumption usage</h1>
+                <h1>Welcome to Your one-stop shop<br/> to managing your energy consumption usage</h1>
             </div>
+            <div className={"getStartedButton"}>
+                <button>Get Started</button>
+
+            </div>
+
         </div>
     )
 
