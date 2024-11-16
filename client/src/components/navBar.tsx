@@ -7,10 +7,8 @@ function NavBar() {
         <div className={"NavBar"}>
             <div className={"TopNavBar"}>
                 <div className={"TopNavOptions"}>
-                    <li>
-                        <ul>Login</ul>
-                        <ul>SignUp</ul>
-                    </li>
+                    <p>Login</p>
+                    <p>Signup</p>
                 </div>
 
             </div>
