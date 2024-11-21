@@ -1,19 +1,30 @@
+import "./styles/loginPageStyle.css"
+
 function LoginPage() {
 
     return (
-        <div className={"Input Form"}>
+        <div className={"Input-Form"}>
             <form>
-                <label>First Name</label>
-                <input type={"text"}/> <br />
+                <div>
+                    <label>First Name</label>
+                    <input type={"text"}/> <br/>
+                </div>
 
-                <label>Last Name</label>
-                <input type={"text"}/> <br />
+                <div>
+                    <label>Last Name</label>
+                    <input type={"text"}/> <br/>
+                </div>
 
-                <label>Email</label>
-                <input type={"text"}/> <br />
+                <div>
+                    <label>Email</label>
+                    <input type={"text"}/> <br/>
+                </div>
 
-                <label>password</label>
-                <input type={"text"}/>
+                <div>
+                    <label>password</label>
+                    <input type={"text"}/>
+                </div>
+
             </form>
         </div>
     )
