@@ -1,5 +1,5 @@
 .Input-Form {
-    /*Making Content Centered*/
+    /*Making Content Centered with flexbox*/
     display: flex;
     justify-content: center;
     /*Increasing Font Size*/
