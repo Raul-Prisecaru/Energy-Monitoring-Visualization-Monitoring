@@ -1,0 +1,18 @@
+.Input-Form {
+    /*Making Content Centered with flexbox*/
+    display: flex;
+    justify-content: center;
+    /*Increasing Font Size*/
+    font-size: 35px;
+
+    /*Setting Background of Div section to LightBlue*/
+    background: lightblue;
+
+    /*Setting Form size with Viewport Height and Viewport Width*/
+    height: 80vh;
+    width: 50vw;
+
+    /*Centering the Form*/
+    margin-left: auto;
+    margin-right: auto;
+}
