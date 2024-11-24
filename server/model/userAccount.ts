@@ -15,6 +15,12 @@ const userSchema = new mongoose.Schema({
         trim: true
     },
 
+    // To Be Used Later when implemented basic logic
+    // dateOfBirth: {
+    //   type: Date,
+    //   required: true
+    // },
+
     username: {
         type: String,
         required: true,
