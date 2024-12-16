@@ -22,8 +22,13 @@ exports.getOneUser = async (req, res) => {
 
 // Function to Create User
 exports.createUser = async (req, res) => {
-    const userData = req.body;
-    const newUser = new User(userData)
+    const newUser = new User({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password
+    })
 
     try {
         await newUser.save()
