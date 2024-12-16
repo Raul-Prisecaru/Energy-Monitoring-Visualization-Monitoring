@@ -2,8 +2,11 @@ const virtualDevice = require("../model/iotDevice");
 
 // Function to Create virtualDevice
 exports.createDevice = async (req, res) => {
-    const deviceData = req.body;
-    const newDevice = new virtualDevice(deviceData)
+    const newDevice = new virtualDevice({
+        deviceType: req.body.deviceType,
+        energyUsage: req.body.energyUsage,
+        energyDate: req.body.energyDate
+    })
 
     try {
         await newDevice.save()
