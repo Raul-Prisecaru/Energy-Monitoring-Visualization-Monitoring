@@ -1,11 +1,11 @@
 const express = require("express");
 require("dotenv").config();
-const userRouters = require("./routes/userRoute")
+const userRouters = require("./routes/userRoute.ts")
 const mongoose = require("mongoose")
 const server = express();
 const PORT = process.env.PORT
 
-mongoose.connection(process.env.DATABASE_URL)
+mongoose.connect(process.env.DATABASE_URL)
 server.use(express.json)
 
 
