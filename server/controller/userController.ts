@@ -1,4 +1,4 @@
-const User = require("../model/userAccount");
+const User = require("../model/userAccount.ts");
 
 // Function to get all users
 exports.getAllUsers = async (req, res) => {
