@@ -2,18 +2,19 @@
   "dependencies": {
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
-    "nodemon": "^3.1.9",
-    "ts-node": "^10.9.2"
+    "nodemon": "^3.1.9"
   },
   "name": "server",
   "version": "1.0.0",
   "main": "index.js",
   "devDependencies": {
     "@types/mongoose": "^5.11.96",
-    "@types/node": "^22.10.2"
+    "@types/node": "^22.10.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
   },
   "scripts": {
-    "devStart": "nodemon ./server.ts"
+    "devStart": "nodemon --exec 'node --loader ts-node/esm' server.ts"
   },
   "keywords": [],
   "author": "",
