@@ -25,6 +25,8 @@ function SignupPage() {
                     <input type={"text"}/>
                 </div>
 
+
+                <button>Signup</button>
             </form>
         </div>
     )
