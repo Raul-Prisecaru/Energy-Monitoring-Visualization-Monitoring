@@ -6,6 +6,8 @@ function SignupPage() {
 
     const [lastName, setLastName] = useState("")
 
+    const [username, setUsername] = useState("")
+
     const [email, setEmail] = useState("")
 
     const [password, setPassword] = useState("")
@@ -23,6 +25,7 @@ function SignupPage() {
                 body: JSON.stringify({
                     firstName,
                     lastName,
+                    username,
                     email,
                     password
                 })
@@ -40,6 +43,10 @@ function SignupPage() {
 
     const handleFirstNameChange = (e) => {
         setFirstName(e.target.value);
+    }
+
+    const handleUsernameChange = (e) => {
+        setUsername(e.target.value)
     }
 
     const handleLastNameChange = (e) => {
@@ -67,6 +74,11 @@ function SignupPage() {
                 <div>
                     <label>Last Name</label>
                     <input type={"text"} onChange={handleLastNameChange}/> <br/>
+                </div>
+
+                <div>
+                    <label>Username</label>
+                    <input type={"text"} onChange={handleUsernameChange}/> <br/>
                 </div>
 
                 <div>
