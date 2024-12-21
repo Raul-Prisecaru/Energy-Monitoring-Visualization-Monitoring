@@ -4,9 +4,17 @@ function DevicePage() {
 
     return (
         <div>
-            <div className={"Heading"}>
-                <h1>Virtual Devices</h1>
+            <div>
+                <h1 id={"Heading"}>Virtual Devices</h1>
+                <button id={"addDeviceButton"}>Add Device</button>
+
             </div>
+
+            <div>
+
+            </div>
+
+
         </div>
     )
 }
