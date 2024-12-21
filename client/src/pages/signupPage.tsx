@@ -11,6 +11,33 @@ function SignupPage() {
     const [password, setPassword] = useState("")
 
 
+    const buttonPress = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await fetch("http://localhost:3001/api/user/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    firstName,
+                    lastName,
+                    email,
+                    password
+                })
+            });
+
+            if (response.ok) {
+                alert("Data submitted successfully")
+            } else {
+                alert("Failed to submit data")
+            }
+        } catch (error) {
+            alert("An Error occurred when submitting data:" + error)
+        }
+    }
+
     const handleFirstNameChange = (e) => {
         setFirstName(e.target.value);
     }
@@ -26,6 +53,8 @@ function SignupPage() {
     const handlePasswordChange = (e) => {
         setPassword(e.target.value)
     }
+
+
 
     return (
         <div className={"Input-Form"}>
@@ -51,10 +80,11 @@ function SignupPage() {
                 </div>
 
 
-                <button>Signup</button>
+                <button onClick={buttonPress}>Signup</button>
             </form>
         </div>
     )
 }
+
 
 export default SignupPage
