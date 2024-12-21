@@ -3,6 +3,7 @@ import NavBar from "./components/navBar.tsx";
 import LoginPage from "./pages/loginPage.tsx";
 import SignupPage from "./pages/signupPage.tsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import DevicePage from "./pages/devicePage.tsx";
 function App() {
 
   return (
@@ -14,6 +15,7 @@ function App() {
                 <Route path={"login"} element={<LoginPage />}></Route>
                 <Route path={"login"} element={<LoginPage />}></Route>
                 <Route path={"sign-up"} element={<SignupPage />}></Route>
+                <Route path={"devices"} element={<DevicePage />}></Route>
             </Routes>
 
 
