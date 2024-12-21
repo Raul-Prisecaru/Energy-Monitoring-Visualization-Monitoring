@@ -10,6 +10,23 @@ function SignupPage() {
 
     const [password, setPassword] = useState("")
 
+
+    const handleFirstNameChange = (e) => {
+        setFirstName(e.target.value);
+    }
+
+    const handleLastNameChange = (e) => {
+        setLastName(e.target.value);
+    }
+
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+    }
+
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value)
+    }
+
     return (
         <div className={"Input-Form"}>
             <form>
