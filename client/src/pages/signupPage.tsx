@@ -32,22 +32,22 @@ function SignupPage() {
             <form>
                 <div>
                     <label>First Name</label>
-                    <input type={"text"}/> <br/>
+                    <input type={"text"} onChange={handleFirstNameChange}/> <br/>
                 </div>
 
                 <div>
                     <label>Last Name</label>
-                    <input type={"text"}/> <br/>
+                    <input type={"text"} onChange={handleLastNameChange}/> <br/>
                 </div>
 
                 <div>
                     <label>Email</label>
-                    <input type={"text"}/> <br/>
+                    <input type={"text"} onChange={handleEmailChange}/> <br/>
                 </div>
 
                 <div>
                     <label>password</label>
-                    <input type={"text"}/>
+                    <input type={"text"} onChange={handlePasswordChange}/>
                 </div>
 
 
