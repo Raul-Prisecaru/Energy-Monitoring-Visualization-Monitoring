@@ -1,3 +1,11 @@
-.Heading {
+#Heading {
+    display: flex;
+    justify-content: center;
 
+}
+
+#addDeviceButton {
+    float: right;
+    width: 200px;
+    height: 100px;
 }
