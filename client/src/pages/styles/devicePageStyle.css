@@ -9,3 +9,15 @@
     width: 200px;
     height: 100px;
 }
+
+.device-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.device-card {
+    padding: 10px;
+    text-align: center;
+    background-color: white;
+}
