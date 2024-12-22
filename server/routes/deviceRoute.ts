@@ -4,6 +4,12 @@ const deviceController = require("../controller/virtualDeviceController.ts");
 
 const router = express.Router();
 
+// Router to get all devices
+router.get("/", deviceController.getAllDevices)
+
+// Router to get one device
+router.get("/:id", deviceController.getOneDevice)
+
 // Router to create device
 router.post("/", deviceController.createDevice)
 
