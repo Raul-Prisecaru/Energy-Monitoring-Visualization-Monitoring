@@ -1,6 +1,18 @@
 import "./styles/devicePageStyle.css"
+import {useEffect, useState} from "react";
+import {Simulate} from "react-dom/test-utils";
+import error = Simulate.error;
 
 function DevicePage() {
+    const [devices, setDevices] = useState([])
+    useEffect(() => {
+        fetch("http://localhost:3001/api/device")
+            .then((response) => response.json())
+            .then((data) => setDevices(data))
+            .catch((error) => console.error("Failed to fetch Devices" + error))
+    }, [])
+
+
     const addDeviceButton = async (e) => {
         e.preventDefault()
 
