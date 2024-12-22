@@ -1,6 +1,6 @@
 const express = require("express");
 
-const deviceController = require("../controller/virtualDeviceController");
+const deviceController = require("../controller/virtualDeviceController.ts");
 
 const router = express.Router();
 

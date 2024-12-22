@@ -1,4 +1,4 @@
-const virtualDevice = require("../model/iotDevice");
+const virtualDevice = require("../model/iotDevice.ts");
 
 // Function to Create virtualDevice
 exports.createDevice = async (req, res) => {
