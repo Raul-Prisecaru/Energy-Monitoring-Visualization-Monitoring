@@ -1,7 +1,6 @@
 import "./styles/devicePageStyle.css"
 
 function DevicePage() {
-
     const addDeviceButton = async (e) => {
         e.preventDefault()
 
@@ -12,9 +11,9 @@ function DevicePage() {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    deviceType,
-                    energyUsage,
-                    energyDate,
+                    deviceType: "TestDeviceType",
+                    energyUsage: 100,
+                    energyDate: Date.now(),
                 })
             });
 
