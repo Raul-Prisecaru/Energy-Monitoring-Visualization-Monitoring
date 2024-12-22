@@ -46,12 +46,12 @@ function DevicePage() {
             </div>
 
             <div>
-                <div className={"deviceGrid"}>
+                <div className={"device-grid"}>
                     {devices.map((device, index) => (
                         <div key={index} className="device-card">
-                            <h3>{device.deviceType}</h3>
-                            <p>{device.energyUsage}</p>
-                            <p>Status: {device.energyDate}</p>
+                            <h3>Device Type: {device.deviceType}</h3>
+                            <p>energy Usage: {device.energyUsage}</p>
+                            <p>energy Date: {device.energyDate}</p>
                         </div>
                     ))}
                 </div>
