@@ -1,12 +1,10 @@
 import "./styles/devicePageStyle.css"
 import {useEffect, useState} from "react";
-import {Simulate} from "react-dom/test-utils";
-import error = Simulate.error;
 
 function DevicePage() {
     const [devices, setDevices] = useState([])
     useEffect(() => {
-        fetch("http://localhost:3001/api/device")
+        fetch("http://localhost:3001/api/device/")
             .then((response) => response.json())
             .then((data) => setDevices(data))
             .catch((error) => console.error("Failed to fetch Devices" + error))
@@ -48,6 +46,15 @@ function DevicePage() {
             </div>
 
             <div>
+                <div className={"deviceGrid"}>
+                    {devices.map((device, index) => (
+                        <div key={index} className="device-card">
+                            <h3>{device.deviceType}</h3>
+                            <p>{device.energyUsage}</p>
+                            <p>Status: {device.energyDate}</p>
+                        </div>
+                    ))}
+                </div>
 
             </div>
 
