@@ -1,5 +1,24 @@
 const virtualDevice = require("../model/iotDevice.ts");
 
+// Function to get all users
+exports.getAllDevices = async (req, res) => {
+    try {
+        const allDevices = await virtualDevice.find()
+        res.json(allDevices)
+    } catch (err) {
+        res.status(500).json( {message: "Failed to retrieve all Devices" + err} )
+    }
+}
+
+exports.getOneDevice = async (req, res) => {
+    try {
+        const oneDevice = await virtualDevice.findById(req.params.id)
+        res.json(oneDevice)
+    } catch (err) {
+        res.status(500).json( { message: "Failed to retrieve the Device" + err })
+    }
+}
+
 // Function to Create virtualDevice
 exports.createDevice = async (req, res) => {
     const newDevice = new virtualDevice({
