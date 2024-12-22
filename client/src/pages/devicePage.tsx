@@ -31,7 +31,7 @@ function DevicePage() {
         <div>
             <div>
                 <h1 id={"Heading"}>Virtual Devices</h1>
-                <button id={"addDeviceButton"}>Add Device</button>
+                <button id={"addDeviceButton"} onClick={addDeviceButton}>Add Device</button>
 
             </div>
 
