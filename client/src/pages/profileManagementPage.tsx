@@ -9,6 +9,26 @@ function ProfileManagementPage() {
 
     const confirmChangedButton = async (e) => {
         e.preventDefault()
+
+        try {
+            // Try Code
+
+            const response = await fetch("http://localhost:3001/api/user/", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    firstName,
+                    lastName,
+                    username,
+                    email,
+                    password
+                })
+            })
+        } catch (error) {
+            // Catch Error
+        }
     }
 
     const handleFirstNameChange = async (e) => {
