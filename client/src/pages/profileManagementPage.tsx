@@ -28,10 +28,37 @@ function ProfileManagementPage() {
     }
 
     return (
-        <div>
+        <div className={"Input-Form"}>
+            <form>
+                <div>
+                    <label>Update First Name</label>
+                    <input type={"text"} onChange={handleFirstNameChange}/> <br/>
+                </div>
 
+                <div>
+                    <label>Update Last Name</label>
+                    <input type={"text"} onChange={handleLastNameChange}/> <br/>
+                </div>
+
+                <div>
+                    <label>Update Username</label>
+                    <input type={"text"} onChange={handleUsernameChange}/> <br/>
+                </div>
+
+                <div>
+                    <label>Update Email</label>
+                    <input type={"text"} onChange={handleEmailChange}/> <br/>
+                </div>
+
+                <div>
+                    <label>Update password</label>
+                    <input type={"text"} onChange={handlePasswordChange}/>
+                </div>
+
+
+                <button onClick={}>Update Changes</button>
+            </form>
         </div>
-
     )
 
 }
