@@ -25,9 +25,14 @@ function ProfileManagementPage() {
                     email,
                     password
                 })
-            })
+            });
+            if (response.ok) {
+                alert("Data submitted successfully")
+            } else {
+                alert("Failed to submit data")
+            }
         } catch (error) {
-            // Catch Error
+            alert("An Error occurred when submitting data:" + error)
         }
     }
 
