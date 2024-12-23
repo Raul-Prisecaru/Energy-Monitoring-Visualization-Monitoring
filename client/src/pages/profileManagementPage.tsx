@@ -7,6 +7,10 @@ function ProfileManagementPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("")
 
+    const confirmChangedButton = async (e) => {
+        e.preventDefault()
+    }
+
     const handleFirstNameChange = async (e) => {
         setFirstName(e.target.value);
     }
@@ -56,7 +60,7 @@ function ProfileManagementPage() {
                 </div>
 
 
-                <button onClick={}>Update Changes</button>
+                <button onClick={confirmChangedButton}>Update Changes</button>
             </form>
         </div>
     )
