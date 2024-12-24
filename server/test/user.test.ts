@@ -3,6 +3,7 @@ const assert = require('chai').assert
 describe("Testing the Routes of User", () => {
     describe("Testing User can be created", () => {
         it('should create the user successfully', async () => {
+            // TODO: Add get the user we created add added to a useState to access it
             const response = await fetch("http://localhost:3001/api/user", {
                 method: "POST",
                 headers: {
@@ -26,6 +27,8 @@ describe("Testing the Routes of User", () => {
 
     describe("We can retrieve one user based on ID", () => {
         it('should retrieve the user successfully based on specified id', async () => {
+
+            // TODO: Fix this issue where we automate getting the first userID (or from response)
             // const response = await fetch("http://localhost:3001/api/user/676adea49459227971b39b6d", {
             //     method: "GET",
             //     headers: {
