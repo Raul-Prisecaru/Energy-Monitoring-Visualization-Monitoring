@@ -1,5 +1,4 @@
 import {describe} from "node:test";
-import {stringify} from "node:querystring";
 const assert = require('chai').assert
 describe("Testing the Routes of User", () => {
     describe("Testing User can be created", () => {
@@ -26,7 +25,17 @@ describe("Testing the Routes of User", () => {
     })
 
     describe("We can retrieve one user based on ID", () => {
+        it('should retrieve the user successfully based on specified id', async () => {
+            // const response = await fetch("http://localhost:3001/api/user/676adea49459227971b39b6d", {
+            //     method: "GET",
+            //     headers: {
+            //         "Content-Type": "application/json",
+            //     }
+            // })
+            //
+            // assert.strictEqual(response.status, 201, "Expected 201 success response")
 
+        });
     })
 
     describe("We can retrieve all created users", () => {
