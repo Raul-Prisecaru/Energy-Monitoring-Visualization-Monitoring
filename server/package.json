@@ -8,8 +8,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "devDependencies": {
+    "@types/mocha": "^10.0.10",
     "@types/mongoose": "^5.11.96",
     "@types/node": "^22.10.2",
+    "mocha": "^11.0.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
   },
