@@ -42,7 +42,16 @@ describe("Testing the Routes of User", () => {
     })
 
     describe("We can retrieve all created users", () => {
+        it("should retrieve all users successfully", async () => {
+            const response = await fetch("http://localhost:3001/api/user/", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
 
+            assert.strictEqual(response.status, 201, "Expected 201 success response")
+        })
     })
 
     describe("We can update user based on ID", () => {
