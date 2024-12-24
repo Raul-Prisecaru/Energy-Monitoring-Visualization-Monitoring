@@ -14,7 +14,8 @@
     "typescript": "^5.7.2"
   },
   "scripts": {
-    "devStart": "nodemon --exec 'node --loader ts-node/esm' server.ts"
+    "devStart": "nodemon --exec 'node --loader ts-node/esm' server.ts",
+    "test": "mocha --require ts-node/register test/**/*.test.ts"
   },
   "keywords": [],
   "author": "",
