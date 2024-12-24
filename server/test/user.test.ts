@@ -55,7 +55,23 @@ describe("Testing the Routes of User", () => {
     })
 
     describe("We can update user based on ID", () => {
+        it("should update user information successfully based on specified id", async () => {
+            const response = await fetch("http://localhost:3001/api/user/676adea49459227971b39b6d", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    firstName: "updatedFirstName",
+                    lastName: "updatedLastName",
+                    username: "updatedUsername",
+                    email: "updatedEmail",
+                    password: "updatedPassword"
+                })
+            })
 
+            assert.strictEqual(response.status, 201, "Expected 201 success response")
+        })
     })
 
     describe("We can delete user based on ID", () => {
