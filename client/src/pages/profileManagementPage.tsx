@@ -56,6 +56,10 @@ function ProfileManagementPage() {
         }
     }
 
+    const handleUserIDChange = async (e) => {
+        setUserID(e.target.value)
+    }
+
     const handleFirstNameChange = async (e) => {
         setFirstName(e.target.value);
     }
@@ -81,7 +85,7 @@ function ProfileManagementPage() {
             <form>
                 <div>
                     <label>ID</label>
-                    <input type={"text"} onChange={handleFirstNameChange}/> <br/>
+                    <input type={"text"} onChange={handleUserIDChange}/> <br/>
                 </div>
 
                 <div>
