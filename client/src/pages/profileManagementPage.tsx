@@ -1,6 +1,7 @@
 import {useState} from "react";
 
 function ProfileManagementPage() {
+    const [userID, setUserID] = useState("")
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [username, setUsername] = useState("")
@@ -11,9 +12,7 @@ function ProfileManagementPage() {
         e.preventDefault()
 
         try {
-            // Try Code
-
-            const response = await fetch("http://localhost:3001/api/user/", {
+            const response = await fetch(`http://localhost:3001/api/user/${userID}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
@@ -40,7 +39,7 @@ function ProfileManagementPage() {
         e.preventDefault();
 
         try {
-            const response = await fetch("http://localhost:3001/api/user", {
+            const response = await fetch("http://localhost:3001/api/user/${userID}", {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json"
@@ -80,6 +79,11 @@ function ProfileManagementPage() {
     return (
         <div className={"Input-Form"}>
             <form>
+                <div>
+                    <label>ID</label>
+                    <input type={"text"} onChange={handleFirstNameChange}/> <br/>
+                </div>
+
                 <div>
                     <label>Update First Name</label>
                     <input type={"text"} onChange={handleFirstNameChange}/> <br/>
