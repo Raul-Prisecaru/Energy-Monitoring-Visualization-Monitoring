@@ -36,6 +36,27 @@ function ProfileManagementPage() {
         }
     }
 
+    const deleteProfileButton = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await fetch("http://localhost:3001/api/user", {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+
+            if (response.ok) {
+                alert("Data Deleted Successfully")
+
+            }
+        } catch (error) {
+            alert("An Error occurred when submitting data:" + error)
+
+        }
+    }
+
     const handleFirstNameChange = async (e) => {
         setFirstName(e.target.value);
     }
@@ -85,7 +106,8 @@ function ProfileManagementPage() {
                 </div>
 
 
-                <button onClick={confirmChangedButton}>Update Changes</button>
+                <button onClick={confirmChangedButton}>Update Profile</button>
+                <button onClick={deleteProfileButton}>Delete Profile</button>
             </form>
         </div>
     )
