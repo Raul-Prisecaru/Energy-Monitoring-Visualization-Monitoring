@@ -4,19 +4,30 @@ const mongoose = require("mongoose");
 
 const deviceSchema = new mongoose.Schema({
 
+    deviceName: {
+        type: String,
+        require: true,
+        trim: true
+    },
+
     deviceType: {
         type: String,
         require: true,
         trim: true
     },
 
-    energyUsage: {
-        type: Number
-    },
+    energyHistory: {
 
-    energyDate: {
-        type: Date
-    }
+        energyUsage: {
+            type: Number,
+            require: true
+        },
+
+        energyDate: {
+            type: Date,
+            require: true
+        }
+    },
 
 })
 
