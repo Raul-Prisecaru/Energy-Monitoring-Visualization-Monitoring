@@ -6,30 +6,31 @@ const deviceSchema = new mongoose.Schema({
 
     deviceName: {
         type: String,
-        require: true,
+        required: true,
         trim: true
     },
 
     deviceType: {
         type: String,
-        require: true,
+        required: true,
         trim: true
     },
 
     energyHistory: {
-
-        energyUsage: {
-            type: Number,
-            require: true
+        type: {
+            energyUsage: {
+                type: Number,
+                required: true,
+            },
+            energyDate: {
+                type: Date,
+                required: true,
+            },
         },
 
-        energyDate: {
-            type: Date,
-            require: true
-        }
+        required: true
     },
-
-})
+});
 
 const Device = mongoose.model("device", deviceSchema)
 
