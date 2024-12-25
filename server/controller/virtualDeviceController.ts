@@ -22,9 +22,13 @@ exports.getOneDevice = async (req, res) => {
 // Function to Create virtualDevice
 exports.createDevice = async (req, res) => {
     const newDevice = new virtualDevice({
+        deviceName: req.body.deviceName,
         deviceType: req.body.deviceType,
-        energyUsage: req.body.energyUsage,
-        energyDate: req.body.energyDate
+
+        energyHistory: {
+            energyUsage: req.body.energyUsage,
+            energyDate: req.body.energyDate
+        }
     })
 
     try {
