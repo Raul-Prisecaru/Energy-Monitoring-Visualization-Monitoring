@@ -1,5 +1,5 @@
-const express = require("express");
 require("dotenv").config();
+const express = require("express");
 const userRouters = require("./routes/userRoute.ts")
 const deviceRouters = require("./routes/deviceRoute.ts")
 const mongoose = require("mongoose")
