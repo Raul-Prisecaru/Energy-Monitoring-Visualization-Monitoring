@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 
 function DevicePage() {
     const [devices, setDevices] = useState([])
+
     useEffect(() => {
         fetch("http://localhost:3001/api/device/")
             .then((response) => response.json())
@@ -21,9 +22,12 @@ function DevicePage() {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
+                    deviceName: "TestDevice",
                     deviceType: "TestDeviceType",
-                    energyUsage: 100,
-                    energyDate: Date.now(),
+                    energyHistory: {
+                        energyUsage: 100,
+                        energyDate: Date.now(),
+                    },
                 })
             });
 
@@ -49,9 +53,10 @@ function DevicePage() {
                 <div className={"device-grid"}>
                     {devices.map((device, index) => (
                         <div key={index} className="device-card">
+                            <h1>{device.deviceName}</h1>
                             <h3>Device Type: {device.deviceType}</h3>
-                            <p>energy Usage: {device.energyUsage}</p>
-                            <p>energy Date: {device.energyDate}</p>
+                            <p>energy Usage: {device.energyHistory.energyUsage}</p>
+                            <p>energy Date: {device.energyHistory.energyDate}</p>
                         </div>
                     ))}
                 </div>
