@@ -24,10 +24,7 @@ exports.createDevice = async (req, res) => {
     const newDevice = new virtualDevice({
         deviceName: req.body.deviceName,
         deviceType: req.body.deviceType,
-        energyHistory: {
-            energyUsage: req.body.energyHistory.energyUsage,
-            energyDate: req.body.energyHistory.energyDate,
-        }
+        energyHistory: req.body.energyHistory
     })
 
     try {
