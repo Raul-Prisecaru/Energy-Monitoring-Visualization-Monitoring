@@ -24,17 +24,25 @@ function DevicePage() {
                 body: JSON.stringify({
                     deviceName: "TestDevice",
                     deviceType: "TestDeviceType",
-                    energyHistory: {
-                        energyUsage: 100,
-                        energyDate: Date.now(),
-                    },
+                    energyHistory: [
+                        {
+                            energyUsage: 150,
+                            energyDate: Date.now()
+                        },
+                        {
+                            energyUsage: 200,
+                            energyDate: Date.now()
+                        }
+                    ]
                 })
             });
 
             if (response.ok) {
                 alert("Data submitted successfully")
             } else {
-                alert("Failed to submit data")
+                const errorDetail = response.json()
+                alert("There has been an Error: " + errorDetail)
+                console.error("There has been an Error: ", errorDetail)
             }
         } catch (error) {
             alert("An Error occurred when submitting data:" + error)
