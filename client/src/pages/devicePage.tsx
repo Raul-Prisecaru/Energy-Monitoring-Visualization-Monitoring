@@ -2,6 +2,7 @@ import "./styles/devicePageStyle.css"
 import {useEffect, useState} from "react";
 
 function DevicePage() {
+    const [isOpen, setIsOpen] = useState(false)
     const [devices, setDevices] = useState([])
 
     useEffect(() => {
@@ -11,6 +12,10 @@ function DevicePage() {
             .catch((error) => console.error("Failed to fetch Devices" + error))
     }, [])
 
+
+    const handleOpen = () => setIsOpen(true);
+
+    const handleClose = () => setIsOpen(false);
 
     const addDeviceButton = async (e) => {
         e.preventDefault()
