@@ -37,10 +37,10 @@ exports.getCategoryEnergy = async (req, res) => {
             categoryJSONUsage[deviceCategory] += deviceEnergyUsage
         })
 
-
+        res.status(201).json(categoryJSONUsage)
 
     } catch (err) {
-
+        res.status(500).json({error: "There has been an error try to retrieve each category Usage: " + err})
     }
 }
 
