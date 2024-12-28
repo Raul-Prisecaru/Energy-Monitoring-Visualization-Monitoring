@@ -3,8 +3,13 @@ import {useEffect, useState} from "react";
 import {Box, Modal} from "@mui/material";
 
 function DevicePage() {
-    const [isOpen, setIsOpen] = useState(false)
-    const [devices, setDevices] = useState([])
+    const [isOpen, setIsOpen] = useState(false);
+    const [devices, setDevices] = useState([]);
+    const [deviceName, setDeviceName] = useState("");
+    const [deviceType, setDeviceType] = useState("");
+
+
+
 
     useEffect(() => {
         fetch("http://localhost:3001/api/device/")
