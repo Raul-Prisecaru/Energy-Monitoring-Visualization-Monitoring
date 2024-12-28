@@ -34,35 +34,3 @@
 
     background-color: lightblue;
 }
-
-.modalContent {
-    display: flex;
-
-    align-items: center;
-
-    flex-direction: column;
-}
-
-.modalHeader {
-
-    font-size: 20px;
-}
-
-.modalForm {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-.modalDeviceNameInput {
-    padding-top: 10px;
-}
-
-
-.modalDeviceTypeLabel {
-    padding-top: 10px;
-}
-
-.modalDeviceTypeInput {
-    padding-top: 10px;
-}
