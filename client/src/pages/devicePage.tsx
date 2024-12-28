@@ -90,17 +90,23 @@ function DevicePage() {
                                 <h1>Add Device</h1>
                             </div>
 
-                            <div className={"formModal"}>
+                            <div className={"modalForm"}>
 
                                 <form>
-
-                                    <div>
+                                    <div className={"modalDeviceNameLabel"}>
                                         <label>Device Name</label>
+                                    </div>
+
+                                    <div className={"modalDeviceNameInput"}>
                                         <input type={"textext"} onChange={handleDeviceNameChange}/>
                                     </div>
 
-                                    <div>
+
+                                    <div className={"modalDeviceTypeLabel"}>
                                         <label>Device Type</label>
+                                    </div>
+
+                                    <div className={"modalDeviceTypeInput"}>
                                         <input type={"text"} onChange={handleDeviceTypeChange}/>
                                     </div>
 
