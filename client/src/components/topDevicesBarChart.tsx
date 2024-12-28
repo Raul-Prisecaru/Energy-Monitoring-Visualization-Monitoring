@@ -1,4 +1,4 @@
-import {Area, AreaChart, CartesianGrid, Tooltip, XAxis, YAxis} from "recharts";
+import {Area, AreaChart, Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis} from "recharts";
 import {useEffect, useState} from "react";
 
 function TopDevicesBarChart({width, height}) {
@@ -21,11 +21,11 @@ function TopDevicesBarChart({width, height}) {
 
     return (
         <div>
-            <AreaChart width={width} height={height} data={data}>
-                <XAxis dataKey={"energyDate"} />
-                <YAxis />
-                <Area type="monotone" dataKey="energyUsage" />
-            </AreaChart>
+            <BarChart width={width} height={height} data={data} layout={"vertical"}>
+                <XAxis type={"number"} />
+                <YAxis type="category" dataKey={"energyDate"} />
+                <Bar dataKey={"energyUsage"} />
+            </BarChart>
         </div>
     )
 }
