@@ -34,8 +34,8 @@ function DevicePage() {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    deviceName: "TestDevice",
-                    deviceType: "TestDeviceType",
+                    deviceName: deviceName,
+                    deviceType: deviceType,
                     energyHistory: [
                         {
                             energyUsage: 150,
@@ -96,17 +96,17 @@ function DevicePage() {
 
                                     <div>
                                         <label>Device Name</label>
-                                        <input type={"Text"}/>
+                                        <input type={"textext"} onChange={handleDeviceNameChange}/>
                                     </div>
 
                                     <div>
                                         <label>Device Type</label>
-                                        <input/>
+                                        <input type={"text"} onChange={handleDeviceTypeChange}/>
                                     </div>
 
                                 </form>
 
-                                <button>Confirm Changes</button>
+                                <button onClick={addDeviceButton}>Confirm Changes</button>
                             </div>
                         </div>
                     </Box>
