@@ -1,5 +1,6 @@
 import "./styles/devicePageStyle.css"
 import {useEffect, useState} from "react";
+import {Modal} from "@mui/material";
 
 function DevicePage() {
     const [isOpen, setIsOpen] = useState(false)
@@ -70,7 +71,17 @@ function DevicePage() {
         <div>
             <div>
                 <h1 id={"Heading"}>Virtual Devices</h1>
-                <button id={"addDeviceButton"} onClick={addDeviceButton}>Add Device</button>
+                <button id={"addDeviceButton"} onClick={handleOpen}>Add Device</button>
+
+                <Modal
+                    open={isOpen}
+                    onClose={handleClose}>
+
+                    <box>
+
+                    </box>
+
+                </Modal>
 
             </div>
 
