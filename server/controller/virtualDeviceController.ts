@@ -19,6 +19,12 @@ exports.getOneDevice = async (req, res) => {
     }
 }
 
+// Function to get the energyUsage of each device category
+exports.getCategoryEnergy = async (req, res) => {
+
+}
+
+
 // Function to Create virtualDevice
 exports.createDevice = async (req, res) => {
     const newDevice = new virtualDevice({
