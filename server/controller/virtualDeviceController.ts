@@ -21,7 +21,27 @@ exports.getOneDevice = async (req, res) => {
 
 // Function to get the energyUsage of each device category
 exports.getCategoryEnergy = async (req, res) => {
+    try {
+        const categoryJSONUsage = {}
 
+        const allDevices = await virtualDevice.find()
+
+        allDevices.forEach((device) => {
+            const deviceCategory = device.deviceType;
+            const deviceEnergyUsage = device.energyHistory.energyUsage;
+
+            if(!categoryJSONUsage[deviceCategory]) {
+                categoryJSONUsage[deviceCategory] = 0;
+            }
+
+            categoryJSONUsage[deviceCategory] += deviceEnergyUsage
+        })
+
+
+
+    } catch (err) {
+
+    }
 }
 
 
