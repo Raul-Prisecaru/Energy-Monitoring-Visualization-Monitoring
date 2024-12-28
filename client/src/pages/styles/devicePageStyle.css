@@ -21,3 +21,16 @@
     text-align: center;
     background-color: white;
 }
+
+.styleBoxModal {
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 400px;
+    height: 100px;
+
+    background-color: white;
+}
