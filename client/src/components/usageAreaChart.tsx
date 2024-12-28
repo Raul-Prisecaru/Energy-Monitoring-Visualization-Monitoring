@@ -22,6 +22,8 @@ function UsageAreaChart({width, height}) {
     return (
         <div>
             <AreaChart width={width} height={height} data={data}>
+                <XAxis dataKey={"energyDate"} />
+                <YAxis />
             </AreaChart>
         </div>
     )
