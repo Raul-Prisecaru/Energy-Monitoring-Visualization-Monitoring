@@ -8,9 +8,6 @@ function DevicePage() {
     const [deviceName, setDeviceName] = useState("");
     const [deviceType, setDeviceType] = useState("");
 
-
-
-
     useEffect(() => {
         fetch("http://localhost:3001/api/device/")
             .then((response) => response.json())
@@ -22,6 +19,10 @@ function DevicePage() {
     const handleOpen = () => setIsOpen(true);
 
     const handleClose = () => setIsOpen(false);
+
+    const handleDeviceNameChange = (e) => setDeviceName(e.target.value);
+
+    const handleDeviceTypeChange = (e) => setDeviceType(e.target.value);
 
     const addDeviceButton = async (e) => {
         e.preventDefault()
