@@ -78,7 +78,31 @@ function DevicePage() {
                     onClose={handleClose}>
 
                     <Box className={"styleBoxModal"}>
+                        <div className={"modalContent"}>
 
+                            <div className={"modalHeader"}>
+                                <h1>Add Device</h1>
+                            </div>
+
+                            <div className={"formModal"}>
+
+                                <form>
+
+                                    <div>
+                                        <label>Device Name</label>
+                                        <input type={"Text"}/>
+                                    </div>
+
+                                    <div>
+                                        <label>Device Type</label>
+                                        <input/>
+                                    </div>
+
+                                </form>
+
+                                <button>Confirm Changes</button>
+                            </div>
+                        </div>
                     </Box>
 
                 </Modal>
