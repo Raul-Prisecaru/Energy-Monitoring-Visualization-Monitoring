@@ -1,6 +1,6 @@
 import "./styles/devicePageStyle.css"
 import {useEffect, useState} from "react";
-import {Modal} from "@mui/material";
+import {Box, Modal} from "@mui/material";
 
 function DevicePage() {
     const [isOpen, setIsOpen] = useState(false)
@@ -77,9 +77,9 @@ function DevicePage() {
                     open={isOpen}
                     onClose={handleClose}>
 
-                    <box>
+                    <Box className={"styleBoxModal"}>
 
-                    </box>
+                    </Box>
 
                 </Modal>
 
