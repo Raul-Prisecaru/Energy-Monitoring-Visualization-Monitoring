@@ -91,8 +91,6 @@ function DevicePage() {
                         <div key={index} className="device-card">
                             <h1>{device.deviceName}</h1>
                             <h3>Device Type: {device.deviceType}</h3>
-                            <p>energy Usage: {device.energyHistory.energyUsage}</p>
-                            <p>energy Date: {device.energyHistory.energyDate}</p>
                         </div>
                     ))}
                 </div>
