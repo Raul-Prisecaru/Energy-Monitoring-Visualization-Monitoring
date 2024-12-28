@@ -32,6 +32,18 @@ function DevicePage() {
                         {
                             energyUsage: 200,
                             energyDate: Date.now()
+                        },
+                        {
+                            energyUsage: 120,
+                            energyDate: Date.now()
+                        },
+                        {
+                            energyUsage: 100,
+                            energyDate: Date.now()
+                        },
+                        {
+                            energyUsage: 200,
+                            energyDate: Date.now()
                         }
                     ]
                 })
