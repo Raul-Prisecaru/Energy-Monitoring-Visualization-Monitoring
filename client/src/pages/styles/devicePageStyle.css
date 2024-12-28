@@ -34,3 +34,28 @@
 
     background-color: lightblue;
 }
+
+.modalContent {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.modalDeviceNameLabel {
+    padding-top: 10px;
+}
+
+.modalDeviceNameInput {
+    padding-top: 10px;
+}
+
+
+.modalDeviceTypeLabel {
+    padding-top: 20px;
+}
+
+.modalDeviceTypeInput {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
