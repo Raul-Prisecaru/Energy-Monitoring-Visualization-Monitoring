@@ -3,12 +3,21 @@ import {useEffect, useState} from "react";
 
 function UsageAreaChart({width, height}) {
     const [data, setData] = useState([])
+
     useEffect(() => {
         fetch("http://localhost:3001/api/device/")
             .then((response) => response.json())
-            .then((data) => setData(data))
-            .catch((error) => console.error("Failed to fetch Devices" + error))
-    }, [])
+            .then((devices) => {
+                const deviceHistoryData = devices.flatMap(device =>
+                    device.energyHistory.map(historyData => ({
+                        energyUsage: historyData.energyUsage,
+                        energyDate: new Date(historyData.energyDate).toLocaleDateString("en-GB")
+                    }))
+                );
+                setData(deviceHistoryData);
+            })
+            .catch((error) => console.error("Failed to fetch Devices: " + error));
+    }, []);
 
     return (
         <div>
