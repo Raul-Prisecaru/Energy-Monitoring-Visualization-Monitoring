@@ -2,7 +2,7 @@ import "./styles/devicePageStyle.css"
 import {useEffect, useState} from "react";
 import {Box, Modal} from "@mui/material";
 
-function DevicePage() {
+function DeviceManagementPage() {
     const [isOpen, setIsOpen] = useState(false);
     const [devices, setDevices] = useState([]);
     const [deviceName, setDeviceName] = useState("");
@@ -139,4 +139,4 @@ function DevicePage() {
 }
 
 
-export default DevicePage
+export default DeviceManagementPage
