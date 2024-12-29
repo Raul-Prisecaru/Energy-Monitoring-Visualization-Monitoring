@@ -8,13 +8,12 @@ function TopDevicesBarChart({width, height}) {
         fetch("http://localhost:3001/api/device/getCategoryEnergyUsage")
             .then((response) => response.json())
             .then((devices) => {
-                const deviceHistoryData = devices.flatMap(device =>
-                    device.energyHistory.map(historyData => ({
-                        energyUsage: historyData.energyUsage,
-                        energyDate: new Date(historyData.energyDate).toLocaleDateString("en-GB")
-                    }))
+                const formattedData = Object.keys(devices).map((category) => ({
+                    deviceCategory: category,
+                    energyUsage: devices[category]
+                })
                 );
-                setData(deviceHistoryData);
+                setData(formattedData);
             })
             .catch((error) => console.error("Failed to fetch Devices: " + error));
     }, []);
@@ -23,7 +22,7 @@ function TopDevicesBarChart({width, height}) {
         <div>
             <BarChart width={width} height={height} data={data} layout={"vertical"}>
                 <XAxis type={"number"} />
-                <YAxis type="category" dataKey={"energyDate"} />
+                <YAxis type="category" dataKey={"deviceCategory"} />
                 <Bar dataKey={"energyUsage"} />
             </BarChart>
         </div>
