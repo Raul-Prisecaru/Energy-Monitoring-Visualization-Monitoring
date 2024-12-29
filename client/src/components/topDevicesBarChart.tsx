@@ -5,7 +5,7 @@ function TopDevicesBarChart({width, height}) {
     const [data, setData] = useState([])
 
     useEffect(() => {
-        fetch("http://localhost:3001/api/device/")
+        fetch("http://localhost:3001/api/device/getCategoryEnergyUsage")
             .then((response) => response.json())
             .then((devices) => {
                 const deviceHistoryData = devices.flatMap(device =>
