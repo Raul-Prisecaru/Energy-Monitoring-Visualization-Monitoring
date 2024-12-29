@@ -28,13 +28,15 @@ exports.getCategoryEnergy = async (req, res) => {
 
         allDevices.forEach((device) => {
             const deviceCategory = device.deviceType;
-            const deviceEnergyUsage = device.energyHistory.energyUsage;
+            const totalEnergyUsage = device.energyHistory.reduce((total, next) => {
+                return total + next.energyUsage
+            }, 0)
 
             if(!categoryJSONUsage[deviceCategory]) {
                 categoryJSONUsage[deviceCategory] = 0;
             }
 
-            categoryJSONUsage[deviceCategory] += deviceEnergyUsage
+            categoryJSONUsage[deviceCategory] += totalEnergyUsage
         })
 
         res.status(201).json(categoryJSONUsage)
