@@ -7,11 +7,14 @@ const router = express.Router();
 // Router to get all devices
 router.get("/", deviceController.getAllDevices)
 
-// router to get all energy Usage of every Category
+// Router to get all energy Usage of every Category
 router.get("/getCategoryEnergyUsage", deviceController.getCategoryEnergy)
 
 // Router to get energy Cost of every date
 router.get("/getCostEnergyUsage", deviceController.getCostEnergyUsage)
+
+// Router to get the energy Usage progress
+router.get("/getEnergyUsageProgress", deviceController.getEnergyUsageProgress)
 
 // Router to get one device
 router.get("/:id", deviceController.getOneDevice)
