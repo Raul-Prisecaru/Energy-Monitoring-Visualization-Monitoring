@@ -10,6 +10,9 @@ router.get("/", deviceController.getAllDevices)
 // router to get all energy Usage of every Category
 router.get("/getCategoryEnergyUsage", deviceController.getCategoryEnergy)
 
+// Router to get energy Cost of every date
+router.get("/getCostEnergyUsage", deviceController.getCostEnergyUsage)
+
 // Router to get one device
 router.get("/:id", deviceController.getOneDevice)
 
