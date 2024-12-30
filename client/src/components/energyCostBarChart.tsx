@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {Bar, BarChart, XAxis, YAxis} from "recharts";
 
-function EnergyCostBarChart() {
+function EnergyCostBarChart({width, height}) {
     const [data, setData] = useState()
     useEffect(() => {
         fetch("http://localhost:3001/api/device/getCostEnergyUsage")
@@ -19,7 +19,7 @@ function EnergyCostBarChart() {
 
     return (
         <div>
-            <BarChart width={500} height={200} data={data}>
+            <BarChart width={width} height={height} data={data}>
                 <XAxis dataKey={"energyDate"} />
                 <YAxis />
                 <Bar dataKey={"energyCost"} />
