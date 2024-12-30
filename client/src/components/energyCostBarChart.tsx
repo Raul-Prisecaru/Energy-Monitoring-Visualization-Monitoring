@@ -8,8 +8,8 @@ function EnergyCostBarChart() {
             .then((response) => response.json())
             .then((energyDevice) => {
                 const formattedData = Object.keys(energyDevice).map((energy) => ({
-                    energyCost: energy,
-                    energyDate: energyDevice[energy],
+                    energyCost: energyDevice[energy],
+                    energyDate: energy,
                     })
                 );
                 setData(formattedData);
@@ -20,7 +20,7 @@ function EnergyCostBarChart() {
     return (
         <div>
             <BarChart width={500} height={200} data={data}>
-                <XAxis dataKey={"energyCost"} />
+                <XAxis dataKey={"energyDate"} />
                 <YAxis />
             </BarChart>
         </div>
