@@ -76,9 +76,22 @@ exports.getCostEnergyUsage = async (req, res) => {
 
 exports.getEnergyUsageProgress = async (req, res) => {
     try {
-        const energyProgress = {}
+        const energyProgress = {
+            total: 0,
+            limit: 1500
+        }
 
-        const allDevices = virtualDevice.find()
+        const allDevices = await virtualDevice.find()
+
+        allDevices.forEach((device) => {
+            energyProgress["total"] = device.energyHistory.reduce((total, next) => {
+                return total + next.energyUsage
+            }, 0)
+
+        })
+
+        res.status(201).json(energyProgress)
+
 
 
     } catch (err) {
