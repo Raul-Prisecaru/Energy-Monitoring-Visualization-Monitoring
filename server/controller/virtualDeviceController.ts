@@ -54,15 +54,22 @@ exports.getCostEnergyUsage = async (req, res) => {
         const allDevices = await virtualDevice.find();
 
         allDevices.forEach((device) => {
-            const energyHistory = device.energyHistory;
 
             console.log("-- EnergyUsage Test --")
 
             device.energyHistory.forEach((history) => {
                 console.log(history.energyUsage)
                 console.log(history.energyDate)
+
+                if (!getCostDate[history.energyDate]) {
+                    getCostDate[history.energyDate] = 0
+                }
+
+                getCostDate[history.energyDate] += (history.energyUsage * 0.22)
             })
         })
+
+        res.status(201).json(getCostDate)
 
 
     } catch (err) {
