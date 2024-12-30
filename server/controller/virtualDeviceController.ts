@@ -74,6 +74,21 @@ exports.getCostEnergyUsage = async (req, res) => {
     }
 }
 
+exports.getEnergyUsageProgress = async (req, res) => {
+    try {
+        const energyProgress = {}
+
+        const allDevices = virtualDevice.find()
+
+
+    } catch (err) {
+        res.status(500).json({error: "There has been an error: " + err})
+    }
+
+
+}
+
+
 
 // Function to Create virtualDevice
 exports.createDevice = async (req, res) => {
