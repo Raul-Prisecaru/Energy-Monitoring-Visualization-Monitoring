@@ -12,7 +12,7 @@ function DashboardPage() {
         <div className={"deviceVisualizer"}>
             <UsageAreaChart width={500} height={300} />
             <TopDevicesBarChart width={500} height={300} />
-            <EnergyCostBarChart />
+            <EnergyCostBarChart width={500} height={300}/>
         </div>
     )
 
