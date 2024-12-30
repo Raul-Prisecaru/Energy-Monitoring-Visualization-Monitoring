@@ -9,7 +9,7 @@ function EnergyCostBarChart() {
             .then((energyDevice) => {
                 const formattedData = Object.keys(energyDevice).map((energy) => ({
                     energyCost: energyDevice[energy],
-                    energyDate: energy,
+                    energyDate: new Date(energy).toLocaleDateString("en-GB"),
                     })
                 );
                 setData(formattedData);
