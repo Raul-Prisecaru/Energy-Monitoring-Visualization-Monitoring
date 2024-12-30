@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import {Bar, BarChart, XAxis, YAxis} from "recharts";
 
 function EnergyCostBarChart() {
     const [data, setData] = useState()
@@ -15,6 +16,17 @@ function EnergyCostBarChart() {
             })
             .catch((error) => console.error("Failed to fetch Devices: " + error));
     }, []);
+
+    return (
+        <div>
+            <BarChart width={500} height={200} data={data}>
+                <XAxis dataKey={"energyCost"} />
+                <YAxis />
+            </BarChart>
+        </div>
+    )
+
+
 }
 
 
