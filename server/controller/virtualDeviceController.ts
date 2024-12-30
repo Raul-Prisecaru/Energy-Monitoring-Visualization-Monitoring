@@ -58,9 +58,6 @@ exports.getCostEnergyUsage = async (req, res) => {
             console.log("-- EnergyUsage Test --")
 
             device.energyHistory.forEach((history) => {
-                console.log(history.energyUsage)
-                console.log(history.energyDate)
-
                 if (!getCostDate[history.energyDate]) {
                     getCostDate[history.energyDate] = 0
                 }
