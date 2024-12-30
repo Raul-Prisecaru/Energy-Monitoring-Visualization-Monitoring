@@ -47,6 +47,30 @@ exports.getCategoryEnergy = async (req, res) => {
 }
 
 
+exports.getCostEnergyUsage = async (req, res) => {
+    try {
+        const getCostDate = {}
+
+        const allDevices = await virtualDevice.find();
+
+        allDevices.forEach((device) => {
+            const energyHistory = device.energyHistory;
+
+            console.log("-- EnergyUsage Test --")
+
+            device.energyHistory.forEach((history) => {
+                console.log(history.energyUsage)
+                console.log(history.energyDate)
+            })
+        })
+
+
+    } catch (err) {
+        res.status(500).json({error: "There has been an error: " + err})
+    }
+}
+
+
 // Function to Create virtualDevice
 exports.createDevice = async (req, res) => {
     const newDevice = new virtualDevice({
