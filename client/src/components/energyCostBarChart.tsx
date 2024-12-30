@@ -22,6 +22,7 @@ function EnergyCostBarChart() {
             <BarChart width={500} height={200} data={data}>
                 <XAxis dataKey={"energyDate"} />
                 <YAxis />
+                <Bar dataKey={"energyCost"} />
             </BarChart>
         </div>
     )
