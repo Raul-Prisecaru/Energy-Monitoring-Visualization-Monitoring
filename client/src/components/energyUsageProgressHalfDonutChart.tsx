@@ -37,12 +37,16 @@ function EnergyUsageProgressHalfDonutChart() {
             .catch((error) => console.error("Failed to fetch Devices: " + error));
     }, []);
 
+    const options = {
+        rotation: -90,
+        circumference: 180,
 
+    }
 
 
     return (
         <div>
-            <Doughnut data={data} />
+            <Doughnut data={data} options={options} />
         </div>
     )
 }
