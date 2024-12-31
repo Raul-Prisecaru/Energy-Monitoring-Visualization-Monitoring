@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import { Pie } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, Tooltip, Legend, ArcElement } from "chart.js";
 
 function EnergyUsageProgressHalfDonutChart() {
@@ -42,7 +42,7 @@ function EnergyUsageProgressHalfDonutChart() {
 
     return (
         <div>
-            <Pie data={data} />
+            <Doughnut data={data} />
         </div>
     )
 }
