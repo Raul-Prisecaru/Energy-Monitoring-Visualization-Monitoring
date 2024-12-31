@@ -1,8 +1,12 @@
 import {useEffect, useState} from "react";
+import { Pie } from "react-chartjs-2";
+import { Chart as ChartJS, Tooltip, Legend, ArcElement } from "chart.js";
 
 function EnergyUsageProgressHalfDonutChart(width, height) {
     const [data, setData] = useState()
-    
+
+    ChartJS.register(Tooltip, Legend, ArcElement);
+
     useEffect(() => {
         fetch("http://localhost:3001/api/device/getEnergyUsageProgress")
             .then((response) => response.json())
@@ -20,9 +24,11 @@ function EnergyUsageProgressHalfDonutChart(width, height) {
     }, []);
 
 
+
+
     return (
         <div>
-
+            <Pie data={data} />
         </div>
     )
 }
