@@ -13,8 +13,12 @@ function EnergyUsageProgressHalfDonutChart(width, height) {
             .then((data) => {
                 const formattedData = [
                      {
-                        totalEnergyUsage: data.total,
-                        limit: data.limit
+                         label: ["Used Energy", "Max Target"],
+
+                         datasets: [ {
+                             data: [data.total, data.limit]
+                             } ]
+
                      }
                 ];
 
