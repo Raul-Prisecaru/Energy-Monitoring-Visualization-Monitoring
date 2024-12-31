@@ -24,8 +24,7 @@ function EnergyUsageProgressHalfDonutChart() {
                     datasets: [
                         {
                             data: [data.total, data.limit - data.total],
-                            backgroundColor: ["#FF6384", "#36A2EB"],
-                            hoverBackgroundColor: ["#FF6384", "#36A2EB"]
+                            backgroundColor: ["#FF6384", "#808080"],
                         }
                     ]
                 };
