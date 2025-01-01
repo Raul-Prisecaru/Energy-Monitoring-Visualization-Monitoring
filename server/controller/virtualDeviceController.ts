@@ -46,6 +46,9 @@ exports.getCategoryEnergy = async (req, res) => {
     }
 }
 
+exports.getEnergyHistoryPrediction = async (req, res) => {
+
+}
 
 exports.getCostEnergyUsage = async (req, res) => {
     try {
