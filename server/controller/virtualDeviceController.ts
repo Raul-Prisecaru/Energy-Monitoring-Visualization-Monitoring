@@ -27,7 +27,6 @@ exports.getOneDevice = async (req, res) => {
     }
 }
 
-// Function to get the energyUsage of each device category
 /**
  * Function Responsible for retrieving total energy Usage of each Device Category
  * @param res - 201 response with json else 500 response
@@ -58,11 +57,20 @@ exports.getEnergyOfEachCategory = async (req, res) => {
     }
 }
 
-exports.getEnergyHistoryPrediction = async (req, res) => {
+/**
+ * Function Responsible for retrieving of the total energy Prediction throughout the year
+ * @return res - 201 response with json, else 500 response
+ */
+exports.getEnergyUsagePrediction = async (req, res) => {
 
 }
 
-exports.getCostEnergyUsage = async (req, res) => {
+
+/**
+ * Function Responsible for retrieving the energy Usage Cost per Month
+ * @param res - 201 response with JSON, else 500 response
+ */
+exports.getEnergyUsageCostPerMonth = async (req, res) => {
     try {
         const getCostDate = {}
 
