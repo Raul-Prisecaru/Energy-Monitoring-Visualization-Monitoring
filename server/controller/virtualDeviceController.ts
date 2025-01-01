@@ -1,19 +1,27 @@
 const virtualDevice = require("../model/iotDevice.ts");
 
-// Function to get all users
+/**
+ * Function Responsible for retrieving all Devices
+ * @return res - 201 response with json of all devices else 500 response
+ */
 exports.getAllDevices = async (req, res) => {
     try {
         const allDevices = await virtualDevice.find()
-        res.json(allDevices)
+        res.status(201).json(allDevices)
     } catch (err) {
         res.status(500).json( {message: "Failed to retrieve all Devices" + err} )
     }
 }
 
+/**
+ * Function Responsible for retrieving the specified device via id
+ * @param req - Device ID
+ * @return res - 201 response with json of device else 500 response
+ */
 exports.getOneDevice = async (req, res) => {
     try {
         const oneDevice = await virtualDevice.findById(req.params.id)
-        res.json(oneDevice)
+        res.status(201).json(oneDevice)
     } catch (err) {
         res.status(500).json( { message: "Failed to retrieve the Device" + err })
     }
