@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import DeviceManagementPage from "./pages/deviceManagementPage.tsx";
 import ProfileManagementPage from "./pages/profileManagementPage.tsx";
 import DashboardPage from "./pages/dashboardPage.tsx";
+import SettingsPage from "./pages/settingsPage.tsx";
 function App() {
 
   return (
@@ -19,6 +20,7 @@ function App() {
                 <Route path={"devices"} element={<DeviceManagementPage />}></Route>
                 <Route path={"dashboard"} element={<DashboardPage  />}></Route>
                 <Route path={"ProfileManagement"} element={<ProfileManagementPage />}> </Route>
+                <Route path={"Settings"} element={<SettingsPage />}> </Route>
             </Routes>
 
 
