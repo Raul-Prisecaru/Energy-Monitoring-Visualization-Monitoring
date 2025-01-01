@@ -28,7 +28,11 @@ exports.getOneDevice = async (req, res) => {
 }
 
 // Function to get the energyUsage of each device category
-exports.getCategoryEnergy = async (req, res) => {
+/**
+ * Function Responsible for retrieving total energy Usage of each Device Category
+ * @param res - 201 response with json else 500 response
+ */
+exports.getEnergyOfEachCategory = async (req, res) => {
     try {
         const categoryJSONUsage = {}
 
