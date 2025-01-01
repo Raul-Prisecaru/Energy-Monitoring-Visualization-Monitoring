@@ -2,8 +2,9 @@ function SettingsPage() {
 
 
     return (
-        <div>
-            <h1> Test </h1>
+        <div className={"buttonsManagement"}>
+            <button> Profile Management </button>
+            <button> Notification management </button>
         </div>
     )
 
