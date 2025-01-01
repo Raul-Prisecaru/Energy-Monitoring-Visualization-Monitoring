@@ -1,12 +1,13 @@
 import "./styles/settingsPageStyle.css"
+import { useNavigate } from 'react-router-dom';
 
 function SettingsPage() {
-
+    const navigate = useNavigate();
 
     return (
         <div className={"buttonsManagement"}>
             <div>
-                <button> Profile Management </button>
+                <button onClick={() => navigate("/ProfileManagement")}> Profile Management </button>
 
             </div>
             <div>
