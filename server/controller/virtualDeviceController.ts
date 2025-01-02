@@ -57,6 +57,12 @@ exports.getEnergyOfEachCategory = async (req, res) => {
     }
 }
 
+
+exports.getTopEnergyUsageDevices = async (req, res) => {
+
+}
+
+
 /**
  * Function Responsible for retrieving of the total energy Prediction throughout the year
  * @return res - 201 response with json, else 500 response
