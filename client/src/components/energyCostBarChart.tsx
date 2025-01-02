@@ -4,7 +4,7 @@ import {Bar, BarChart, XAxis, YAxis} from "recharts";
 function EnergyCostBarChart({width, height}) {
     const [data, setData] = useState()
     useEffect(() => {
-        fetch("http://localhost:3001/api/device/getCostEnergyUsage")
+        fetch("http://localhost:3001/api/device/getEnergyUsageCostPerMonth")
             .then((response) => response.json())
             .then((energyDevice) => {
                 const formattedData = Object.keys(energyDevice).map((energy) => ({
