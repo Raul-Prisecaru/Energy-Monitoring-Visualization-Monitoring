@@ -1,4 +1,4 @@
-import {Area, AreaChart, Bar, BarChart, CartesianGrid, Pie, PieChart, Tooltip, XAxis, YAxis} from "recharts";
+import {Pie, PieChart} from "recharts";
 import {useEffect, useState} from "react";
 
 function TopDevicesBarChart({width, height}) {
@@ -27,6 +27,7 @@ function TopDevicesBarChart({width, height}) {
                     nameKey="deviceCategory"
                     label={({ name, value }) => `${name}: ${value}`}
                 />
+
             </PieChart>
         </div>
     )
