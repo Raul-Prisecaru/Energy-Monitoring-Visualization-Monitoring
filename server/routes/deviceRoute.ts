@@ -8,10 +8,10 @@ const router = express.Router();
 router.get("/", deviceController.getAllDevices)
 
 // Router to get all energy Usage of every Category
-router.get("/getCategoryEnergyUsage", deviceController.getCategoryEnergy)
+router.get("/getEnergyOfEachCategory", deviceController.getEnergyOfEachCategory)
 
 // Router to get energy Cost of every date
-router.get("/getCostEnergyUsage", deviceController.getCostEnergyUsage)
+router.get("/getEnergyUsageCostPerMonth", deviceController.getEnergyUsageCostPerMonth)
 
 // Router to get the energy Usage progress
 router.get("/getEnergyUsageProgress", deviceController.getEnergyUsageProgress)
