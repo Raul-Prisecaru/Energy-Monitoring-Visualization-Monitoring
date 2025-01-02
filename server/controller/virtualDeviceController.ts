@@ -97,6 +97,10 @@ exports.getEnergyUsageCostPerMonth = async (req, res) => {
     }
 }
 
+/**
+ * Function Responsible for retrieving amount of energy user has used with targeted energy Usage
+ * @param res - 201 Response with json else 500 response
+ */
 exports.getEnergyUsageProgress = async (req, res) => {
     try {
         const energyProgress = {
@@ -125,8 +129,13 @@ exports.getEnergyUsageProgress = async (req, res) => {
 }
 
 
-
-// Function to Create virtualDevice
+/**
+ * Method Responsible for creating Device and storing to the Database
+ * @param req.body.deviceName - Device Name
+ * @param req.body.deviceType - Device Type
+ * @param req.body.EnergyHistory - Array that takes energyUsage (int) and energyDate (Date)
+ * @param res - 201 response else 500 response
+ */
 exports.createDevice = async (req, res) => {
     const newDevice = new virtualDevice({
         deviceName: req.body.deviceName,
@@ -146,7 +155,14 @@ exports.createDevice = async (req, res) => {
 
 };
 
-// Function to Update Device
+/**
+ * Method Responsible for finding and updating specified device
+ * @param req.param.id - Device ID
+ * @param req.body.deviceName - Device Name
+ * @param req.body.deviceType - Device Type
+ * @param req.body.EnergyHistory - Array that takes energyUsage (int) and energyDate (Date)
+ * @param res - 201 response else 500 response
+ */
 exports.updateDevice = async (req, res) => {
     try {
         await virtualDevice.findByIdAndUpdate(req.param.id, req.body)
@@ -156,7 +172,10 @@ exports.updateDevice = async (req, res) => {
     }
 };
 
-// Function to Delete Device
+/**
+ * Method Responsible for finding and deleting specified device
+ * @param res.param.id - Device ID
+ */
 exports.deleteDevice = async (req, res) => {
     try {
         await virtualDevice.findByIdAndDelete(req.param.id)
@@ -166,3 +185,5 @@ exports.deleteDevice = async (req, res) => {
     }
 
 };
+
+
