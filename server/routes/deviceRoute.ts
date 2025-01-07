@@ -13,6 +13,9 @@ router.get("/getEnergyOfEachCategory", deviceController.getEnergyOfEachCategory)
 // Router to get energy Cost of every date
 router.get("/getEnergyUsageCostPerMonth", deviceController.getEnergyUsageCostPerMonth)
 
+// Router to get ordered list of most energy consumping devices
+router.get("/getTopEnergyUsageDevices", deviceController.getTopEnergyUsageDevices)
+
 // Router to get the energy Usage progress
 router.get("/getEnergyUsageProgress", deviceController.getEnergyUsageProgress)
 
