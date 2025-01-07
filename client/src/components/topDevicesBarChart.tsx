@@ -5,12 +5,12 @@ function TopDevicesBarChart({width, height}) {
     const [data, setData] = useState([])
 
     useEffect(() => {
-        fetch("http://localhost:3001/api/device/getEnergyOfEachCategory")
+        fetch("http://localhost:3001/api/device/getTopEnergyUsageDevices")
             .then((response) => response.json())
             .then((devices) => {
                 const formattedData = Object.keys(devices).map((category) => ({
                     deviceCategory: category,
-                    energyUsage: devices[category]
+                    totalEnergyUsage: devices[category]
                 })
                 );
                 setData(formattedData);
@@ -23,7 +23,7 @@ function TopDevicesBarChart({width, height}) {
             <BarChart width={width} height={height} data={data} layout={"vertical"}>
                 <XAxis type={"number"} />
                 <YAxis type="category" dataKey={"deviceCategory"} />
-                <Bar dataKey={"energyUsage"} />
+                <Bar dataKey={"totalEnergyUsage"} />
             </BarChart>
         </div>
     )
