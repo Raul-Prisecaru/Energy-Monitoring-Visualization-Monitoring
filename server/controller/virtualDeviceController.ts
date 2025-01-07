@@ -57,9 +57,24 @@ exports.getEnergyOfEachCategory = async (req, res) => {
     }
 }
 
-
+/**
+ * Function Responsible for retrieving the top devices based on energyUsage
+ * @param res - 201 response with json else 500 response
+ */
 exports.getTopEnergyUsageDevices = async (req, res) => {
+    const topDeviceJSON = {}
 
+    const allDevices = await virtualDevice.find();
+
+    allDevices.forEach((device) => {
+        // TODO: Change this to device Name to better indicate.
+        const deviceCategory = device.deviceType;
+
+        topDeviceJSON[deviceCategory] = device.energyHistory.reduce((total, next) => {
+            return total + next.energyUsage
+        }, 0);
+
+    })
 }
 
 
