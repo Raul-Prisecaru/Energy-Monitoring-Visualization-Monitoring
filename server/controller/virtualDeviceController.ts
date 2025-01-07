@@ -66,13 +66,25 @@ exports.getTopEnergyUsageDevices = async (req, res) => {
 
     const allDevices = await virtualDevice.find();
 
+    const tempArray = []
     allDevices.forEach((device) => {
         // TODO: Change this to device Name to better indicate.
         const deviceCategory = device.deviceType;
 
-        topDeviceJSON[deviceCategory] = device.energyHistory.reduce((total, next) => {
+        const totalEnergy = device.energyHistory.reduce((total, next) => {
             return total + next.energyUsage
         }, 0);
+
+        tempArray.push([deviceCategory, totalEnergy])
+        tempArray.sort((a, b) => b[1] - a[1])
+
+        tempArray.forEach(([key, pair]) => {
+            topDeviceJSON[key] = pair
+        })
+
+
+
+
 
     })
 }
