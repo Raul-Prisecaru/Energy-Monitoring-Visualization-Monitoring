@@ -12,11 +12,26 @@ function DashboardPage() {
     return (
 
         <div className={"deviceVisualizer"}>
-            <UsageAreaChart width={500} height={300} />
-            <TopDevicesBarChart width={500} height={300} />
-            <EnergyCostBarChart width={500} height={300}/>
-            <EnergyUsageProgressHalfDonutChart />
-            <EnergyUsageCategoryPieChart width={500} height={300}/>
+            <div className={"energyUsageAreaChart"}>
+                <UsageAreaChart width={500} height={300} />
+            </div>
+
+            <div className={"topDevicesEnergyUsageBarChart"}>
+                <TopDevicesBarChart width={500} height={300} />
+            </div>
+
+            <div className={"energyCostBarChart"}>
+                <EnergyCostBarChart width={500} height={300}/>
+            </div>
+
+            <div className={"energyUsageProgressionHalfDonutChart"}>
+                <EnergyUsageProgressHalfDonutChart />
+            </div>
+
+            <div className={"energyUsageCategoryPieChart"}>
+                <EnergyUsageCategoryPieChart width={500} height={300}/>
+            </div>
+
         </div>
     )
 
