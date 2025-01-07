@@ -62,31 +62,34 @@ exports.getEnergyOfEachCategory = async (req, res) => {
  * @param res - 201 response with json else 500 response
  */
 exports.getTopEnergyUsageDevices = async (req, res) => {
-    const topDeviceJSON = {}
+    try {
+        const topDeviceJSON = {}
 
-    const allDevices = await virtualDevice.find();
+        const allDevices = await virtualDevice.find();
 
-    const tempArray = []
-    allDevices.forEach((device) => {
-        // TODO: Change this to device Name to better indicate.
-        const deviceCategory = device.deviceType;
+        const tempArray = []
+        allDevices.forEach((device) => {
+            // TODO: Change this to device Name to better indicate.
+            const deviceCategory = device.deviceType;
 
-        const totalEnergy = device.energyHistory.reduce((total, next) => {
-            return total + next.energyUsage
-        }, 0);
+            const totalEnergy = device.energyHistory.reduce((total, next) => {
+                return total + next.energyUsage
+            }, 0);
 
-        tempArray.push([deviceCategory, totalEnergy])
-        tempArray.sort((a, b) => b[1] - a[1])
+            tempArray.push([deviceCategory, totalEnergy])
+            tempArray.sort((a, b) => b[1] - a[1])
 
-        tempArray.forEach(([key, pair]) => {
-            topDeviceJSON[key] = pair
+            tempArray.forEach(([key, pair]) => {
+                topDeviceJSON[key] = pair
+            })
+
         })
 
+        return res.status(201).json(topDeviceJSON);
+    } catch (err) {
+        res.status(500).json({error: "There has been an error try to retrieve each category Usage: " + err})
+    }
 
-
-
-
-    })
 }
 
 
