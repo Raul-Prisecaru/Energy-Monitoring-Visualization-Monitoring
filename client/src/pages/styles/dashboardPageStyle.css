@@ -1,3 +1,28 @@
 .deviceVisualizer {
+    /*display: flex;*/
+}
+
+.costRelatedVisuals {
     display: flex;
+}
+
+.deviceRelatedVisuals {
+    display: flex;
+}
+
+
+.energyUsageAreaChart {
+    padding-right: 50px;
+}
+
+.topDevicesEnergyUsageBarChart {
+    padding-right: 50px;
+}
+
+.energyUsageProgressionHalfDonutChart {
+    padding-right: 50px;
+}
+
+.energyUsageCategoryPieChart {
+    padding-right: 50px;
 }
