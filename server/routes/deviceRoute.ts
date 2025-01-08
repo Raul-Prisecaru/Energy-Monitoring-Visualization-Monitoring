@@ -10,6 +10,9 @@ router.get("/", deviceController.getAllDevices)
 // Router to get all energy Usage of every Category
 router.get("/getEnergyOfEachCategory", deviceController.getEnergyOfEachCategory)
 
+// Router to get current paying cost of the current month
+router.get("/getCurrentMonthCost", deviceController.getCurrentMonthCost)
+
 // Router to get energy Cost of every date
 router.get("/getEnergyUsageCostPerMonth", deviceController.getEnergyUsageCostPerMonth)
 
