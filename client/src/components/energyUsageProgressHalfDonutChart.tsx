@@ -45,7 +45,7 @@ function EnergyUsageProgressHalfDonutChart({width, height}) {
 
     return (
         <div>
-            <Doughnut data={data} options={options} width={width} height={height} />
+            <Doughnut data={data} options={options}  />
         </div>
     )
 }
