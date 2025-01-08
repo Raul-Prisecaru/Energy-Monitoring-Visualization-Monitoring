@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 
 
@@ -35,4 +35,4 @@ const deviceSchema = new mongoose.Schema({
 
 const Device = mongoose.model("device", deviceSchema)
 
-module.exports = Device
+export default Device

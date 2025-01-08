@@ -1,11 +1,17 @@
-require("dotenv").config();
-const cors = require("cors");
-const express = require("express");
-const userRouters = require("./routes/userRoute.ts")
-const deviceRouters = require("./routes/deviceRoute.ts")
-const mongoose = require("mongoose")
+import * as dotenv from "dotenv";
+dotenv.config();
+
+
+import cors from "cors";
+import * as express from "express";
+import userRouters from "./routes/userRoute";
+import deviceRouters from "./routes/deviceRoute";
+import mongoose from "mongoose";
 const app = express();
 const PORT = process.env.PORT
+
+
+
 
 mongoose.connect(process.env.DATABASE_URL)
 app.use(express.json())
