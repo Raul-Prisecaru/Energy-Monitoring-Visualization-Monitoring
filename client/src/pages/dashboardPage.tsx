@@ -30,7 +30,7 @@ function DashboardPage() {
 
 
                 <div className={"energyUsageProgressionHalfDonutChart"}>
-                    <EnergyUsageProgressHalfDonutChart/>
+                    <EnergyUsageProgressHalfDonutChart width={550} height={550}/>
                 </div>
 
                 <div className={"energyUsageCategoryPieChart"}>
