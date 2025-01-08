@@ -1,6 +1,6 @@
-const express = require("express");
+import * as express from "express";
 
-const deviceController = require("../controller/virtualDeviceController.ts");
+import * as deviceController from "../controller/virtualDeviceController";
 
 const router = express.Router();
 
@@ -35,4 +35,4 @@ router.put("/:id", deviceController.updateDevice)
 router.delete("/:id", deviceController.deleteDevice)
 
 // Export Router
-module.exports = router;
+export default router
