@@ -4,10 +4,15 @@
 
 .costRelatedVisuals {
     display: flex;
+    background-color: lightgreen;
+    padding-top: 100px;
+
 }
 
 .deviceRelatedVisuals {
     display: flex;
+    background-color: lightgrey;
+    padding-top: 100px;
 }
 
 
