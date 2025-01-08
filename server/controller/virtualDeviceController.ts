@@ -92,6 +92,34 @@ exports.getTopEnergyUsageDevices = async (req, res) => {
 
 }
 
+/**
+ * Function Responsible for retrieving the current paying cost of the current month
+ * @return res - 201 response with json, else 500
+ */
+exports.getCurrentMonthCost = async (req, res) => {
+    try {
+        const allDevices = await virtualDevice.find();
+
+        let totalEnergy;
+
+        allDevices.forEach((device) => {
+            totalEnergy += device.energyHistory.reduce((total, next) => {
+                return total + next.energyUsage
+            }, 0);
+        })
+
+        // TODO: Change this to get the user's actual paying amount
+        totalEnergy *= 0.22;
+
+
+    } catch (err) {
+        res.status(500).json({err: "Failed to retrieve the current month's cost: " + err})
+    }
+
+
+
+}
+
 
 /**
  * Function Responsible for retrieving of the total energy Prediction throughout the year
