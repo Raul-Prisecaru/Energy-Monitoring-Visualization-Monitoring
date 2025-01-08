@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, Tooltip, Legend, ArcElement } from "chart.js";
 
-function EnergyUsageProgressHalfDonutChart() {
+function EnergyUsageProgressHalfDonutChart({width, height}) {
     const [data, setData] = useState({
         labels: [],
         datasets: [
@@ -45,7 +45,7 @@ function EnergyUsageProgressHalfDonutChart() {
 
     return (
         <div>
-            <Doughnut data={data} options={options} />
+            <Doughnut data={data} options={options} width={width} height={height} />
         </div>
     )
 }
