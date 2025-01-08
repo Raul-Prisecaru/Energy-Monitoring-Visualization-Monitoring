@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import "./styles/totalCostMonthChartStyle.css"
 
 function TotalCostMonthChart() {
     const [data, setData] = useState()
@@ -10,11 +11,12 @@ function TotalCostMonthChart() {
             })
             .catch((error) => console.error("Failed to fetch Devices: " + error));
     }, []);
+
     return (
-        <div>
+        <div className={"monthCostChart"}>
             <h3>Your Currently Paying: </h3>
 
-            <h1>£{data}</h1>
+            <h1 className={"priceData"}>£{data}</h1>
 
         </div>
     )
