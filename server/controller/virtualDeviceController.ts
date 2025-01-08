@@ -1,10 +1,10 @@
-const virtualDevice = require("../model/iotDevice.ts");
+import virtualDevice from "../model/iotDevice";
 
 /**
  * Function Responsible for retrieving all Devices
  * @return res - 201 response with json of all devices else 500 response
  */
-exports.getAllDevices = async (req, res) => {
+export const getAllDevices = async (req, res) => {
     try {
         const allDevices = await virtualDevice.find()
         res.status(201).json(allDevices)
@@ -18,7 +18,7 @@ exports.getAllDevices = async (req, res) => {
  * @param req - Device ID
  * @return res - 201 response with json of device else 500 response
  */
-exports.getOneDevice = async (req, res) => {
+export const getOneDevice = async (req, res) => {
     try {
         const oneDevice = await virtualDevice.findById(req.params.id)
         res.status(201).json(oneDevice)
@@ -31,7 +31,7 @@ exports.getOneDevice = async (req, res) => {
  * Function Responsible for retrieving total energy Usage of each Device Category
  * @param res - 201 response with json else 500 response
  */
-exports.getEnergyOfEachCategory = async (req, res) => {
+export const getEnergyOfEachCategory = async (req, res) => {
     try {
         const categoryJSONUsage = {}
 
@@ -61,7 +61,7 @@ exports.getEnergyOfEachCategory = async (req, res) => {
  * Function Responsible for retrieving the top devices based on energyUsage
  * @param res - 201 response with json else 500 response
  */
-exports.getTopEnergyUsageDevices = async (req, res) => {
+export const getTopEnergyUsageDevices = async (req, res) => {
     try {
         const topDeviceJSON = {}
 
@@ -96,7 +96,7 @@ exports.getTopEnergyUsageDevices = async (req, res) => {
  * Function Responsible for retrieving the current paying cost of the current month
  * @return res - 201 response with json, else 500
  */
-exports.getCurrentMonthCost = async (req, res) => {
+export const getCurrentMonthCost = async (req, res) => {
     try {
         const allDevices = await virtualDevice.find();
 
@@ -137,16 +137,16 @@ exports.getCurrentMonthCost = async (req, res) => {
  * Function Responsible for retrieving of the total energy Prediction throughout the year
  * @return res - 201 response with json, else 500 response
  */
-exports.getEnergyUsagePrediction = async (req, res) => {
-
-}
+// exports.getEnergyUsagePrediction = async (req, res) => {
+//
+// }
 
 
 /**
  * Function Responsible for retrieving the energy Usage Cost per Month
  * @param res - 201 response with JSON, else 500 response
  */
-exports.getEnergyUsageCostPerMonth = async (req, res) => {
+export const getEnergyUsageCostPerMonth = async (req, res) => {
     try {
         const getCostDate = {}
 
@@ -177,7 +177,7 @@ exports.getEnergyUsageCostPerMonth = async (req, res) => {
  * Function Responsible for retrieving amount of energy user has used with targeted energy Usage
  * @param res - 201 Response with json else 500 response
  */
-exports.getEnergyUsageProgress = async (req, res) => {
+export const getEnergyUsageProgress = async (req, res) => {
     try {
         const energyProgress = {
             total: 0,
@@ -212,7 +212,7 @@ exports.getEnergyUsageProgress = async (req, res) => {
  * @param req.body.EnergyHistory - Array that takes energyUsage (int) and energyDate (Date)
  * @param res - 201 response else 500 response
  */
-exports.createDevice = async (req, res) => {
+export const createDevice = async (req, res) => {
     const newDevice = new virtualDevice({
         deviceName: req.body.deviceName,
         deviceType: req.body.deviceType,
@@ -239,7 +239,7 @@ exports.createDevice = async (req, res) => {
  * @param req.body.EnergyHistory - Array that takes energyUsage (int) and energyDate (Date)
  * @param res - 201 response else 500 response
  */
-exports.updateDevice = async (req, res) => {
+export const updateDevice = async (req, res) => {
     try {
         await virtualDevice.findByIdAndUpdate(req.param.id, req.body)
         res.status(201).json({message: "Successfully found and updated virtual device"})
@@ -252,12 +252,12 @@ exports.updateDevice = async (req, res) => {
  * Method Responsible for finding and deleting specified device
  * @param res.param.id - Device ID
  */
-exports.deleteDevice = async (req, res) => {
+export const deleteDevice = async (req, res) => {
     try {
         await virtualDevice.findByIdAndDelete(req.param.id)
         res.status(201).json({message: "Successfully found and deleted virtual Device"})
     } catch (err) {
-
+        res.status(500).json({error: "Failed to Delete Device" + err})
     }
 
 };

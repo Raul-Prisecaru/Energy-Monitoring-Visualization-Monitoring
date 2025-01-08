@@ -1,16 +1,17 @@
-const User = require("../model/userAccount.ts");
+import User from "../model/userAccount";
 
 // Function to get all users
-exports.getAllUsers = async (req, res) => {
+
+export const getAllUsers = async (req, res) => {
     try {
         const allUsers = await User.find()
         res.json(allUsers)
     } catch (err) {
         res.status(500).json( {message: "Failed to retrieve all users" + err} )
     }
-}
+};
 
-exports.getOneUser = async (req, res) => {
+export const getOneUser = async (req, res) => {
     try {
         const oneUser = await User.findById(req.params.id)
         res.json(oneUser)
@@ -21,7 +22,7 @@ exports.getOneUser = async (req, res) => {
 
 
 // Function to Create User
-exports.createUser = async (req, res) => {
+export const createUser = async (req, res) => {
     const newUser = new User({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
@@ -40,7 +41,7 @@ exports.createUser = async (req, res) => {
 };
 
 // Function to Update User
-exports.updateUser = async (req, res) => {
+export const updateUser = async (req, res) => {
     try {
         await User.findByIdAndUpdate(req.params.id, req.body)
         res.status(200).json({message: "Successfully found and updated the user's information"})
@@ -50,7 +51,7 @@ exports.updateUser = async (req, res) => {
 };
 
 // Function to Delete User
-exports.deleteUser = async (req, res) => {
+export const deleteUser = async (req, res) => {
     try {
         await User.findByIdAndDelete(req.params.id)
         res.status(200).json({message: "Successfully found and deleted the user"})
