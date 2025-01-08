@@ -1,0 +1,9 @@
+.monthCostChart {
+    background-color: lightblue;
+    padding: 30px;
+    border-radius: 50px;
+}
+
+.priceData {
+    font-size: 70px;
+}
