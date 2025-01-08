@@ -38,24 +38,52 @@ function DeviceManagementPage() {
                     deviceType: deviceType,
                     energyHistory: [
                         {
-                            energyUsage: 150,
-                            energyDate: Date.now()
+                            energyUsage: Math.floor(Math.random() * 101) + 100, // Random value between 100-200
+                            energyDate: new Date(2023, 0, 15).getTime() // January
                         },
                         {
-                            energyUsage: 200,
-                            energyDate: Date.now()
+                            energyUsage: Math.floor(Math.random() * 101) + 100, // Random value between 100-200
+                            energyDate: new Date(2023, 1, 15).getTime() // February
                         },
                         {
-                            energyUsage: 120,
-                            energyDate: Date.now()
+                            energyUsage: Math.floor(Math.random() * 101) + 100, // Random value between 100-200
+                            energyDate: new Date(2023, 2, 15).getTime() // March
                         },
                         {
-                            energyUsage: 100,
-                            energyDate: Date.now()
+                            energyUsage: Math.floor(Math.random() * 101) + 100, // Random value between 100-200
+                            energyDate: new Date(2023, 3, 15).getTime() // April
                         },
                         {
-                            energyUsage: 200,
-                            energyDate: Date.now()
+                            energyUsage: Math.floor(Math.random() * 101) + 100, // Random value between 100-200
+                            energyDate: new Date(2023, 4, 15).getTime() // May
+                        },
+                        {
+                            energyUsage: Math.floor(Math.random() * 101) + 100, // Random value between 100-200
+                            energyDate: new Date(2023, 5, 15).getTime() // June
+                        },
+                        {
+                            energyUsage: Math.floor(Math.random() * 101) + 100, // Random value between 100-200
+                            energyDate: new Date(2023, 6, 15).getTime() // July
+                        },
+                        {
+                            energyUsage: Math.floor(Math.random() * 101) + 100, // Random value between 100-200
+                            energyDate: new Date(2023, 7, 15).getTime() // August
+                        },
+                        {
+                            energyUsage: Math.floor(Math.random() * 101) + 100, // Random value between 100-200
+                            energyDate: new Date(2023, 8, 15).getTime() // September
+                        },
+                        {
+                            energyUsage: Math.floor(Math.random() * 101) + 100, // Random value between 100-200
+                            energyDate: new Date(2023, 9, 15).getTime() // October
+                        },
+                        {
+                            energyUsage: Math.floor(Math.random() * 101) + 100, // Random value between 100-200
+                            energyDate: new Date(2023, 10, 15).getTime() // November
+                        },
+                        {
+                            energyUsage: Math.floor(Math.random() * 101) + 100, // Random value between 100-200
+                            energyDate: new Date(2023, 11, 15).getTime() // December
                         }
                     ]
                 })
