@@ -8,29 +8,36 @@ import EnergyUsageCategoryPieChart from "../components/energyUsageCategoryPieCha
 
 function DashboardPage() {
 
-
     return (
 
         <div className={"deviceVisualizer"}>
-            <div className={"energyUsageAreaChart"}>
-                <UsageAreaChart width={500} height={300} />
+
+            <div className={"costRelatedVisuals"}>
+                <div className={"energyCostBarChart"}>
+                    <EnergyCostBarChart width={500} height={300}/>
+                </div>
             </div>
 
-            <div className={"topDevicesEnergyUsageBarChart"}>
-                <TopDevicesBarChart width={500} height={300} />
+
+            <div className={"deviceRelatedVisuals"}>
+                <div className={"energyUsageAreaChart"}>
+                    <UsageAreaChart width={500} height={300}/>
+                </div>
+
+                <div className={"topDevicesEnergyUsageBarChart"}>
+                    <TopDevicesBarChart width={500} height={300}/>
+                </div>
+
+
+                <div className={"energyUsageProgressionHalfDonutChart"}>
+                    <EnergyUsageProgressHalfDonutChart/>
+                </div>
+
+                <div className={"energyUsageCategoryPieChart"}>
+                    <EnergyUsageCategoryPieChart width={500} height={300}/>
+                </div>
             </div>
 
-            <div className={"energyCostBarChart"}>
-                <EnergyCostBarChart width={500} height={300}/>
-            </div>
-
-            <div className={"energyUsageProgressionHalfDonutChart"}>
-                <EnergyUsageProgressHalfDonutChart />
-            </div>
-
-            <div className={"energyUsageCategoryPieChart"}>
-                <EnergyUsageCategoryPieChart width={500} height={300}/>
-            </div>
 
         </div>
     )
