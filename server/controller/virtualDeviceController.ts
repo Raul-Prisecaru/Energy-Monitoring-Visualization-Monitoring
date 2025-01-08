@@ -100,16 +100,28 @@ exports.getCurrentMonthCost = async (req, res) => {
     try {
         const allDevices = await virtualDevice.find();
 
-        let totalEnergy;
+        let totalEnergy = 0;
+        const currentMonth = new Date().getMonth()
 
         allDevices.forEach((device) => {
+
             totalEnergy += device.energyHistory.reduce((total, next) => {
-                return total + next.energyUsage
+                // console.log(currentMonth)
+                if (next.energyDate.getMonth() === currentMonth) {
+                    console.log("Reached")
+                    console.log(total + next.energyUsage)
+
+                    return total + next.energyUsage
+                }
+                return total
             }, 0);
+
         })
 
         // TODO: Change this to get the user's actual paying amount
         totalEnergy *= 0.22;
+
+        res.status(201).json({totalEnergy})
 
 
     } catch (err) {
