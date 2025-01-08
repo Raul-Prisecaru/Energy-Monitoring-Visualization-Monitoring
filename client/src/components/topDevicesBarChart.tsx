@@ -1,4 +1,4 @@
-import {Area, AreaChart, Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis} from "recharts";
+import {Bar, BarChart,XAxis, YAxis} from "recharts";
 import {useEffect, useState} from "react";
 
 function TopDevicesBarChart({width, height}) {

@@ -1,4 +1,4 @@
-import {Area, AreaChart, CartesianGrid, Tooltip, XAxis, YAxis} from "recharts";
+import {Area, AreaChart, XAxis, YAxis} from "recharts";
 import {useEffect, useState} from "react";
 
 function UsageAreaChart({width, height}) {
