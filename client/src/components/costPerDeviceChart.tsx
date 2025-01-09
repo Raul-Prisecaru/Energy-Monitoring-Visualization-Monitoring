@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import DeviceDisplayComponent from "./deviceDisplayComponent"
-
+import Box from '@mui/material/Box';
 
 function CostPerDeviceChart() {
     const [data, setData] = useState({})
@@ -14,9 +14,17 @@ function CostPerDeviceChart() {
 
     return (
         <div>
-            {Object.entries(data).map(([device, cost]) => (
-                <DeviceDisplayComponent deviceName={device} deviceCost={cost} />
-            ))}
+            <Box
+                sx={{
+                    maxHeight: '400px',
+                    overflowY: 'auto',
+                }}
+            >
+                {Object.entries(data).map(([device, cost]) => (
+                    <DeviceDisplayComponent key={device} deviceName={device} deviceCost={cost} />
+                ))}
+
+            </Box>
         </div>
     )
 }
