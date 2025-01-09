@@ -3,7 +3,7 @@ dotenv.config();
 
 
 import cors from "cors";
-import * as express from "express";
+import express from "express";
 import userRouters from "./routes/userRoute";
 import deviceRouters from "./routes/deviceRoute";
 import mongoose from "mongoose";
@@ -13,7 +13,7 @@ const PORT = process.env.PORT
 
 
 
-mongoose.connect(process.env.DATABASE_URL)
+mongoose.connect(process.env.DATABASE_URL);
 app.use(express.json())
 
 app.use(cors({
