@@ -1,9 +1,11 @@
 import "./styles/deviceDisplayStyle.css"
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+
 
 function DeviceDisplayComponent({deviceName, deviceCost}: {deviceName: string, deviceCost: number}) {
-
-    return (
-        <div className={"component"}>
+    const card = (
+        <CardContent>
             <div className={"deviceName"}>
                 {deviceName}
             </div>
@@ -11,6 +13,13 @@ function DeviceDisplayComponent({deviceName, deviceCost}: {deviceName: string, d
             <div className={"deviceCost"}>
                 £{deviceCost}
             </div>
+        </CardContent>
+    )
+
+    return (
+        <div className={"component"}>
+            <Card>{card}</Card>
+
         </div>
     )
 }
