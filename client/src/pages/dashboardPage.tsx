@@ -5,7 +5,8 @@ import TopDevicesBarChart from "../components/topDevicesBarChart.tsx";
 import EnergyCostBarChart from "../components/energyCostBarChart.tsx";
 import EnergyUsageProgressGauge from "../components/energyUsageProgressGauge.tsx";
 import EnergyUsageCategoryPieChart from "../components/energyUsageCategoryPieChart.tsx";
-import TotalCostMonthChart from "../components/totalCostMonthChart.tsx";
+import TotalCostMonthCard from "../components/totalCostMonthCard.tsx";
+import TotalEnergyUsageCard from "../components/totalEnergyUsageMonthCard.tsx.tsx";
 import CostPerDeviceChart from "../components/costPerDeviceChart.tsx"
 
 function DashboardPage() {
@@ -16,7 +17,11 @@ function DashboardPage() {
 
             <div className={"costRelatedVisuals"}>
                 <div className={"totalCostMonthChart"}>
-                    <TotalCostMonthChart/>
+                    <TotalCostMonthCard/>
+                </div>
+
+                <div className={"totalEnergyUsageCard"}>
+                    <TotalEnergyUsageCard/>
                 </div>
 
                 <div className={"energyCostBarChart"}>
@@ -24,7 +29,7 @@ function DashboardPage() {
                 </div>
 
                 <div>
-                    <CostPerDeviceChart />
+                    <CostPerDeviceChart/>
                 </div>
             </div>
 
