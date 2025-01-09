@@ -63,20 +63,20 @@ export const getEnergyOfEachCategory = async (req: any, res:any) => {
  */
 export const getTopEnergyUsageDevices = async (req: any, res:any) => {
     try {
+        let counter: number = 0;
         const topDeviceJSON: Record<string, number> = {}
 
         const allDevices = await virtualDevice.find();
 
         const tempArray: any[] = []
         allDevices.forEach((device) => {
-            // TODO: Change this to device Name to better indicate.
-            const deviceCategory: string = device.deviceType;
+
 
             const totalEnergy: number = device.energyHistory.reduce((total, next) => {
                 return total + next.energyUsage
             }, 0);
-
-            tempArray.push([deviceCategory, totalEnergy])
+            counter += 1
+            tempArray.push(["Device " + counter, totalEnergy])
             tempArray.sort((a: [string, number], b: [string, number]) => b[1] - a[1])
 
             tempArray.forEach(([key, pair]:any) => {
