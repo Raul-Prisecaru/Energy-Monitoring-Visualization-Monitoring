@@ -13,7 +13,7 @@ const PORT = process.env.PORT
 
 
 
-mongoose.connect(process.env.DATABASE_URL);
+mongoose.connect(process.env.DATABASE_URL!);
 app.use(express.json())
 
 app.use(cors({
