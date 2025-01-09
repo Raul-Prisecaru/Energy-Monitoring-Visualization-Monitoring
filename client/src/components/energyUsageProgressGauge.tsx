@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import { Gauge, gaugeClasses } from '@mui/x-charts/Gauge';
+import "./styles/energyUsageProgressGaugeStyle.css"
 
 import { Chart as ChartJS, Tooltip, Legend, ArcElement } from "chart.js";
 
@@ -9,7 +10,7 @@ interface formattedData {
     dataCurrent: number
 }
 
-function EnergyUsageProgressHalfDonutChart({width, height}: {width: number, height: number}) {
+function EnergyUsageProgressGauge({width, height}: {width: number, height: number}) {
     const [data, setData] = useState<formattedData>({});
 
     ChartJS.register(Tooltip, Legend, ArcElement);
@@ -48,4 +49,4 @@ function EnergyUsageProgressHalfDonutChart({width, height}: {width: number, heig
 }
 
 
-export default EnergyUsageProgressHalfDonutChart
+export default EnergyUsageProgressGauge
