@@ -2,12 +2,22 @@ import {useEffect, useState} from "react";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, Tooltip, Legend, ArcElement } from "chart.js";
 
-function EnergyUsageProgressHalfDonutChart({width, height}) {
-    const [data, setData] = useState({
+
+interface formattedData {
+    labels: string[];
+    datasets: {
+        data: number[],
+        backgroundColor: string[]
+    }[];
+}
+
+function EnergyUsageProgressHalfDonutChart({width, height}: {width: number, height: number}) {
+    const [data, setData] = useState<formattedData>({
         labels: [],
         datasets: [
             {
                 data: [],
+                backgroundColor: []
             },
         ],
     });
@@ -18,7 +28,7 @@ function EnergyUsageProgressHalfDonutChart({width, height}) {
         fetch("http://localhost:3001/api/device/getEnergyUsageProgress")
             .then((response) => response.json())
             .then((data) => {
-                const formattedData = {
+                const formattedData: formattedData = {
                     labels: ["Used Energy", "Max Target"],
 
                     datasets: [
