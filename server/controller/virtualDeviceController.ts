@@ -172,6 +172,31 @@ export const getEnergyUsageCostPerMonth = async (req: any, res:any) => {
 }
 
 /**
+ * Function Responsible for retrieving the cost of each Device
+ */
+export const getCostPerDevice = async (req: any, res: any) => {
+  try {
+      let counter: number = 0;
+      const deviceCost: Record<string, number> = {};
+
+      const allDevice = await virtualDevice.find()
+
+      allDevice.forEach((device) => {
+          const totalEnergy: number = device.energyHistory.reduce((total, next) => {
+              return total + next.energyUsage
+          }, 0);
+          counter += 1;
+          deviceCost["device " + counter] = totalEnergy;
+      })
+
+
+      res.status(201).json(deviceCost)
+  } catch (err) {
+      res.status(500).json({error: "There has been an error retriving cost of each device: " + err})
+  }
+}
+
+/**
  * Function Responsible for retrieving amount of energy user has used with targeted energy Usage
  * @param res - 201 Response with json else 500 response
  */
