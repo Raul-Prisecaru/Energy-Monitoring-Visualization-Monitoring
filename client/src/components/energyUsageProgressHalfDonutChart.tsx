@@ -1,26 +1,16 @@
 import {useEffect, useState} from "react";
-import { Doughnut } from "react-chartjs-2";
+import { Gauge } from '@mui/x-charts/Gauge';
+
 import { Chart as ChartJS, Tooltip, Legend, ArcElement } from "chart.js";
 
 
 interface formattedData {
-    labels: string[];
-    datasets: {
-        data: number[],
-        backgroundColor: string[]
-    }[];
+    dataTotal: number,
+    dataCurrent: number
 }
 
 function EnergyUsageProgressHalfDonutChart({width, height}: {width: number, height: number}) {
-    const [data, setData] = useState<formattedData>({
-        labels: [],
-        datasets: [
-            {
-                data: [],
-                backgroundColor: []
-            },
-        ],
-    });
+    const [data, setData] = useState<formattedData>();
 
     ChartJS.register(Tooltip, Legend, ArcElement);
 
@@ -29,33 +19,21 @@ function EnergyUsageProgressHalfDonutChart({width, height}: {width: number, heig
             .then((response) => response.json())
             .then((data) => {
                 const formattedData: formattedData = {
-                    labels: ["Used Energy", "Max Target"],
-
-                    datasets: [
-                        {
-                            data: [data.total, data.limit - data.total],
-                            backgroundColor: ["#FF6384", "#808080"],
-                        }
-                    ]
+                    dataTotal: data.limit,
+                    dataCurrent: data.total
                 };
 
 
-
+                console.log(formattedData)
                 setData(formattedData);
             })
             .catch((error) => console.error("Failed to fetch Devices: " + error));
     }, []);
 
-    const options = {
-        rotation: -90,
-        circumference: 180,
-
-    }
-
 
     return (
         <div>
-            <Doughnut data={data} options={options}  />
+            <Gauge width={width} height={height} value={data.dataCurrent} startAngle={-90} endAngle={90} valueMax={data.dataTotal} />
         </div>
     )
 }
