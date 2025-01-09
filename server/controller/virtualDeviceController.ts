@@ -173,12 +173,12 @@ export const getEnergyUsageCostPerMonth = async (req: any, res:any) => {
 
 /**
  * Function Responsible for retrieving the cost of each Device
+ * TODO: toggle for Between Day / Month / Year?
  */
 export const getCostPerDevice = async (req: any, res: any) => {
   try {
       let counter: number = 0;
       const deviceCost: Record<string, number> = {};
-
       const allDevice = await virtualDevice.find()
 
       allDevice.forEach((device) => {
