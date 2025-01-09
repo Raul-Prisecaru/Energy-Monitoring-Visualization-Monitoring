@@ -6,7 +6,7 @@ import EnergyCostBarChart from "../components/energyCostBarChart.tsx";
 import EnergyUsageProgressGauge from "../components/energyUsageProgressGauge.tsx";
 import EnergyUsageCategoryPieChart from "../components/energyUsageCategoryPieChart.tsx";
 import TotalCostMonthCard from "../components/totalCostMonthCard.tsx";
-import TotalEnergyUsageCard from "../components/totalEnergyUsageMonthCard.tsx.tsx";
+import TotalEnergyUsageCard from "../components/totalEnergyUsageMonthCard.tsx";
 import CostPerDeviceChart from "../components/costPerDeviceChart.tsx"
 
 function DashboardPage() {
