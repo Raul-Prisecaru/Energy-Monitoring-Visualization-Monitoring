@@ -45,7 +45,10 @@ function DashboardPage() {
 
             <div className={"topMiddleRelatedVisuals"}>
                 <div className={"energyUsageProgressionGauge"}>
-                    <EnergyUsageProgressGauge width={550} height={550}/>
+                    <EnergyUsageProgressGauge width={200} height={200}/>
+                </div>
+
+                <div>
                 </div>
             </div>
 
