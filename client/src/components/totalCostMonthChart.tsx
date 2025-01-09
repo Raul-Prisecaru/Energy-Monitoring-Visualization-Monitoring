@@ -1,4 +1,6 @@
 import {useEffect, useState} from "react";
+import Box from '@mui/joy/Box';
+
 import "./styles/totalCostMonthChartStyle.css"
 
 function TotalCostMonthChart() {
@@ -14,13 +16,15 @@ function TotalCostMonthChart() {
 
     return (
         <div className={"monthCostChart"}>
-            <h3>Your Currently Paying: </h3>
+            <Box>
+                <h3>Your Currently Paying: </h3>
 
-            <h1 className={"priceData"}>£{data}</h1>
+                <h1 className={"priceData"}>£{data}</h1>
+            </Box>
+
 
         </div>
     )
-
 
 
 }
