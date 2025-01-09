@@ -1,14 +1,18 @@
 import * as express from "express";
 
 import * as deviceController from "../controller/virtualDeviceController";
+import {getCostPerDevice} from "../controller/virtualDeviceController";
+import {Router} from "express";
 
-const router = express.Router();
+const router: Router = express.Router();
 
 // Router to get all devices
 router.get("/", deviceController.getAllDevices)
 
 // Router to get all energy Usage of every Category
 router.get("/getEnergyOfEachCategory", deviceController.getEnergyOfEachCategory)
+
+router.get("/getCostPerDevice", deviceController.getCostPerDevice)
 
 // Router to get current paying cost of the current month
 router.get("/getCurrentMonthCost", deviceController.getCurrentMonthCost)
