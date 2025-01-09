@@ -1,4 +1,4 @@
-import {Area, AreaChart, XAxis, YAxis} from "recharts";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import {useEffect, useState} from "react";
 
 interface formattedData {
@@ -6,7 +6,7 @@ interface formattedData {
     energyDate: string
 }
 
-function UsageAreaChart({width, height}: {width: number, height: number}) {
+function energyUsageLineChart({width, height}: {width: number, height: number}) {
     const [data, setData] = useState<formattedData[]>([])
 
     useEffect(() => {
@@ -27,14 +27,14 @@ function UsageAreaChart({width, height}: {width: number, height: number}) {
 
     return (
         <div>
-            <AreaChart width={width} height={height} data={data}>
+            <LineChart width={width} height={height} data={data}>
                 <XAxis dataKey={"energyDate"} />
                 <YAxis />
-                <Area type="monotone" dataKey="energyUsage" />
-            </AreaChart>
+                <Line type="monotone" dataKey="energyUsage" />
+            </LineChart>
         </div>
     )
 }
 
 
-export default UsageAreaChart;
+export default energyUsageLineChart;
