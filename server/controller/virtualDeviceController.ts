@@ -4,7 +4,7 @@ import virtualDevice from "../model/iotDevice";
  * Function Responsible for retrieving all Devices
  * @return res - 201 response with json of all devices else 500 response
  */
-export const getAllDevices = async (req, res) => {
+export const getAllDevices = async (req: any, res:any) => {
     try {
         const allDevices = await virtualDevice.find()
         res.status(201).json(allDevices)
@@ -18,7 +18,7 @@ export const getAllDevices = async (req, res) => {
  * @param req - Device ID
  * @return res - 201 response with json of device else 500 response
  */
-export const getOneDevice = async (req, res) => {
+export const getOneDevice = async (req: any, res:any) => {
     try {
         const oneDevice = await virtualDevice.findById(req.params.id)
         res.status(201).json(oneDevice)
@@ -31,9 +31,9 @@ export const getOneDevice = async (req, res) => {
  * Function Responsible for retrieving total energy Usage of each Device Category
  * @param res - 201 response with json else 500 response
  */
-export const getEnergyOfEachCategory = async (req, res) => {
+export const getEnergyOfEachCategory = async (req: any, res:any) => {
     try {
-        const categoryJSONUsage = {}
+        const categoryJSONUsage: any = {}
 
         const allDevices = await virtualDevice.find()
 
@@ -61,25 +61,25 @@ export const getEnergyOfEachCategory = async (req, res) => {
  * Function Responsible for retrieving the top devices based on energyUsage
  * @param res - 201 response with json else 500 response
  */
-export const getTopEnergyUsageDevices = async (req, res) => {
+export const getTopEnergyUsageDevices = async (req: any, res:any) => {
     try {
-        const topDeviceJSON = {}
+        const topDeviceJSON: Record<string, number> = {}
 
         const allDevices = await virtualDevice.find();
 
-        const tempArray = []
+        const tempArray: any[] = []
         allDevices.forEach((device) => {
             // TODO: Change this to device Name to better indicate.
-            const deviceCategory = device.deviceType;
+            const deviceCategory: string = device.deviceType;
 
-            const totalEnergy = device.energyHistory.reduce((total, next) => {
+            const totalEnergy: number = device.energyHistory.reduce((total, next) => {
                 return total + next.energyUsage
             }, 0);
 
             tempArray.push([deviceCategory, totalEnergy])
-            tempArray.sort((a, b) => b[1] - a[1])
+            tempArray.sort((a: [string, number], b: [string, number]) => b[1] - a[1])
 
-            tempArray.forEach(([key, pair]) => {
+            tempArray.forEach(([key, pair]:any) => {
                 topDeviceJSON[key] = pair
             })
 
@@ -96,7 +96,7 @@ export const getTopEnergyUsageDevices = async (req, res) => {
  * Function Responsible for retrieving the current paying cost of the current month
  * @return res - 201 response with json, else 500
  */
-export const getCurrentMonthCost = async (req, res) => {
+export const getCurrentMonthCost = async (req: any, res:any) => {
     try {
         const allDevices = await virtualDevice.find();
 
@@ -146,22 +146,20 @@ export const getCurrentMonthCost = async (req, res) => {
  * Function Responsible for retrieving the energy Usage Cost per Month
  * @param res - 201 response with JSON, else 500 response
  */
-export const getEnergyUsageCostPerMonth = async (req, res) => {
+export const getEnergyUsageCostPerMonth = async (req: any, res:any) => {
     try {
-        const getCostDate = {}
+        const getCostDate: Record<number, number> = {}
 
         const allDevices = await virtualDevice.find();
 
         allDevices.forEach((device) => {
 
-            console.log("-- EnergyUsage Test --")
-
             device.energyHistory.forEach((history) => {
-                if (!getCostDate[history.energyDate]) {
-                    getCostDate[history.energyDate] = 0
+                if (!getCostDate[history.energyDate.getMonth()]) {
+                    getCostDate[history.energyDate.getMonth()] = 0
                 }
 
-                getCostDate[history.energyDate] += (history.energyUsage * 0.22)
+                getCostDate[history.energyDate.getMonth()] += (history.energyUsage * 0.22)
             })
         })
 
@@ -177,7 +175,7 @@ export const getEnergyUsageCostPerMonth = async (req, res) => {
  * Function Responsible for retrieving amount of energy user has used with targeted energy Usage
  * @param res - 201 Response with json else 500 response
  */
-export const getEnergyUsageProgress = async (req, res) => {
+export const getEnergyUsageProgress = async (req: any, res:any) => {
     try {
         const energyProgress = {
             total: 0,
@@ -212,7 +210,7 @@ export const getEnergyUsageProgress = async (req, res) => {
  * @param req.body.EnergyHistory - Array that takes energyUsage (int) and energyDate (Date)
  * @param res - 201 response else 500 response
  */
-export const createDevice = async (req, res) => {
+export const createDevice = async (req: any, res:any) => {
     const newDevice = new virtualDevice({
         deviceName: req.body.deviceName,
         deviceType: req.body.deviceType,
@@ -239,7 +237,7 @@ export const createDevice = async (req, res) => {
  * @param req.body.EnergyHistory - Array that takes energyUsage (int) and energyDate (Date)
  * @param res - 201 response else 500 response
  */
-export const updateDevice = async (req, res) => {
+export const updateDevice = async (req: any, res:any) => {
     try {
         await virtualDevice.findByIdAndUpdate(req.param.id, req.body)
         res.status(201).json({message: "Successfully found and updated virtual device"})
@@ -252,7 +250,7 @@ export const updateDevice = async (req, res) => {
  * Method Responsible for finding and deleting specified device
  * @param res.param.id - Device ID
  */
-export const deleteDevice = async (req, res) => {
+export const deleteDevice = async (req: any, res:any) => {
     try {
         await virtualDevice.findByIdAndDelete(req.param.id)
         res.status(201).json({message: "Successfully found and deleted virtual Device"})

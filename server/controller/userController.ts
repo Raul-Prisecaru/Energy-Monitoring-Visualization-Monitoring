@@ -2,7 +2,7 @@ import User from "../model/userAccount";
 
 // Function to get all users
 
-export const getAllUsers = async (req, res) => {
+export const getAllUsers = async (req: any, res:any) => {
     try {
         const allUsers = await User.find()
         res.json(allUsers)
@@ -11,7 +11,7 @@ export const getAllUsers = async (req, res) => {
     }
 };
 
-export const getOneUser = async (req, res) => {
+export const getOneUser = async (req: any, res:any) => {
     try {
         const oneUser = await User.findById(req.params.id)
         res.json(oneUser)
@@ -22,7 +22,7 @@ export const getOneUser = async (req, res) => {
 
 
 // Function to Create User
-export const createUser = async (req, res) => {
+export const createUser = async (req: any, res:any) => {
     const newUser = new User({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
@@ -41,7 +41,7 @@ export const createUser = async (req, res) => {
 };
 
 // Function to Update User
-export const updateUser = async (req, res) => {
+export const updateUser = async (req: any, res:any) => {
     try {
         await User.findByIdAndUpdate(req.params.id, req.body)
         res.status(200).json({message: "Successfully found and updated the user's information"})
@@ -51,7 +51,7 @@ export const updateUser = async (req, res) => {
 };
 
 // Function to Delete User
-export const deleteUser = async (req, res) => {
+export const deleteUser = async (req: any, res:any) => {
     try {
         await User.findByIdAndDelete(req.params.id)
         res.status(200).json({message: "Successfully found and deleted the user"})
