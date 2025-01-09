@@ -1,20 +1,26 @@
 import {Area, AreaChart, XAxis, YAxis} from "recharts";
 import {useEffect, useState} from "react";
 
-function UsageAreaChart({width, height}) {
-    const [data, setData] = useState([])
+interface formattedData {
+    energyUsage: number,
+    energyDate: string
+}
+
+function UsageAreaChart({width, height}: {width: number, height: number}) {
+    const [data, setData] = useState<formattedData[]>([])
 
     useEffect(() => {
         fetch("http://localhost:3001/api/device/")
             .then((response) => response.json())
             .then((devices) => {
-                const deviceHistoryData = devices.flatMap(device =>
-                    device.energyHistory.map(historyData => ({
+                const formattedData: formattedData[] = devices.flatMap((device: any) =>
+                    device.energyHistory.map((historyData: formattedData) => ({
                         energyUsage: historyData.energyUsage,
                         energyDate: new Date(historyData.energyDate).toLocaleDateString("en-GB")
                     }))
                 );
-                setData(deviceHistoryData);
+                console.log(formattedData)
+                setData(formattedData);
             })
             .catch((error) => console.error("Failed to fetch Devices: " + error));
     }, []);
