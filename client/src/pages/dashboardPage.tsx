@@ -6,6 +6,7 @@ import EnergyCostBarChart from "../components/energyCostBarChart.tsx";
 import EnergyUsageProgressHalfDonutChart from "../components/energyUsageProgressHalfDonutChart.tsx";
 import EnergyUsageCategoryPieChart from "../components/energyUsageCategoryPieChart.tsx";
 import TotalCostMonthChart from "../components/totalCostMonthChart.tsx";
+import CostPerDeviceChart from "../components/costPerDeviceChart.tsx"
 
 function DashboardPage() {
 
@@ -22,7 +23,9 @@ function DashboardPage() {
                     <EnergyCostBarChart width={500} height={300}/>
                 </div>
 
-
+                <div>
+                    <CostPerDeviceChart />
+                </div>
             </div>
 
 
