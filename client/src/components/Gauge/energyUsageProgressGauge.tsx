@@ -34,7 +34,7 @@ function EnergyUsageProgressGauge({width, height}: {width: number, height: numbe
 
     return (
         <div className={"gaugeChart"}>
-            <Box>
+            <Box sx={{width: 300}}>
                 <Card>
                     <CardContent>
                         <Gauge
