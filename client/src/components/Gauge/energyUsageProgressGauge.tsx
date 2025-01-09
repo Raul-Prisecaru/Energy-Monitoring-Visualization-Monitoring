@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import { Gauge, gaugeClasses } from '@mui/x-charts/Gauge';
-import "./styles/energyUsageProgressGaugeStyle.css"
+import "../styles/energyUsageProgressGaugeStyle.css"
 
 import { Chart as ChartJS, Tooltip, Legend, ArcElement } from "chart.js";
 

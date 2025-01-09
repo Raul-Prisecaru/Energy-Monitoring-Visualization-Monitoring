@@ -1,13 +1,13 @@
 import "./styles/dashboardPageStyle.css"
 
-import UsageAreaChart from "../components/usageAreaChart.tsx";
-import TopDevicesBarChart from "../components/topDevicesBarChart.tsx";
-import EnergyCostBarChart from "../components/energyCostBarChart.tsx";
-import EnergyUsageProgressGauge from "../components/energyUsageProgressGauge.tsx";
-import EnergyUsageCategoryPieChart from "../components/energyUsageCategoryPieChart.tsx";
-import TotalCostMonthCard from "../components/totalCostMonthCard.tsx";
-import TotalEnergyUsageCard from "../components/totalEnergyUsageMonthCard.tsx";
-import CostPerDeviceChart from "../components/costPerDeviceChart.tsx"
+import UsageAreaChart from "../components/AreaChart/usageAreaChart.tsx";
+import TopDevicesBarChart from "../components/BarChart/topDevicesBarChart.tsx";
+import EnergyCostBarChart from "../components/BarChart/energyCostBarChart.tsx";
+import EnergyUsageProgressGauge from "../components/Gauge/energyUsageProgressGauge.tsx";
+import EnergyUsageCategoryPieChart from "../components/PieChart/energyUsageCategoryPieChart.tsx";
+import TotalCostMonthCard from "../components/Cards/totalCostMonthCard.tsx";
+import TotalEnergyUsageCard from "../components/Cards/totalEnergyUsageMonthCard.tsx";
+import CostPerDeviceChart from "../components/Custom/costPerDeviceChart.tsx"
 
 function DashboardPage() {
 

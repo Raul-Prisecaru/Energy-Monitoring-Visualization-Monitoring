@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import DeviceDisplayComponent from "./deviceDisplayComponent"
+import DeviceDisplayComponent from "./deviceDisplayComponent.tsx"
 import Box from '@mui/material/Box';
 
 function CostPerDeviceChart() {
