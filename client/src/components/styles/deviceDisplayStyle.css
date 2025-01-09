@@ -1,0 +1,16 @@
+.component {
+    background-color: lightcoral;
+    width: 200px;
+    height: 70px;
+}
+
+.deviceName {
+    display: flex;
+    justify-content: center;
+}
+
+.deviceCost {
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+}
