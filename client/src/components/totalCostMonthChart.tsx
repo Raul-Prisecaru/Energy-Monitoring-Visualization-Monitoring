@@ -1,5 +1,7 @@
 import {useEffect, useState} from "react";
 import Box from '@mui/joy/Box';
+import Card from '@mui/joy/Card';
+import CardContent from '@mui/joy/CardContent';
 
 import "./styles/totalCostMonthChartStyle.css"
 
@@ -16,10 +18,17 @@ function TotalCostMonthChart() {
 
     return (
         <div className={"monthCostChart"}>
-            <Box>
-                <h3>Your Currently Paying: </h3>
+            <Box sx={{
+                width: 400,
+            }}>
+                <Card>
+                    <CardContent orientation={"horizontal"}>
+                        <h3>Currently Paying: </h3>
+                        <h2 className={"priceData"}>£{data}</h2>
+                    </CardContent>
 
-                <h1 className={"priceData"}>£{data}</h1>
+                </Card>
+
             </Box>
 
 
