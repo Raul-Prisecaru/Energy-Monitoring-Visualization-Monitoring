@@ -8,10 +8,10 @@ import "./styles/totalCostMonthChartStyle.css"
 function TotalCostMonthChart() {
     const [data, setData] = useState()
     useEffect(() => {
-        fetch("http://localhost:3001/api/device/getCurrentMonthCost")
+        fetch("http://localhost:3001/api/device/getCurrentMonthEnergyUsage")
             .then((response) => response.json())
             .then((energyDevice) => {
-                setData(energyDevice.totalEnergy);
+                setData(energyDevice);
             })
             .catch((error) => console.error("Failed to fetch Devices: " + error));
     }, []);
@@ -23,8 +23,8 @@ function TotalCostMonthChart() {
             }}>
                 <Card>
                     <CardContent orientation={"horizontal"}>
-                        <h3>Currently Paying: </h3>
-                        <h2 className={"priceData"}>£{data}</h2>
+                        <h3>Energy Used This Month: </h3>
+                        <h2 className={"priceData"}>{data}</h2>
                     </CardContent>
 
                 </Card>
