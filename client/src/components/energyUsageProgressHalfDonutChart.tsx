@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import { Gauge } from '@mui/x-charts/Gauge';
+import { Gauge, gaugeClasses } from '@mui/x-charts/Gauge';
 
 import { Chart as ChartJS, Tooltip, Legend, ArcElement } from "chart.js";
 
@@ -10,7 +10,7 @@ interface formattedData {
 }
 
 function EnergyUsageProgressHalfDonutChart({width, height}: {width: number, height: number}) {
-    const [data, setData] = useState<formattedData>();
+    const [data, setData] = useState<formattedData>({});
 
     ChartJS.register(Tooltip, Legend, ArcElement);
 
@@ -24,7 +24,6 @@ function EnergyUsageProgressHalfDonutChart({width, height}: {width: number, heig
                 };
 
 
-                console.log(formattedData)
                 setData(formattedData);
             })
             .catch((error) => console.error("Failed to fetch Devices: " + error));
@@ -32,8 +31,18 @@ function EnergyUsageProgressHalfDonutChart({width, height}: {width: number, heig
 
 
     return (
-        <div>
-            <Gauge width={width} height={height} value={data.dataCurrent} startAngle={-90} endAngle={90} valueMax={data.dataTotal} />
+        <div className={"gaugeChart"}>
+            <Gauge
+                value={data.dataCurrent}
+                valueMax={data.dataTotal}
+                startAngle={-110}
+                endAngle={110}
+                width={width}
+                height={height}
+                text={
+                    ({ value, valueMax }) => `${value} / ${valueMax}`
+                }
+            />
         </div>
     )
 }
