@@ -17,7 +17,7 @@ function DashboardPage() {
 
         <div className={"deviceVisualizer"}>
 
-            <div className={"costRelatedVisuals"}>
+            <div className={"topRelatedVisuals"}>
                 <div className={"totalCostMonthChart"}>
                     <TotalCostMonthCard/>
                 </div>
@@ -34,29 +34,31 @@ function DashboardPage() {
                     <EmptyCard />
                 </div>
 
-                <div className={"energyCostBarChart"}>
-                    <EnergyCostBarChart width={500} height={300}/>
-                </div>
+                {/*<div className={"energyCostBarChart"}>*/}
+                {/*    <EnergyCostBarChart width={500} height={300}/>*/}
+                {/*</div>*/}
 
-                <div>
-                    <CostPerDeviceChart/>
+                {/*<div>*/}
+                {/*    <CostPerDeviceChart/>*/}
+                {/*</div>*/}
+            </div>
+
+            <div className={"topMiddleRelatedVisuals"}>
+                <div className={"energyUsageProgressionGauge"}>
+                    <EnergyUsageProgressGauge width={550} height={550}/>
                 </div>
             </div>
 
 
             <div className={"deviceRelatedVisuals"}>
                 <div className={"energyUsageAreaChart"}>
-                <UsageAreaChart width={500} height={300}/>
+                    <UsageAreaChart width={500} height={300}/>
                 </div>
 
                 <div className={"topDevicesEnergyUsageBarChart"}>
                     <TopDevicesBarChart width={500} height={300}/>
                 </div>
 
-
-                <div className={"energyUsageProgressionHalfDonutChart"}>
-                    <EnergyUsageProgressGauge width={550} height={550}/>
-                </div>
 
                 <div className={"energyUsageCategoryPieChart"}>
                     <EnergyUsageCategoryPieChart width={500} height={300}/>
