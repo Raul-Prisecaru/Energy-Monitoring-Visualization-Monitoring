@@ -8,6 +8,8 @@ import EnergyUsageCategoryPieChart from "../components/PieChart/energyUsageCateg
 import TotalCostMonthCard from "../components/Cards/totalCostMonthCard.tsx";
 import TotalEnergyUsageCard from "../components/Cards/totalEnergyUsageMonthCard.tsx";
 import CostPerDeviceChart from "../components/Custom/costPerDeviceChart.tsx"
+import DailyStreakCard from "../components/Cards/dailyStreakCard.tsx";
+import EmptyCard from "../components/Cards/emptyCard.tsx";
 
 function DashboardPage() {
 
@@ -22,6 +24,14 @@ function DashboardPage() {
 
                 <div className={"totalEnergyUsageCard"}>
                     <TotalEnergyUsageCard/>
+                </div>
+
+                <div className={"dailyStreakCard"}>
+                    <DailyStreakCard />
+                </div>
+
+                <div className={"emptyCard"}>
+                    <EmptyCard />
                 </div>
 
                 <div className={"energyCostBarChart"}>
