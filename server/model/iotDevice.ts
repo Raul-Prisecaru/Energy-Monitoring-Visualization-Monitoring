@@ -31,6 +31,19 @@ const deviceSchema = new mongoose.Schema({
         ],
         required: true
     },
+
+    deviceStatus: {
+        active: {
+            type: Boolean,
+            default: false
+        },
+
+        currentEnergyUsage: {
+            type: Number,
+            default: 0
+        }
+    }
+
 });
 
 const Device = mongoose.model("device", deviceSchema)
