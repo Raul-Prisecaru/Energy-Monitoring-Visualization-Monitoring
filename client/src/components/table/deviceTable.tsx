@@ -37,10 +37,21 @@ function DeviceTable({width, height}: {width: number, height: number}) {
                     <th> Active Usage </th>
                 </tr>
                 </thead>
+                <tbody>
 
-            </Table>
-        </div>
-    )
+                    {data.map((device, index) => (
+                        <tr key={index}>
+                            <td>{device.deviceStatus}</td>
+                            <td>{device.deviceName}</td>
+                            <td>{device.deviceEnergy}</td>
+                        </tr>
+
+                ))}
+            </tbody>
+
+        </Table>
+</div>
+)
 }
 
 
