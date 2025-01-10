@@ -1,17 +1,24 @@
 import "./styles/devicePageStyle.css"
 import {useEffect, useState} from "react";
-import {Box, Modal} from "@mui/material";
+import {Box} from "@mui/material";
+import Modal from '@mui/joy/Modal';
+import ModalDialog from '@mui/joy/ModalDialog';
+import DialogTitle from '@mui/joy/DialogTitle';
+import DialogContent from '@mui/joy/DialogContent';
 
 function DeviceManagementPage() {
     const [isOpen, setIsOpen] = useState(false);
-    const [devices, setDevices] = useState([]);
+    const [devicesList, setDevicesList] = useState([]);
     const [deviceName, setDeviceName] = useState("");
     const [deviceType, setDeviceType] = useState("");
+
+
+    const [viewDevice, setViewDevice] = useState(null)
 
     useEffect(() => {
         fetch("http://localhost:3001/api/device/")
             .then((response) => response.json())
-            .then((data) => setDevices(data))
+            .then((data) => setDevicesList(data))
             .catch((error) => console.error("Failed to fetch Devices" + error))
     }, [])
 
@@ -23,6 +30,14 @@ function DeviceManagementPage() {
     const handleDeviceNameChange = (e) => setDeviceName(e.target.value);
 
     const handleDeviceTypeChange = (e) => setDeviceType(e.target.value);
+
+    const handleViewDevice = (device) => {
+        setViewDevice(device);
+        handleOpen();
+    };
+
+
+
 
     const addDeviceButton = async (e) => {
         e.preventDefault()
@@ -107,6 +122,8 @@ function DeviceManagementPage() {
                 <h1 id={"Heading"}>Virtual Devices</h1>
                 <button id={"addDeviceButton"} onClick={handleOpen}>Add Device</button>
 
+
+
                 <Modal
                     open={isOpen}
                     onClose={handleClose}>
@@ -151,10 +168,11 @@ function DeviceManagementPage() {
 
             <div>
                 <div className={"device-grid"}>
-                    {devices.map((device, index) => (
+                    {devicesList.map((device, index) => (
                         <div key={index} className="device-card">
                             <h1>{device.deviceName}</h1>
                             <h3>Device Type: {device.deviceType}</h3>
+                            <button onClick={() => handleViewDevice(device)}>View Details</button>
                         </div>
                     ))}
                 </div>
