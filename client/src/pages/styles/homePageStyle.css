@@ -9,10 +9,16 @@
     justify-content: center;
 }
 
-.Feature {
-    padding-top: 100px;
+.featureSets {
+    padding-top: 50px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Creates 3 columns */
-    grid-template-rows: repeat(2, auto);  /* Creates 2 rows with height based on content */
-    gap: 16px; /* Adds spacing between grid items */
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 16px;
+}
+
+.featureTitle {
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
 }
