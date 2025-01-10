@@ -4,6 +4,7 @@ import Box from '@mui/joy/Box';
 import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
 import {Typography} from "@mui/joy";
+import Divider from '@mui/joy/Divider';
 
 
 function HomePage() {
@@ -20,7 +21,13 @@ function HomePage() {
             </div>
 
 
-            <div className={"Feature"}>
+            <div className={"featureSection"}>
+                <div className={"featureTitle"}>
+                    <h1>Features</h1>
+                </div>
+                <Divider orientation="horizontal"/>
+
+                <div className={"featureSets"}>
                     <Card>
                         <CardContent>
                             <Typography level="title-md">Feature 1</Typography>
@@ -62,6 +69,8 @@ function HomePage() {
                             <Typography>Description of the Feature 6</Typography>
                         </CardContent>
                     </Card>
+                </div>
+
 
             </div>
 
