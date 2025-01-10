@@ -2,22 +2,21 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 import {useEffect, useState} from "react";
 
 interface formattedData {
-    energyUsage: number,
-    energyDate: string
+    month: string,
+    cost: number
 }
 
-function costHistoryLineChart({width, height}: {width: number, height: number}) {
+function CostHistoryLineChart({width, height}: {width: number, height: number}) {
     const [data, setData] = useState<formattedData[]>([])
 
     useEffect(() => {
-        fetch("http://localhost:3001/api/device/")
+        fetch("http://localhost:3001/api/device/getCostHistoryMonthly")
             .then((response) => response.json())
             .then((devices) => {
-                const formattedData: formattedData[] = devices.flatMap((device: any) =>
-                    device.energyHistory.map((historyData: formattedData) => ({
-                        energyUsage: historyData.energyUsage,
-                        energyDate: new Date(historyData.energyDate).toLocaleDateString("en-GB")
-                    }))
+                const formattedData: formattedData[] = Object.keys(devices).map((month) => ({
+                        month: month,
+                        cost: devices[month]
+                    })
                 );
                 setData(formattedData);
             })
@@ -27,13 +26,13 @@ function costHistoryLineChart({width, height}: {width: number, height: number}) 
     return (
         <div>
             <LineChart width={width} height={height} data={data}>
-                <XAxis dataKey={"energyDate"} />
-                <YAxis />
-                <Line type="monotone" dataKey="energyUsage" />
+                <XAxis dataKey={"month"} />
+                <YAxis dataKey={"cost"}/>
+                <Line type="monotone" dataKey="cost" />
             </LineChart>
         </div>
     )
 }
 
 
-export default costHistoryLineChart;
+export default CostHistoryLineChart;
