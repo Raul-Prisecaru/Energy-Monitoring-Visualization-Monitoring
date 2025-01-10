@@ -136,25 +136,28 @@ export const getCurrentMonthCost = async (req: any, res:any) => {
  */
 export const getEnergyUsageHistoryMonthly = async (req: any, res: any) => {
     try {
+        let counter: number = 0;
+        let costJson: { [key: string]: number[] }  = {}
 
-        let costJson: { [key: string]: number } = {}
         const allDevice = await virtualDevice.find();
         allDevice.forEach((device) => {
+            counter += 1;
             device.energyHistory.forEach((next) => {
-                const date = new Date(next.energyDate);
-                const month = date.toLocaleString("default", {month: "long"})
-                if (!costJson[month]) {
-                    costJson[month] = 0;
+
+                if (!costJson["Device " + counter]) {
+                    costJson["Device " + counter] = [];
                 }
-                costJson[month] += (next.energyUsage * 0.22);
+
+                // Accumulate energy usage cost
+                costJson["Device " + counter].push(next.energyUsage);
             });
         });
 
-        res.status(201).json(costJson)
+        res.status(201).json(costJson);
     } catch (err) {
-        res.status(500).json({err: "Failed to retrieve the history data of devices: " + err})
+        res.status(500).json({ err: "Failed to retrieve the history data of devices: " + err });
     }
-}
+};
 
 
 /** Function Responsible for retrieving cost of each month
