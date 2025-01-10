@@ -134,23 +134,22 @@ export const getCurrentMonthCost = async (req: any, res:any) => {
 /** Function Responsible for retrieving cost of each month
  * @param res - 201 if successful, else 500
  */
-export const getEnergyUsageHistoryMonthly = async (req: any, res: any) => {
+export const getEnergyAveragePerDevice = async (req: any, res: any) => {
     try {
         let counter: number = 0;
-        let costJson: { [key: string]: number[] }  = {}
+        let costJson: { [key: string]: number }  = {}
 
         const allDevice = await virtualDevice.find();
         allDevice.forEach((device) => {
             counter += 1;
-            device.energyHistory.forEach((next) => {
+            let totalCount: number = device.energyHistory.length;
+            const totalEnergy = device.energyHistory.reduce((total, next) => {
+                    totalCount += 1;
+                    return total + next.energyUsage
+            }, 0);
 
-                if (!costJson["Device " + counter]) {
-                    costJson["Device " + counter] = [];
-                }
 
-                // Accumulate energy usage cost
-                costJson["Device " + counter].push(next.energyUsage);
-            });
+                costJson["Device " + counter] = totalEnergy / totalCount;
         });
 
         res.status(201).json(costJson);
