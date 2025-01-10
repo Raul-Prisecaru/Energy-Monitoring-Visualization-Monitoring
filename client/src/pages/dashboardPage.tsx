@@ -78,18 +78,6 @@ function DashboardPage() {
                 </div>
             </div>
 
-            <div className={"deviceRelatedVisuals"}>
-
-
-                <div className={"topDevicesEnergyUsageBarChart"}>
-                    <TopDevicesBarChart width={500} height={300}/>
-                </div>
-
-
-
-            </div>
-
-
         </div>
     )
 
