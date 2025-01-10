@@ -5,6 +5,8 @@ import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
 import {Typography} from "@mui/joy";
 import Divider from '@mui/joy/Divider';
+import forestLoopGIF from './assets/Forest_Loop_GIF.webp';
+
 
 
 function HomePage() {
@@ -15,6 +17,8 @@ function HomePage() {
             <div className={"Title"}>
                 <h1>Welcome to Your One-Stop Shop<br/> In Managing Your Energy Consumption Usage</h1>
             </div>
+
+            <img src={forestLoopGIF}  />
             <div className={"getStartedButton"}>
                 <button>Get Started</button>
 
