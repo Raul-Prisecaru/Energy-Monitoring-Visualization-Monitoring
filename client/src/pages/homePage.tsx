@@ -10,15 +10,14 @@ import forestLoopGIF from './assets/Forest_Loop_GIF.webp';
 
 
 function HomePage() {
-
-
     return (
         <div>
             <div className={"Title"}>
                 <h1>Welcome to Your One-Stop Shop<br/> In Managing Your Energy Consumption Usage</h1>
             </div>
-
-            <img src={forestLoopGIF}  />
+            <div className={"forestLoopGif"}>
+                <img src={forestLoopGIF}  />
+            </div>
             <div className={"getStartedButton"}>
                 <button>Get Started</button>
 
