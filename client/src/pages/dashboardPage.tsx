@@ -68,22 +68,25 @@ function DashboardPage() {
 
             </div>
 
-
             <div className={"bottomRelatedVisuals"}>
-                <DeviceTable width={500} height={500} />
+                <div className={"deviceTable"}>
+                    <DeviceTable width={500} height={500}/>
+                </div>
+
+                <div className={"energyUsageCategoryPieChart"}>
+                    <EnergyUsageCategoryPieChart width={500} height={300}/>
+                </div>
             </div>
 
             <div className={"deviceRelatedVisuals"}>
 
 
                 <div className={"topDevicesEnergyUsageBarChart"}>
-                <TopDevicesBarChart width={500} height={300}/>
+                    <TopDevicesBarChart width={500} height={300}/>
                 </div>
 
 
-                <div className={"energyUsageCategoryPieChart"}>
-                    <EnergyUsageCategoryPieChart width={500} height={300}/>
-                </div>
+
             </div>
 
 
