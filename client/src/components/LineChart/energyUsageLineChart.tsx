@@ -1,25 +1,24 @@
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
-interface formattedData {
-    energyUsage: number,
-    energyDate: string
+interface FormattedData {
+    device: string,
+    energyUsage: number[]
 }
 
-function energyUsageLineChart({width, height}: {width: number, height: number}) {
-    const [data, setData] = useState<formattedData[]>([])
+function EnergyUsageLineChart({ width, height }: { width: number, height: number }) {
+    const [data, setData] = useState<FormattedData[]>([]);
 
     useEffect(() => {
-        fetch("http://localhost:3001/api/device/")
+        fetch("http://localhost:3001/api/device/getEnergyUsageHistoryMonthly")
             .then((response) => response.json())
             .then((devices) => {
-                const formattedData: formattedData[] = devices.flatMap((device: any) =>
-                    device.energyHistory.map((historyData: formattedData) => ({
-                        energyUsage: historyData.energyUsage,
-                        energyDate: new Date(historyData.energyDate).toLocaleDateString("en-GB")
-                    }))
-                );
-                console.log(formattedData)
+                const formattedData = Object.keys(devices).map((deviceKey) => {
+                    return {
+                        device: deviceKey,
+                        energyUsage: devices[deviceKey],
+                    };
+                });
                 setData(formattedData);
             })
             .catch((error) => console.error("Failed to fetch Devices: " + error));
@@ -36,5 +35,4 @@ function energyUsageLineChart({width, height}: {width: number, height: number}) 
     )
 }
 
-
-export default energyUsageLineChart;
+export default EnergyUsageLineChart;
