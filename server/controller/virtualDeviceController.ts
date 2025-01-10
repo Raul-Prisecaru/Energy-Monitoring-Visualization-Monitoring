@@ -341,6 +341,30 @@ export const getEnergyUsageProgress = async (req: any, res:any) => {
 
 }
 
+export const getDayCostDevice = async (req:any, res: any) => {
+
+}
+
+export const getMonthCostDevice = async (req: any, res: any) => {
+
+}
+
+export const getYearCostDevice = async (req: any, res: any) => {
+
+}
+
+export const getDayEnergyUsageDevice = async (req: any, res: any) => {
+
+}
+
+export const getMonthEnergyUsageDevice = async (req: any, res: any) => {
+
+}
+
+export const getYearEnergyUsageDevice = async (req: any, res: any) => {
+
+}
+
 /**
  * Method Responsible for creating Device and storing to the Database
  * @param req.body.deviceName - Device Name
