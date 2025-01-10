@@ -8,17 +8,19 @@ interface formattedData {
 }
 
 function EnergyUsageLineChart({ width, height }: { width: number; height: number }) {
-    const [data, setData] = useState<FormattedData[]>([]);
+    const [data, setData] = useState<formattedData[]>([]);
 
     useEffect(() => {
-        fetch("http://localhost:3001/api/device/getEnergyAveragePerDevice")
+        fetch("http://localhost:3001/api/device/getEnergyAndCostAveragePerDevice")
             .then((response) => response.json())
             .then((devices) => {
                 const formattedData: formattedData[] = Object.keys(devices).map((data) => ({
-                        device: data,
-                        averageEnergy: devices[data]
+                        deviceName: data,
+                        averageEnergy: devices[data][0],
+                        averageCost: devices[data][1]
                     })
                 );
+                console.log(formattedData)
                 setData(formattedData);
             })
             .catch((error) => console.error("Failed to fetch devices: " + error));
@@ -27,12 +29,12 @@ function EnergyUsageLineChart({ width, height }: { width: number; height: number
     return (
         <div>
             <BarChart width={width} height={height} data={data}>
-                {/*<CartesianGrid strokeDasharray="3 3" />*/}
-                <XAxis dataKey="device" />
-                <YAxis dataKey={"averageEnergy"}/>
+                <XAxis dataKey="deviceName" />
+                <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="averageEnergy" fill="#8884d8" />
+                <Bar dataKey="averageEnergy" fill="#8884d8" name="Average Energy" />
+                <Bar dataKey="averageCost" fill="#82ca9d" name="Average Cost" />
             </BarChart>
         </div>
     );
