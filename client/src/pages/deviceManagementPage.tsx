@@ -27,6 +27,8 @@ function DeviceManagementPage() {
 
     const handleClose = () => {
         setIsOpen(false);
+        setViewDevice(null);
+
     }
 
     const handleDeviceNameChange = (e) => setDeviceName(e.target.value);
