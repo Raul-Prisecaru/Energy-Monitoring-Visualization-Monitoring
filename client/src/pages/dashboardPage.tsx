@@ -1,6 +1,6 @@
 import "./styles/dashboardPageStyle.css"
 
-import EnergyUsageLineChart from "../components/AreaChart/energyUsageLineChart.tsx";
+import EnergyUsageLineChart from "../components/LineChart/energyUsageLineChart.tsx";
 import TopDevicesBarChart from "../components/BarChart/topDevicesBarChart.tsx";
 import EnergyCostBarChart from "../components/BarChart/energyCostBarChart.tsx";
 import EnergyUsageProgressGauge from "../components/Gauge/energyUsageProgressGauge.tsx";
