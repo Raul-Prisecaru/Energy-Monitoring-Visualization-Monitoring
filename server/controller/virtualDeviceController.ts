@@ -158,6 +158,18 @@ export const getEnergyAveragePerDevice = async (req: any, res: any) => {
     }
 };
 
+/**
+ * Function Responsible for retrieving the Active Status and Current Usage of the Devices
+ */
+
+export const getDeviceActiveStatusAndUsage = async (req: any, res:any) => {
+    try {
+
+        res.status(201).json({})
+    } catch (err) {
+        res.status(500).json(err)
+    }
+}
 
 /** Function Responsible for retrieving cost of each month
  * @param res - 201 if successful, else 500
