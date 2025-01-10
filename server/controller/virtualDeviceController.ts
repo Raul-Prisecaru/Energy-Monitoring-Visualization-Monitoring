@@ -121,7 +121,7 @@ export const getCurrentMonthCost = async (req: any, res:any) => {
         // TODO: Change this to get the user's actual paying amount
         totalCost *= 0.22;
 
-        res.status(201).json({totalCosts})
+        res.status(201).json({totalCost})
 
 
     } catch (err) {
@@ -129,6 +129,28 @@ export const getCurrentMonthCost = async (req: any, res:any) => {
     }
 
 
+}
+
+/** Function Responsible for retrieving cost of each month
+ * @param res - 201 if successful, else 500
+ */
+export const getCostHistoryMonthly = async (req: any, res: any) => {
+    try {
+        let costJson: { [key: number]: number } = {}
+        const allDevice = await virtualDevice.find();
+        allDevice.forEach((device) => {
+                device.energyHistory.forEach((next) => {
+                    if (!costJson[next.energyDate.getMonth()]) {
+                        costJson[next.energyDate.getMonth()] = 0;
+                    }
+                    costJson[next.energyDate.getMonth()] += (next.energyUsage * 0.22);
+                });
+            });
+
+        res.status(201).json(costJson)
+    } catch (err) {
+        res.status(500).json({err: "Failed to retrieve the history data of devices: " + err})
+    }
 }
 
 
@@ -257,9 +279,7 @@ export const getEnergyUsageProgress = async (req: any, res:any) => {
         res.status(500).json({error: "There has been an error: " + err})
     }
 
-
 }
-
 
 /**
  * Method Responsible for creating Device and storing to the Database
