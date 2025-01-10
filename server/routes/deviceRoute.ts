@@ -32,7 +32,7 @@ router.get("/getEnergyUsageProgress", deviceController.getEnergyUsageProgress)
 // Router to get the cost history Monthly
 router.get("/getCostHistoryMonthly", deviceController.getCostHistoryMonthly)
 
-router.get("/getEnergyAveragePerDevice", deviceController.getEnergyAveragePerDevice)
+router.get("/getEnergyAndCostAveragePerDevice", deviceController.getEnergyAndCostAveragePerDevice)
 
 router.get("/getDeviceActiveStatusAndUsage", deviceController.getDeviceActiveStatusAndUsage)
 
