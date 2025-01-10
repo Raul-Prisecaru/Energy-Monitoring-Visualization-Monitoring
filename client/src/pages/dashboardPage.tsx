@@ -11,6 +11,7 @@ import CostPerDeviceChart from "../components/Custom/costPerDeviceChart.tsx"
 import DailyStreakCard from "../components/Cards/dailyStreakCard.tsx";
 import EmptyCard from "../components/Cards/emptyCard.tsx";
 import CostProgressGauge from "../components/Gauge/costProgressGauge.tsx";
+import CostHistoryLineChart from "../components/LineChart/costHistoryLineChart.tsx";
 
 function DashboardPage() {
 
@@ -49,8 +50,8 @@ function DashboardPage() {
                     <EnergyUsageProgressGauge width={200} height={200}/>
                 </div>
 
-                <div className={"energyUsageAreaChart"}>
-                    <EnergyUsageLineChart width={500} height={300}/>
+                <div className={"energyUsageLineChart"}>
+                    <EnergyUsageLineChart width={1200} height={300}/>
                 </div>
             </div>
 
@@ -58,6 +59,10 @@ function DashboardPage() {
             <div className={"bottomMiddleRelatedVisuals"}>
                 <div className={"costProgressGauge"}>
                     <CostProgressGauge width={200} height={200} />
+                </div>
+
+                <div>
+                    <CostHistoryLineChart width={1200} height={300} />
                 </div>
 
             </div>
