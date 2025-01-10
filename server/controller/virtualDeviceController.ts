@@ -165,7 +165,23 @@ export const getEnergyAveragePerDevice = async (req: any, res: any) => {
 export const getDeviceActiveStatusAndUsage = async (req: any, res:any) => {
     try {
 
-        res.status(201).json({})
+        let deviceStatus: any= {};
+
+        const allDevice = await virtualDevice.find();
+
+        allDevice.forEach((device) => {
+            if (device.deviceStatus) {
+                if (!deviceStatus[device.deviceName]) {
+                    deviceStatus[device.deviceName] = [];
+                }
+
+                deviceStatus[device.deviceName].push(
+                    device.deviceStatus.active,
+                    device.deviceStatus.currentEnergyUsage
+                );
+            }
+        });
+        res.status(201).json(deviceStatus)
     } catch (err) {
         res.status(500).json(err)
     }
