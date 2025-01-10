@@ -1,5 +1,7 @@
 import {Pie, PieChart} from "recharts";
 import {useEffect, useState} from "react";
+import Card from "@mui/joy/Card";
+import CardContent from "@mui/joy/CardContent";
 
 interface formattedData {
     deviceCategory: string,
@@ -25,15 +27,21 @@ function TopDevicesBarChart({width, height}: {width: number, height: number}) {
 
     return (
         <div>
-            <PieChart width={width} height={height}>
-                <Pie
-                    data={data}
-                    dataKey="energyUsage"
-                    nameKey="deviceCategory"
-                    label={({ name, value }) => `${name}: ${value}`}
-                />
+            <Card>
+                <CardContent>
+                    <PieChart width={width} height={height}>
+                        <Pie
+                            data={data}
+                            dataKey="energyUsage"
+                            nameKey="deviceCategory"
+                            label={({ name, value }) => `${name}: ${value}`}
+                        />
 
-            </PieChart>
+                    </PieChart>
+                </CardContent>
+
+            </Card>
+
         </div>
     )
 }
