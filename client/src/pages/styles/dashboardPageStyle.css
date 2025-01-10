@@ -9,6 +9,14 @@
 
 }
 
+.topMiddleRelatedVisuals {
+    display: flex;
+}
+
+.bottomMiddleRelatedVisuals {
+    display: flex;
+}
+
 .deviceRelatedVisuals {
     display: flex;
     background-color: lightgrey;
@@ -16,7 +24,7 @@
 }
 
 
-.energyUsageAreaChart {
+.energyUsageLineChart {
     padding-right: 50px;
 }
 
