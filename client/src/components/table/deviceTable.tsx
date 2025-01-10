@@ -29,7 +29,7 @@ function DeviceTable({width, height}: {width: number, height: number}) {
             <Table>
                 <thead>
                 <tr>
-                    <th> Active </th>
+                    <th style={{width: 100}}> Active </th>
                     <th> Device </th>
                     <th> Active Usage </th>
                 </tr>
