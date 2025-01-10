@@ -342,7 +342,23 @@ export const getEnergyUsageProgress = async (req: any, res:any) => {
 }
 
 export const getDayCostDevice = async (req:any, res: any) => {
+    try {
+        const deviceCost: { [key: string]: number } = {}
+        const todayDay:number = new Date().getDay();
+        const oneDevice: any = await virtualDevice.findById(req.params.id)
 
+        deviceCost[oneDevice.deviceName] = oneDevice.energyHistory.reduce((total: any, next: any) => {
+            if (next.energyDate.getDay() == todayDay) {
+                return total + next.energyUsage
+            }
+            return total
+        }, 0)
+
+        res.status(201).json(deviceCost);
+
+    } catch (err) {
+        res.status(500).json({err: "There has been an error trying to retrieve today's cost data of the device: " + err})
+    }
 }
 
 export const getMonthCostDevice = async (req: any, res: any) => {
