@@ -12,6 +12,7 @@ import DailyStreakCard from "../components/Cards/dailyStreakCard.tsx";
 import EmptyCard from "../components/Cards/emptyCard.tsx";
 import CostProgressGauge from "../components/Gauge/costProgressGauge.tsx";
 import CostHistoryLineChart from "../components/LineChart/costHistoryLineChart.tsx";
+import DeviceTable from "../components/table/deviceTable.tsx";
 
 function DashboardPage() {
 
@@ -65,6 +66,11 @@ function DashboardPage() {
                     <CostHistoryLineChart width={1200} height={300} />
                 </div>
 
+            </div>
+
+
+            <div className={"bottomRelatedVisuals"}>
+                <DeviceTable width={500} height={500} />
             </div>
 
             <div className={"deviceRelatedVisuals"}>
