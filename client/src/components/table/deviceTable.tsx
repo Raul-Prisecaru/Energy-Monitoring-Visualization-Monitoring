@@ -1,4 +1,3 @@
-import {Pie, PieChart} from "recharts";
 import {useEffect, useState} from "react";
 import Table from '@mui/joy/Table';
 
