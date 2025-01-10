@@ -136,14 +136,18 @@ export const getCurrentMonthCost = async (req: any, res:any) => {
  */
 export const getCostHistoryMonthly = async (req: any, res: any) => {
     try {
-        let costJson: { [key: number]: number } = {}
+
+
+        let costJson: { [key: string]: number } = {}
         const allDevice = await virtualDevice.find();
         allDevice.forEach((device) => {
                 device.energyHistory.forEach((next) => {
-                    if (!costJson[next.energyDate.getMonth()]) {
-                        costJson[next.energyDate.getMonth()] = 0;
+                    const date = new Date(next.energyDate);
+                    const month = date.toLocaleString("default", {month: "long"})
+                    if (!costJson[month]) {
+                        costJson[month] = 0;
                     }
-                    costJson[next.energyDate.getMonth()] += (next.energyUsage * 0.22);
+                    costJson[month] += (next.energyUsage * 0.22);
                 });
             });
 
