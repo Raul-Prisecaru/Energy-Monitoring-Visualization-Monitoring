@@ -25,7 +25,9 @@ function DeviceManagementPage() {
 
     const handleOpen = () => setIsOpen(true);
 
-    const handleClose = () => setIsOpen(false);
+    const handleClose = () => {
+        setIsOpen(false);
+    }
 
     const handleDeviceNameChange = (e) => setDeviceName(e.target.value);
 
@@ -121,44 +123,47 @@ function DeviceManagementPage() {
             <div>
                 <h1 id={"Heading"}>Virtual Devices</h1>
                 <button id={"addDeviceButton"} onClick={handleOpen}>Add Device</button>
-
-
-
                 <Modal
                     open={isOpen}
                     onClose={handleClose}>
 
                     <Box className={"styleBoxModal"}>
                         <div className={"modalContent"}>
+                            {viewDevice ? (
+                                <div> {viewDevice.deviceName} </div> ) : (
 
-                            <div className={"modalHeader"}>
-                                <h1>Add Device</h1>
-                            </div>
 
-                            <div className={"modalForm"}>
-
-                                <form>
-                                    <div className={"modalDeviceNameLabel"}>
-                                        <label>Device Name</label>
+                                    <div>
+                                    <div className={"modalHeader"}>
+                                        <h1>Add Device</h1>
                                     </div>
 
-                                    <div className={"modalDeviceNameInput"}>
-                                        <input type={"textext"} onChange={handleDeviceNameChange}/>
+                                    <div className={"modalForm"}>
+
+                                        <form>
+                                            <div className={"modalDeviceNameLabel"}>
+                                                <label>Device Name</label>
+                                            </div>
+
+                                            <div className={"modalDeviceNameInput"}>
+                                                <input type={"textext"} onChange={handleDeviceNameChange}/>
+                                            </div>
+
+
+                                            <div className={"modalDeviceTypeLabel"}>
+                                                <label>Device Type</label>
+                                            </div>
+
+                                            <div className={"modalDeviceTypeInput"}>
+                                                <input type={"text"} onChange={handleDeviceTypeChange}/>
+                                            </div>
+
+                                        </form>
+
+                                        <button onClick={addDeviceButton}>Confirm Changes</button>
                                     </div>
-
-
-                                    <div className={"modalDeviceTypeLabel"}>
-                                        <label>Device Type</label>
-                                    </div>
-
-                                    <div className={"modalDeviceTypeInput"}>
-                                        <input type={"text"} onChange={handleDeviceTypeChange}/>
-                                    </div>
-
-                                </form>
-
-                                <button onClick={addDeviceButton}>Confirm Changes</button>
-                            </div>
+                                </div>
+                            )}
                         </div>
                     </Box>
 
