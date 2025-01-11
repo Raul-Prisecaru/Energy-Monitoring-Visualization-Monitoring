@@ -14,18 +14,45 @@ import CostProgressGauge from "../dashboardComponents/Gauge/costProgressGauge.ts
 import CostHistoryLineChart from "../dashboardComponents/LineChart/costHistoryLineChart.tsx";
 import DeviceTable from "../dashboardComponents/table/deviceTable.tsx";
 
+import Modal from '@mui/joy/Modal';
 import Button from '@mui/joy/Button';
 import ButtonGroup from '@mui/joy/ButtonGroup';
+import {useState} from "react";
+import Card from "@mui/joy/Card";
+import CardContent from "@mui/joy/CardContent";
 
 function DashboardPage() {
-
+    const [yearModal, setYearModal] = useState(false)
+    const [monthModal, setMonthModal] = useState(false)
     return (
 
         <div className={"deviceVisualizer"}>
             <ButtonGroup size="lg" variant="solid">
-                <Button>Year</Button>
-                <Button>Month</Button>
+                <Button onClick={() => setYearModal(true)}>Year</Button>
+                <Button onClick={() => setMonthModal(true)}>Month</Button>
             </ButtonGroup>
+
+            <div>
+                <Modal open={yearModal} onClose={() => setYearModal(false)}>
+                    <Card>
+                        <CardContent>
+                            <h1>Year is Pressed </h1>
+                        </CardContent>
+                    </Card>
+                </Modal>
+            </div>
+
+            <div>
+                <Modal open={monthModal} onClose={() => setMonthModal(false)}>
+                    <Card>
+                        <CardContent>
+                            <h1>Month is Pressed </h1>
+                        </CardContent>
+                    </Card>
+                </Modal>
+            </div>
+
+
             <div className={"topRelatedVisuals"}>
 
                 <div className={"totalCostMonthChart"}>
