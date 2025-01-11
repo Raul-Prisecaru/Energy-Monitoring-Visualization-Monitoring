@@ -1,4 +1,4 @@
-import {LineChart} from "recharts";
+import {Line, LineChart, XAxis, YAxis} from "recharts";
 import Box from "@mui/joy/Box";
 import Card from "@mui/joy/Card";
 import CardContent from "@mui/joy/CardContent";
@@ -8,14 +8,14 @@ function CostHistoryLineChart({deviceID}: {deviceID: string}) {
     const [data, setData] = useState([])
 
     useEffect(() => {
-        fetch("http://localhost:3001/api/device/getCostHistoryDevice" + deviceID)
+        fetch("http://localhost:3001/api/device/getCostHistoryDevice/" + deviceID)
             .then(response => response.json())
             .then(dataSet => {
                 const formattedData = Object.keys(dataSet).map(month => ({
                     month: month,
                     cost: dataSet[month]
                 }))
-                setData(data)
+                setData(formattedData)
             })
     }, []);
 
@@ -24,6 +24,11 @@ function CostHistoryLineChart({deviceID}: {deviceID: string}) {
             <Box>
                 <Card>
                     <CardContent>
+                        <LineChart width={1000} height={400} data={data}>
+                        <XAxis dataKey={"month"}/>
+                        <YAxis dataKey={"cost"} />
+                        <Line dataKey={"cost"} />
+                        </LineChart>
 
                     </CardContent>
                 </Card>
