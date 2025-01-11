@@ -11,7 +11,7 @@ function TotalCostMonthCard() {
         fetch("http://localhost:3001/api/device/getCurrentMonthCost")
             .then((response) => response.json())
             .then((energyDevice) => {
-                setData(energyDevice.totalEnergy);
+                setData(energyDevice);
             })
             .catch((error) => console.error("Failed to fetch Devices: " + error));
     }, []);

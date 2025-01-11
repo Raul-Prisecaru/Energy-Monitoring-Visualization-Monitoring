@@ -125,9 +125,9 @@ export const getCurrentMonthCost = async (req: any, res:any) => {
         })
 
         // TODO: Change this to get the user's actual paying amount
-        totalCost *= 0.22;
+        const calculatedCost = (totalCost / 1000) * 0.22
 
-        res.status(201).json({totalCost})
+        res.status(201).json(calculatedCost)
 
 
     } catch (err) {
