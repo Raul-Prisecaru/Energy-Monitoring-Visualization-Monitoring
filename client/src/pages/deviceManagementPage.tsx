@@ -5,6 +5,7 @@ import Modal from '@mui/joy/Modal';
 import ModalDialog from '@mui/joy/ModalDialog';
 import DialogTitle from '@mui/joy/DialogTitle';
 import DialogContent from '@mui/joy/DialogContent';
+import CostCard from "./deviceVisualComponents/costCard.tsx";
 
 function DeviceManagementPage() {
     const [isOpen, setIsOpen] = useState(false);
@@ -37,11 +38,9 @@ function DeviceManagementPage() {
 
     const handleViewDevice = (device) => {
         setViewDevice(device);
+        console.log("Device + ID: " + device._id)
         handleOpen();
     };
-
-
-
 
     const addDeviceButton = async (e) => {
         e.preventDefault()
@@ -132,7 +131,14 @@ function DeviceManagementPage() {
                     <Box className={"styleBoxModal"}>
                         <div className={"modalContent"}>
                             {viewDevice ? (
-                                <div> {viewDevice.deviceName} </div> ) : (
+                                <div>
+                                    {viewDevice.deviceName}
+                                    {console.log(viewDevice._id)}
+                                    <CostCard deviceID={viewDevice._id}/>
+                                </div>
+
+
+                            ) : (
 
 
                                     <div>
