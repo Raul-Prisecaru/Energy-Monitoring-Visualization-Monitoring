@@ -180,7 +180,79 @@ export const getSpecifiedMonthCost = async (req: any, res:any) => {
 }
 
 
+/**
+ * Function Responsible for retrieving the paying cost of the current year
+ * @return res - 201 response with json, else 500
+ */
+export const getCurrentYearCost = async (req: any, res:any) => {
+    try {
+        const allDevices = await virtualDevice.find();
+        const currentYear = new Date().getFullYear()
+        let totalCost = 0;
+        allDevices.forEach((device) => {
 
+            totalCost += device.energyHistory.reduce((total:number, next:any) => {
+                if(next.energyDate){
+                    if (next.energyDate.getFullYear() == currentYear) {
+                        if (next.energyUsage) {
+                            console.log(total + next.energyUsage)
+                            return total + next.energyUsage
+                        }
+                    }
+                }
+                return total
+            }, 0);
+
+        })
+
+        // TODO: Change this to get the user's actual paying amount
+        const calculatedCost = (totalCost / 1000) * 0.22
+
+        res.status(201).json(calculatedCost)
+
+
+    } catch (err) {
+        res.status(500).json({err: "Failed to retrieve the current month's cost: " + err})
+    }
+}
+
+
+
+/**
+ * Function Responsible for retrieving the paying cost of the current year
+ * @return res - 201 response with json, else 500
+ */
+export const getSpecifiedYearCost = async (req: any, res:any) => {
+    try {
+        const allDevices = await virtualDevice.find();
+        const specifiedYear = await req.params.year
+        let totalCost = 0;
+        allDevices.forEach((device) => {
+
+            totalCost += device.energyHistory.reduce((total:number, next:any) => {
+                if(next.energyDate){
+                    if (next.energyDate.getFullYear() == specifiedYear) {
+                        if (next.energyUsage) {
+                            console.log(total + next.energyUsage)
+                            return total + next.energyUsage
+                        }
+                    }
+                }
+                return total
+            }, 0);
+
+        })
+
+        // TODO: Change this to get the user's actual paying amount
+        const calculatedCost = (totalCost / 1000) * 0.22
+
+        res.status(201).json(calculatedCost)
+
+
+    } catch (err) {
+        res.status(500).json({err: "Failed to retrieve the current month's cost: " + err})
+    }
+}
 
 
 
