@@ -1,5 +1,5 @@
 import HomePage from "./pages/homePage.tsx";
-import NavBar from "./components/navBar.tsx";
+import NavBar from "./dashboardComponents/navBar.tsx";
 import LoginPage from "./pages/loginPage.tsx";
 import SignupPage from "./pages/signupPage.tsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom"

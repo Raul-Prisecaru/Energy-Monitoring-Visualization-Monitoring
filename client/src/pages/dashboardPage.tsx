@@ -1,18 +1,18 @@
 import "./styles/dashboardPageStyle.css"
 
-import EnergyUsageLineChart from "../components/LineChart/energyUsageLineChart.tsx";
-import TopDevicesBarChart from "../components/BarChart/topDevicesBarChart.tsx";
-import EnergyCostBarChart from "../components/BarChart/energyCostBarChart.tsx";
-import EnergyUsageProgressGauge from "../components/Gauge/energyUsageProgressGauge.tsx";
-import EnergyUsageCategoryPieChart from "../components/PieChart/energyUsageCategoryPieChart.tsx";
-import TotalCostMonthCard from "../components/Cards/totalCostMonthCard.tsx";
-import TotalEnergyUsageCard from "../components/Cards/totalEnergyUsageMonthCard.tsx";
-import CostPerDeviceChart from "../components/Custom/costPerDeviceChart.tsx"
-import DailyStreakCard from "../components/Cards/dailyStreakCard.tsx";
-import EmptyCard from "../components/Cards/emptyCard.tsx";
-import CostProgressGauge from "../components/Gauge/costProgressGauge.tsx";
-import CostHistoryLineChart from "../components/LineChart/costHistoryLineChart.tsx";
-import DeviceTable from "../components/table/deviceTable.tsx";
+import EnergyUsageLineChart from "../dashboardComponents/LineChart/energyUsageLineChart.tsx";
+import TopDevicesBarChart from "../dashboardComponents/BarChart/topDevicesBarChart.tsx";
+import EnergyCostBarChart from "../dashboardComponents/BarChart/energyCostBarChart.tsx";
+import EnergyUsageProgressGauge from "../dashboardComponents/Gauge/energyUsageProgressGauge.tsx";
+import EnergyUsageCategoryPieChart from "../dashboardComponents/PieChart/energyUsageCategoryPieChart.tsx";
+import TotalCostMonthCard from "../dashboardComponents/Cards/totalCostMonthCard.tsx";
+import TotalEnergyUsageCard from "../dashboardComponents/Cards/totalEnergyUsageMonthCard.tsx";
+import CostPerDeviceChart from "../dashboardComponents/Custom/costPerDeviceChart.tsx"
+import DailyStreakCard from "../dashboardComponents/Cards/dailyStreakCard.tsx";
+import EmptyCard from "../dashboardComponents/Cards/emptyCard.tsx";
+import CostProgressGauge from "../dashboardComponents/Gauge/costProgressGauge.tsx";
+import CostHistoryLineChart from "../dashboardComponents/LineChart/costHistoryLineChart.tsx";
+import DeviceTable from "../dashboardComponents/table/deviceTable.tsx";
 
 function DashboardPage() {
 
