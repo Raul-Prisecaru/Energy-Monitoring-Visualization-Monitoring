@@ -24,6 +24,27 @@ import CardContent from "@mui/joy/CardContent";
 function DashboardPage() {
     const [yearModal, setYearModal] = useState(false)
     const [monthModal, setMonthModal] = useState(false)
+    const [specifiedMonth, setSpecifiedMonth] = useState(null)
+    const [specifiedYear, setSpecifiedYear] = useState(null)
+
+    const changeToCurrentMonth = () => {
+        setSpecifiedYear(null)
+    }
+
+    const changeToSpecifiedMonth = (value: number) => {
+        setSpecifiedMonth(value);
+    }
+
+    const changeToCurrentYear = () => {
+        setSpecifiedYear(null)
+    }
+
+    const changeToSpecifiedYear = (value: number) => {
+        setSpecifiedYear(value)
+    }
+
+
+
     return (
 
         <div className={"deviceVisualizer"}>
@@ -36,7 +57,8 @@ function DashboardPage() {
                 <Modal open={yearModal} onClose={() => setYearModal(false)}>
                     <Card>
                         <CardContent>
-                            <h1>Year is Pressed </h1>
+                            <Button onClick={() => changeToCurrentYear()}>Current Year</Button>
+                            <Button onClick={() => changeToSpecifiedYear(1)}>Select Year</Button>
                         </CardContent>
                     </Card>
                 </Modal>
@@ -46,7 +68,8 @@ function DashboardPage() {
                 <Modal open={monthModal} onClose={() => setMonthModal(false)}>
                     <Card>
                         <CardContent>
-                            <h1>Month is Pressed </h1>
+                            <Button onClick={() => changeToCurrentMonth()}>Current Month</Button>
+                            <Button onClick={() => changeToSpecifiedMonth(1)}>Select Month</Button>
                         </CardContent>
                     </Card>
                 </Modal>
@@ -71,13 +94,6 @@ function DashboardPage() {
                     <EmptyCard/>
                 </div>
 
-                {/*<div className={"energyCostBarChart"}>*/}
-                {/*    <EnergyCostBarChart width={500} height={300}/>*/}
-                {/*</div>*/}
-
-                {/*<div>*/}
-                {/*    <CostPerDeviceChart/>*/}
-                {/*</div>*/}
             </div>
 
             <div className={"topMiddleRelatedVisuals"}>
