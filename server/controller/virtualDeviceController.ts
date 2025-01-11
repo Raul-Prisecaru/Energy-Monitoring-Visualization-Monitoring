@@ -406,15 +406,67 @@ export const getYearCostDevice = async (req: any, res: any) => {
 }
 
 export const getDayEnergyUsageDevice = async (req: any, res: any) => {
+    try {
+        const deviceCost: { [key: string]: number } = {}
+        const todayDay:number = new Date().getDay();
+        const todayMonth:number = new Date().getMonth()
+        const oneDevice: any = await virtualDevice.findById(req.params.id)
 
+        const totalEnergy = oneDevice.energyHistory.reduce((total: any, next: any) => {
+            if (next.energyDate.getDay() == todayDay && next.energyDate.getMonth() == todayMonth) {
+                return total + next.energyUsage
+            }
+            return total
+        }, 0)
+
+        deviceCost[oneDevice.deviceName] = totalEnergy
+        res.status(201).json(deviceCost);
+
+    } catch (err) {
+        res.status(500).json({err: "There has been an error trying to retrieve today's cost data of the device: " + err})
+    }
 }
 
 export const getMonthEnergyUsageDevice = async (req: any, res: any) => {
+    try {
+        const deviceCost: { [key: string]: number } = {}
+        const todayMonth:number = new Date().getMonth();
+        const oneDevice: any = await virtualDevice.findById(req.params.id)
 
+        const totalEnergy = oneDevice.energyHistory.reduce((total: any, next: any) => {
+            if (next.energyDate.getMonth() == todayMonth) {
+                return total + next.energyUsage
+            }
+            return total
+        }, 0)
+
+        deviceCost[oneDevice.deviceName] = totalEnergy
+        res.status(201).json(deviceCost);
+
+    } catch (err) {
+        res.status(500).json({err: "There has been an error trying to retrieve today's cost data of the device: " + err})
+    }
 }
 
 export const getYearEnergyUsageDevice = async (req: any, res: any) => {
+    try {
+        const deviceCost: { [key: string]: number } = {}
+        const todayYear:number = new Date().getFullYear();
+        const oneDevice: any = await virtualDevice.findById(req.params.id)
 
+        const totalEnergy = oneDevice.energyHistory.reduce((total: any, next: any) => {
+            if (next.energyDate.getFullYear() == todayYear) {
+                return total + next.energyUsage
+            }
+            return total
+        }, 0)
+
+        deviceCost[oneDevice.deviceName] = totalEnergy
+        res.status(201).json(deviceCost);
+
+    } catch (err) {
+        res.status(500).json({err: "There has been an error trying to retrieve today's cost data of the device: " + err})
+    }
 }
 
 /**
