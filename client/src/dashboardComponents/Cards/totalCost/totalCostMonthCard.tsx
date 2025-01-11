@@ -3,7 +3,7 @@ import Box from '@mui/joy/Box';
 import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
 
-import "../styles/totalCostMonthChartStyle.css"
+import "../../styles/totalCostMonthChartStyle.css"
 
 function TotalCostMonthCard() {
     const [data, setData] = useState()
