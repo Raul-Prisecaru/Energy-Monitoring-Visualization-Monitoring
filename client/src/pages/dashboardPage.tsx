@@ -5,7 +5,7 @@ import TopDevicesBarChart from "../dashboardComponents/BarChart/topDevicesBarCha
 import EnergyCostBarChart from "../dashboardComponents/BarChart/energyCostBarChart.tsx";
 import EnergyUsageProgressGauge from "../dashboardComponents/Gauge/energyUsageProgressGauge.tsx";
 import EnergyUsageCategoryPieChart from "../dashboardComponents/PieChart/energyUsageCategoryPieChart.tsx";
-import TotalCostMonthCard from "../dashboardComponents/Cards/totalCostMonthCard.tsx";
+import TotalCostMonthCard from "../dashboardComponents/Cards/totalCost/totalCostMonthCard.tsx";
 import TotalEnergyUsageCard from "../dashboardComponents/Cards/totalEnergyUsageMonthCard.tsx";
 import CostPerDeviceChart from "../dashboardComponents/Custom/costPerDeviceChart.tsx"
 import DailyStreakCard from "../dashboardComponents/Cards/dailyStreakCard.tsx";
@@ -20,6 +20,7 @@ import ButtonGroup from '@mui/joy/ButtonGroup';
 import {useState} from "react";
 import Card from "@mui/joy/Card";
 import CardContent from "@mui/joy/CardContent";
+import TotalCostSpecifiedMonthCard from "../dashboardComponents/Cards/totalCost/totalCostSpecifiedMonthCard.tsx";
 
 function DashboardPage() {
     const [yearModal, setYearModal] = useState(false)
@@ -31,8 +32,9 @@ function DashboardPage() {
         setSpecifiedYear(null)
     }
 
-    const changeToSpecifiedMonth = (value: number) => {
+    const changeToSpecifiedMonth = (value: number, yearValue: number) => {
         setSpecifiedMonth(value);
+        setSpecifiedYear(yearValue);
     }
 
     const changeToCurrentYear = () => {
@@ -69,7 +71,7 @@ function DashboardPage() {
                     <Card>
                         <CardContent>
                             <Button onClick={() => changeToCurrentMonth()}>Current Month</Button>
-                            <Button onClick={() => changeToSpecifiedMonth(1)}>Select Month</Button>
+                            <Button onClick={() => changeToSpecifiedMonth(1, 2023)}>Select Month</Button>
                         </CardContent>
                     </Card>
                 </Modal>
@@ -77,9 +79,14 @@ function DashboardPage() {
 
 
             <div className={"topRelatedVisuals"}>
-
                 <div className={"totalCostMonthChart"}>
-                    <TotalCostMonthCard/>
+                    {specifiedMonth != null && specifiedYear != null  ? (
+                        <TotalCostSpecifiedMonthCard month={specifiedMonth} year={specifiedYear}/>
+
+                    ) : (
+                        <TotalCostMonthCard/>
+
+                    )}
                 </div>
 
                 <div className={"totalEnergyUsageCard"}>
