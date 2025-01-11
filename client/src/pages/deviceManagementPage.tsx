@@ -60,7 +60,7 @@ function DeviceManagementPage() {
                     energyHistory: [
                         {
                             energyUsage: Math.floor(Math.random() * 101) + 100,
-                            energyDate: new Date(2023, 12, 12).toISOString(),
+                            energyDate: currentDate,
                         },
                     ],
                 }),
