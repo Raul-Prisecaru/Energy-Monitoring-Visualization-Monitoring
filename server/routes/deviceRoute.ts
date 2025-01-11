@@ -66,6 +66,8 @@ router.get("/getCostHistoryDevice/:id", deviceController.getCostHistoryDevice)
 // Router to create device
 router.post("/", deviceController.createDevice)
 
+router.patch("/:id", deviceController.addEnergyHistory)
+
 // Router to update device, Takes ID Param
 router.put("/:id", deviceController.updateDevice)
 
