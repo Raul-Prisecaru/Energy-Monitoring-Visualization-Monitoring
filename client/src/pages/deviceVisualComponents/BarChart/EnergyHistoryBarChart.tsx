@@ -1,4 +1,8 @@
 import {useEffect, useState} from "react";
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import {Bar, BarChart, XAxis, YAxis} from "recharts";
+import Box from "@mui/joy/Box";
 
 interface formattedData {
     month: string,
@@ -21,7 +25,17 @@ function EnergyHistoryBarChart({deviceID}: {deviceID: string}) {
     }, []);
     return (
         <div>
-
+            <Box>
+                <Card>
+                    <CardContent>
+                        <BarChart width={1000} height={250} data={data}>
+                            <XAxis dataKey={"month"}/>
+                            <YAxis dataKey={"energyUsage"} />
+                            <Bar dataKey={"energyUsage"} />
+                        </BarChart>
+                    </CardContent>
+                </Card>
+            </Box>
         </div>
     )
 
