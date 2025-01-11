@@ -7,6 +7,7 @@ import DialogTitle from '@mui/joy/DialogTitle';
 import DialogContent from '@mui/joy/DialogContent';
 import CostCard from "./deviceVisualComponents/Card/costCard.tsx";
 import EnergyCard from "./deviceVisualComponents/Card/energyCard.tsx";
+import EnergyHistoryBarChart from "./deviceVisualComponents/BarChart/EnergyHistoryBarChart.tsx";
 
 function DeviceManagementPage() {
     const [isOpen, setIsOpen] = useState(false);
@@ -136,6 +137,7 @@ function DeviceManagementPage() {
                                     {viewDevice.deviceName}
                                     <CostCard deviceID={viewDevice._id}/>
                                     <EnergyCard deviceID={viewDevice._id} />
+                                    <EnergyHistoryBarChart deviceID={viewDevice._id} />
                                 </div>
 
 
