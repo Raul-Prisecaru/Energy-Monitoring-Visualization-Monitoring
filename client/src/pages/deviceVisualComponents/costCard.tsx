@@ -3,18 +3,18 @@ import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
 import Typography from '@mui/joy/Typography';
 import {useEffect, useState} from "react";
-import {response} from "express";
+
 
 interface formattedData {
     deviceName: string,
     cost: number
 }
 
-function CostCard() {
+function CostCard({deviceID}: {deviceID: string}) {
     const [data, setData] = useState([])
 
     useEffect(() => {
-        fetch("https://localhost:3001/api/device/getDayCostDevice/")
+        fetch("http://localhost:3001/api/device/getDayCostDevice/"+ deviceID)
             .then(response => response.json())
             .then(dataSet => {
                 const formattedData: formattedData[] = Object.keys(dataSet).map((device) => ({
@@ -22,13 +22,25 @@ function CostCard() {
                         cost: dataSet[device]
                     })
                 );
+                console.log(formattedData)
                 setData(formattedData)
             })
     }, []);
 
     return (
-        <div>
-
+        <div className={"cardComponent"}>
+            <Box>
+                <Card>
+                    <CardContent>
+                        {data.map((device) => (
+                            <div key={device.deviceName}>
+                                <Typography level="title-md"> Today's Cost of {device.deviceName}</Typography>
+                                <Typography>Cost: £{device.cost}</Typography>
+                            </div>
+                        ))}
+                    </CardContent>
+                </Card>
+            </Box>
         </div>
     )
 }
