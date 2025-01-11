@@ -21,11 +21,9 @@ const deviceSchema = new mongoose.Schema({
             {
             energyUsage: {
                 type: Number,
-                required: true,
             },
             energyDate: {
                 type: Date,
-                required: true,
             },
             },
         ],
