@@ -96,6 +96,10 @@ export const getTopEnergyUsageDevices = async (req: any, res:any) => {
 
 }
 
+
+
+
+
 /**
  * Function Responsible for retrieving the current paying cost of the current month
  * @return res - 201 response with json, else 500
@@ -136,6 +140,50 @@ export const getCurrentMonthCost = async (req: any, res:any) => {
 
 
 }
+
+/**
+ * Function Responsible for retrieving the paying cost of the specified month and year
+ * @return res - 201 response with json, else 500
+ */
+export const getSpecifiedMonthCost = async (req: any, res:any) => {
+    try {
+        const allDevices = await virtualDevice.find();
+        const specifiedMonth = await req.params.month
+        const specifiedYear = await req.params.year
+
+        let totalCost = 0;
+        allDevices.forEach((device) => {
+
+            totalCost += device.energyHistory.reduce((total:number, next:any) => {
+                if(next.energyDate){
+                    if (next.energyDate.getMonth() == specifiedMonth && next.energyDate.getFullYear() == specifiedYear) {
+                        if (next.energyUsage) {
+                            console.log(total + next.energyUsage)
+                            return total + next.energyUsage
+                        }
+                    }
+                }
+                return total
+            }, 0);
+
+        })
+
+        // TODO: Change this to get the user's actual paying amount
+        const calculatedCost = (totalCost / 1000) * 0.22
+
+        res.status(201).json(calculatedCost)
+
+
+    } catch (err) {
+        res.status(500).json({err: "Failed to retrieve the current month's cost: " + err})
+    }
+}
+
+
+
+
+
+
 
 /** Function Responsible for retrieving cost of each month
  * @param res - 201 if successful, else 500
