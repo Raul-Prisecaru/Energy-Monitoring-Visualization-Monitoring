@@ -39,23 +39,28 @@ router.get("/getDeviceActiveStatusAndUsage", deviceController.getDeviceActiveSta
 // Router to get one device
 router.get("/:id", deviceController.getOneDevice)
 
-// Router to get energy Cost of the day
+// Router to get cost history of the current day
 router.get("/getDayCostDevice/:id", deviceController.getDayCostDevice)
 
+// Router to get cost history of the current month
 router.get("/getMonthCostDevice/:id", deviceController.getMonthCostDevice)
 
+// Router to get cost history of the current year
 router.get("/getYearCostDevice/:id", deviceController.getYearCostDevice)
 
+// Router to get energy usage history of current day
 router.get("/getDayEnergyUsageDevice/:id", deviceController.getDayEnergyUsageDevice)
 
+// Router to get energy usage history of current month
 router.get("/getMonthEnergyUsageDevice/:id", deviceController.getMonthEnergyUsageDevice)
 
+// Router to get energy usage history of current year
 router.get("/getYearEnergyUsageDevice/:id", deviceController.getYearEnergyUsageDevice)
 
-
+// Router to get energy usage history of the device
 router.get("/getEnergyHistoryDevice/:id", deviceController.getEnergyHistoryDevice)
 
-
+// Router to get cost history of the device
 router.get("/getCostHistoryDevice/:id", deviceController.getCostHistoryDevice)
 
 // Router to create device
