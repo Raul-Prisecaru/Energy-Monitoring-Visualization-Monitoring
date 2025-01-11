@@ -347,13 +347,14 @@ export const getDayCostDevice = async (req:any, res: any) => {
         const todayDay:number = new Date().getDay();
         const oneDevice: any = await virtualDevice.findById(req.params.id)
 
-        deviceCost[oneDevice.deviceName] = oneDevice.energyHistory.reduce((total: any, next: any) => {
+        const totalEnergy = oneDevice.energyHistory.reduce((total: any, next: any) => {
             if (next.energyDate.getDay() == todayDay) {
                 return total + next.energyUsage
             }
             return total
         }, 0)
 
+        deviceCost[oneDevice.deviceName] = (totalEnergy / 1000) * 0.22;
         res.status(201).json(deviceCost);
 
     } catch (err) {
