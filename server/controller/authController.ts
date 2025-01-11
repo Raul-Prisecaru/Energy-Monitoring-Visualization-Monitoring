@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken"
+import bcrypt from "bcrypt"
 import User from "../model/userAccount"
 
 export const loginUser = async (req, res) => {
@@ -7,6 +8,8 @@ export const loginUser = async (req, res) => {
 
     try {
         const foundUser = await User.findOne({ username })
+
+        const validatePassword = await bcry
 
     } catch (err) {
         res.status(500).json({err: "An Error occurred during login"})
