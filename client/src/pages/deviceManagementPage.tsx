@@ -45,6 +45,38 @@ function DeviceManagementPage() {
         handleOpen();
     };
 
+    const generateDataset = async (deviceID: string) => {
+        const startDate: Date = new Date(`${2023}-01-01`);
+        const endDate: Date = new Date(`${2023}-12-31`);
+        let currentDate: Date = new Date(startDate);
+
+        while (currentDate <=endDate) {
+            const response = await fetch("http://localhost:3001/api/device/" + deviceID, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    energyHistory: [
+                        {
+                            energyUsage: Math.floor(Math.random() * 101) + 100,
+                            energyDate: new Date(2023, 12, 12).toISOString(),
+                        },
+                    ],
+                }),
+            });
+
+            const result = await response.json();
+            console.log(result);
+
+            currentDate.setDate(currentDate.getDate() + 1)
+
+        };
+
+        }
+
+
+
     const addDeviceButton = async (e) => {
         e.preventDefault()
 
@@ -58,59 +90,17 @@ function DeviceManagementPage() {
                     deviceName: deviceName,
                     deviceType: deviceType,
                     energyHistory: [
-                        {
-                            energyUsage: Math.floor(Math.random() * 101) + 100, // Random value between 100-200
-                            energyDate: new Date(2023, 0, 15).getTime() // January
-                        },
-                        {
-                            energyUsage: Math.floor(Math.random() * 101) + 100, // Random value between 100-200
-                            energyDate: new Date(2023, 1, 15).getTime() // February
-                        },
-                        {
-                            energyUsage: Math.floor(Math.random() * 101) + 100, // Random value between 100-200
-                            energyDate: new Date(2023, 2, 15).getTime() // March
-                        },
-                        {
-                            energyUsage: Math.floor(Math.random() * 101) + 100, // Random value between 100-200
-                            energyDate: new Date(2023, 3, 15).getTime() // April
-                        },
-                        {
-                            energyUsage: Math.floor(Math.random() * 101) + 100, // Random value between 100-200
-                            energyDate: new Date(2023, 4, 15).getTime() // May
-                        },
-                        {
-                            energyUsage: Math.floor(Math.random() * 101) + 100, // Random value between 100-200
-                            energyDate: new Date(2023, 5, 15).getTime() // June
-                        },
-                        {
-                            energyUsage: Math.floor(Math.random() * 101) + 100, // Random value between 100-200
-                            energyDate: new Date(2023, 6, 15).getTime() // July
-                        },
-                        {
-                            energyUsage: Math.floor(Math.random() * 101) + 100, // Random value between 100-200
-                            energyDate: new Date(2023, 7, 15).getTime() // August
-                        },
-                        {
-                            energyUsage: Math.floor(Math.random() * 101) + 100, // Random value between 100-200
-                            energyDate: new Date(2023, 8, 15).getTime() // September
-                        },
-                        {
-                            energyUsage: Math.floor(Math.random() * 101) + 100, // Random value between 100-200
-                            energyDate: new Date(2023, 9, 15).getTime() // October
-                        },
-                        {
-                            energyUsage: Math.floor(Math.random() * 101) + 100, // Random value between 100-200
-                            energyDate: new Date(2023, 10, 15).getTime() // November
-                        },
-                        {
-                            energyUsage: Math.floor(Math.random() * 101) + 100, // Random value between 100-200
-                            energyDate: new Date(2023, 11, 15).getTime() // December
-                        }
+
                     ]
                 })
             });
 
             if (response.ok) {
+                const data = await response.json()
+                const device = data.device
+
+                await generateDataset(device._id);
+
                 alert("Data submitted successfully")
             } else {
                 const errorDetail = response.json()
@@ -124,6 +114,9 @@ function DeviceManagementPage() {
 
     return (
         <div>
+            {/*<GenerateDataDevice deviceID={"678097cb60ef2d6a4a66142a"} startYear={2023} />*/}
+            {/*<button onClick={clickTest}> test</button>*/}
+
             <div>
                 <h1 id={"Heading"}>Virtual Devices</h1>
                 <button id={"addDeviceButton"} onClick={handleOpen}>Add Device</button>
@@ -137,16 +130,16 @@ function DeviceManagementPage() {
                                 <div>
                                     {viewDevice.deviceName}
                                     <CostCard deviceID={viewDevice._id}/>
-                                    <EnergyCard deviceID={viewDevice._id} />
+                                    <EnergyCard deviceID={viewDevice._id}/>
                                     {/*<EnergyHistoryBarChart deviceID={viewDevice._id} />*/}
-                                    <CostHistoryLineChart deviceID={viewDevice._id} />
+                                    <CostHistoryLineChart deviceID={viewDevice._id}/>
                                 </div>
 
 
                             ) : (
 
 
-                                    <div>
+                                <div>
                                     <div className={"modalHeader"}>
                                         <h1>Add Device</h1>
                                     </div>
@@ -196,7 +189,6 @@ function DeviceManagementPage() {
                 </div>
 
             </div>
-
 
         </div>
     )
