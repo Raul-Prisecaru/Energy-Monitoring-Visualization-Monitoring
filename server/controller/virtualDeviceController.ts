@@ -469,6 +469,36 @@ export const getYearEnergyUsageDevice = async (req: any, res: any) => {
     }
 }
 
+export const getEnergyHistoryDevice = async (req: any, res: any) => {
+    try {
+        const oneDevice = await virtualDevice.findById(req.params.id);
+
+        const energyHistory: { [Key: string]: number } = {}
+
+        if (oneDevice) {
+        const totalEnergy = oneDevice.energyHistory.reduce((total: any, next: any) => {
+            const date = new Date(next.energyDate);
+            const month = date.toLocaleString("default", {month: "long"})
+            if (!energyHistory[month]) {
+                energyHistory[month] = 0
+            }
+
+            energyHistory[month] += next.energyUsage
+
+        }, 0)
+
+        }
+
+
+
+        res.status(201).json(energyHistory)
+
+
+    } catch (err) {
+        res.status(500).json({err: "There has been an error trying to retrieve the energy History of the device: " + err})
+    }
+}
+
 /**
  * Method Responsible for creating Device and storing to the Database
  * @param req.body.deviceName - Device Name
