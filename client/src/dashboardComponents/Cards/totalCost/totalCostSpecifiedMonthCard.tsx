@@ -5,10 +5,10 @@ import CardContent from '@mui/joy/CardContent';
 
 import "../../styles/totalCostMonthChartStyle.css"
 
-function TotalCostMonthCard() {
+function TotalCostSpecifiedMonthCard({month, year}: {month: number, year: number}) {
     const [data, setData] = useState()
     useEffect(() => {
-        fetch("http://localhost:3001/api/device/getCurrentMonthCost")
+        fetch("http://localhost:3001/api/device/getSpecifiedMonthCost/" + month + "/" + year)
             .then((response) => response.json())
             .then((energyDevice) => {
                 setData(energyDevice);
@@ -39,4 +39,4 @@ function TotalCostMonthCard() {
 }
 
 
-export default TotalCostMonthCard;
+export default TotalCostSpecifiedMonthCard;
