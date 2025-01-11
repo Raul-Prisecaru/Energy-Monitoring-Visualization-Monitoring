@@ -21,27 +21,46 @@ import {useState} from "react";
 import Card from "@mui/joy/Card";
 import CardContent from "@mui/joy/CardContent";
 import TotalCostSpecifiedMonthCard from "../dashboardComponents/Cards/totalCost/totalCostSpecifiedMonthCard.tsx";
+import TotalCostSpecifiedYearCard from "../dashboardComponents/Cards/totalCost/totalCostSpecifiedYearCard.tsx";
+import TotalCostYearCard from "../dashboardComponents/Cards/totalCost/totalCostYearCard.tsx";
 
 function DashboardPage() {
     const [yearModal, setYearModal] = useState(false)
     const [monthModal, setMonthModal] = useState(false)
     const [specifiedMonth, setSpecifiedMonth] = useState(null)
     const [specifiedYear, setSpecifiedYear] = useState(null)
+    const [currentMonth, setCurrentMonth] = useState(null)
+    const [currentYear, setCurrentYear] = useState(null)
 
     const changeToCurrentMonth = () => {
+        setCurrentMonth(1)
+        setCurrentYear(null)
+
+        setSpecifiedMonth(null)
         setSpecifiedYear(null)
     }
 
     const changeToSpecifiedMonth = (value: number, yearValue: number) => {
+        setCurrentMonth(null)
+        setCurrentYear(null)
+
         setSpecifiedMonth(value);
         setSpecifiedYear(yearValue);
     }
 
     const changeToCurrentYear = () => {
+        setCurrentMonth(null)
+        setCurrentYear(1)
+
+        setSpecifiedMonth(null)
         setSpecifiedYear(null)
     }
 
     const changeToSpecifiedYear = (value: number) => {
+        setCurrentMonth(null)
+        setCurrentYear(null)
+
+        setSpecifiedMonth(null)
         setSpecifiedYear(value)
     }
 
@@ -80,13 +99,20 @@ function DashboardPage() {
 
             <div className={"topRelatedVisuals"}>
                 <div className={"totalCostMonthChart"}>
-                    {specifiedMonth != null && specifiedYear != null  ? (
+                    {specifiedMonth != null && specifiedYear != null ? (
                         <TotalCostSpecifiedMonthCard month={specifiedMonth} year={specifiedYear}/>
 
-                    ) : (
+                    ) : specifiedMonth == null && specifiedYear != null ? (
+                        <TotalCostSpecifiedYearCard yearValue={specifiedYear}/>
+
+                    ) : currentMonth != null && currentYear == null ? (
                         <TotalCostMonthCard/>
 
-                    )}
+                    ) : currentMonth == null && currentYear != null ? (
+                        <TotalCostYearCard />
+
+                        ) : null
+                    }
                 </div>
 
                 <div className={"totalEnergyUsageCard"}>
