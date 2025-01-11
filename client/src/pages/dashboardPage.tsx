@@ -14,13 +14,20 @@ import CostProgressGauge from "../dashboardComponents/Gauge/costProgressGauge.ts
 import CostHistoryLineChart from "../dashboardComponents/LineChart/costHistoryLineChart.tsx";
 import DeviceTable from "../dashboardComponents/table/deviceTable.tsx";
 
+import Button from '@mui/joy/Button';
+import ButtonGroup from '@mui/joy/ButtonGroup';
+
 function DashboardPage() {
 
     return (
 
         <div className={"deviceVisualizer"}>
-
+            <ButtonGroup size="lg" variant="solid">
+                <Button>Year</Button>
+                <Button>Month</Button>
+            </ButtonGroup>
             <div className={"topRelatedVisuals"}>
+
                 <div className={"totalCostMonthChart"}>
                     <TotalCostMonthCard/>
                 </div>
@@ -30,11 +37,11 @@ function DashboardPage() {
                 </div>
 
                 <div className={"dailyStreakCard"}>
-                    <DailyStreakCard />
+                    <DailyStreakCard/>
                 </div>
 
                 <div className={"emptyCard"}>
-                    <EmptyCard />
+                    <EmptyCard/>
                 </div>
 
                 {/*<div className={"energyCostBarChart"}>*/}
@@ -59,11 +66,11 @@ function DashboardPage() {
 
             <div className={"bottomMiddleRelatedVisuals"}>
                 <div className={"costProgressGauge"}>
-                    <CostProgressGauge width={200} height={200} />
+                    <CostProgressGauge width={200} height={200}/>
                 </div>
 
                 <div>
-                    <CostHistoryLineChart width={1200} height={300} />
+                    <CostHistoryLineChart width={1200} height={300}/>
                 </div>
 
             </div>
