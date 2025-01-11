@@ -2,7 +2,6 @@ import * as express from "express";
 
 import * as deviceController from "../controller/virtualDeviceController";
 import {Router} from "express";
-import {getDayCostDeviceGetDayCostDevice} from "../controller/virtualDeviceController";
 
 const router: Router = express.Router();
 
@@ -54,6 +53,7 @@ router.get("/getMonthEnergyUsageDevice/:id", deviceController.getMonthEnergyUsag
 router.get("/getYearEnergyUsageDevice/:id", deviceController.getYearEnergyUsageDevice)
 
 
+router.get("/getEnergyHistoryDevice/:id", deviceController.getEnergyHistoryDevice)
 
 // Router to create device
 router.post("/", deviceController.createDevice)
