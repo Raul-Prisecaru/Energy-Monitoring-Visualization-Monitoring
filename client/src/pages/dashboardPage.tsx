@@ -79,7 +79,7 @@ function DashboardPage() {
                     <Card>
                         <CardContent>
                             <Button onClick={() => changeToCurrentYear()}>Current Year</Button>
-                            <Button onClick={() => changeToSpecifiedYear(1)}>Select Year</Button>
+                            <Button onClick={() => changeToSpecifiedYear(2023)}>Select Year</Button>
                         </CardContent>
                     </Card>
                 </Modal>
