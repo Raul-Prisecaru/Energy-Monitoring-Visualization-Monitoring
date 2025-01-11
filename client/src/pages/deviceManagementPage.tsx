@@ -6,6 +6,7 @@ import ModalDialog from '@mui/joy/ModalDialog';
 import DialogTitle from '@mui/joy/DialogTitle';
 import DialogContent from '@mui/joy/DialogContent';
 import CostCard from "./deviceVisualComponents/Card/costCard.tsx";
+import EnergyCard from "./deviceVisualComponents/Card/energyCard.tsx";
 
 function DeviceManagementPage() {
     const [isOpen, setIsOpen] = useState(false);
@@ -134,6 +135,7 @@ function DeviceManagementPage() {
                                 <div>
                                     {viewDevice.deviceName}
                                     <CostCard deviceID={viewDevice._id}/>
+                                    <EnergyCard deviceID={viewDevice._id} />
                                 </div>
 
 
