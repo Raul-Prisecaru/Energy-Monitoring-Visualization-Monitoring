@@ -55,6 +55,9 @@ router.get("/getYearEnergyUsageDevice/:id", deviceController.getYearEnergyUsageD
 
 router.get("/getEnergyHistoryDevice/:id", deviceController.getEnergyHistoryDevice)
 
+
+router.get("/getCostHistoryDevice/:id", deviceController.getCostHistoryDevice)
+
 // Router to create device
 router.post("/", deviceController.createDevice)
 
