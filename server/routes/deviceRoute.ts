@@ -6,7 +6,7 @@ import {Router} from "express";
 const router: Router = express.Router();
 
 // Router to get all devices
-router.get("/", deviceController.getAllDevices)
+router.get("/", authMiddleware, deviceController.getAllDevices)
 
 // Router to get all energy Usage of every Category
 router.get("/getEnergyOfEachCategory", deviceController.getEnergyOfEachCategory)
