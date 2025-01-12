@@ -10,7 +10,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/cors": "^2.8.17",
+    "@types/jsonwebtoken": "^9.0.7",
     "@types/mocha": "^10.0.10",
     "@types/mongoose": "^5.11.96",
     "@types/node": "^22.10.2",
