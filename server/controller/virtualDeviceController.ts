@@ -107,7 +107,7 @@ export const getTopEnergyUsageDevices = async (req: any, res:any) => {
  */
 export const getCurrentMonthCost = async (req: any, res:any) => {
     try {
-        const allDevices = await virtualDevice.find();
+        const allDevices = await virtualDevice.find({ userId: req.user.id});
 
         let totalCost = 0;
         const currentMonth = new Date().getMonth()
@@ -130,7 +130,7 @@ export const getCurrentMonthCost = async (req: any, res:any) => {
         })
 
         // TODO: Change this to get the user's actual paying amount
-        const calculatedCost = (totalCost / 1000) * 0.22
+        const calculatedCost = ((totalCost / 1000) * 0.22).toFixed(2)
 
         res.status(201).json(calculatedCost)
 
@@ -356,12 +356,13 @@ export const getCurrentMonthEnergyUsage = async (req: any, res: any) => {
         const allDevices = await virtualDevice.find();
         let totalEnergy: number = 0
         const currentMonth: number = new Date().getMonth();
+        const currentYear: number = new Date().getFullYear();
 
         allDevices.forEach((device) => {
 
             totalEnergy += device.energyHistory.reduce((total, next) => {
                 if (next.energyDate) {
-                    if (next.energyDate.getMonth() === currentMonth) {
+                    if (next.energyDate.getMonth() === currentMonth && next.energyDate.getFullYear() === 2024) {
                         if (next.energyUsage) {
                             return total + next.energyUsage
                         }
@@ -372,7 +373,7 @@ export const getCurrentMonthEnergyUsage = async (req: any, res: any) => {
 
         })
 
-        res.status(201).json(totalEnergy)
+        res.status(201).json(((totalEnergy) / 1000).toFixed(0));
 
     } catch (err) {
         res.status(201).json({err: "Failed to retrieve the current month energy Usage: " + err})
