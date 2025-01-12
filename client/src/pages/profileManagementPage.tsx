@@ -180,7 +180,7 @@ function ProfileManagementPage() {
                             <Card>
                                 <CardContent>
                                     <Typography level="h2">Update First Name</Typography>
-                                    <Input value={firstNameInput} placeholder={"Enter your new First Name here"} onChange={handleFirstNameChange}> </Input>
+                                    <Input placeholder={"Enter your new First Name here"} onChange={handleFirstNameChange}> </Input>
                                     <Button onClick={updateFirstName}> Update First Name</Button>
                                 </CardContent>
                             </Card>
@@ -201,8 +201,8 @@ function ProfileManagementPage() {
                             <Card>
                                 <CardContent>
                                     <Typography level="h2">Update Last Name</Typography>
-                                    <Input placeholder={"Enter your new Last Name here"}> </Input>
-                                    <Button> Update Last Name</Button>
+                                    <Input placeholder={"Enter your new Last Name here"} onChange={handleLastNameChange}> </Input>
+                                    <Button onClick={updateLastName}> Update Last Name</Button>
                                 </CardContent>
                             </Card>
                         </Modal>
@@ -221,8 +221,8 @@ function ProfileManagementPage() {
                             <Card>
                                 <CardContent>
                                     <Typography level="h2">Update Username</Typography>
-                                    <Input placeholder={"Enter your new username here"}> </Input>
-                                    <Button> Update username</Button>
+                                    <Input placeholder={"Enter your new username here"} onChange={handleUsernameChange}> </Input>
+                                    <Button onClick={updateUsername}> Update username</Button>
                                 </CardContent>
                             </Card>
                         </Modal>
@@ -240,8 +240,8 @@ function ProfileManagementPage() {
                             <Card>
                                 <CardContent>
                                     <Typography level="h2">Update Email</Typography>
-                                    <Input placeholder={"Enter your new Email here"}> </Input>
-                                    <Button> Update Email</Button>
+                                    <Input placeholder={"Enter your new Email here"} onchange={handleEmailChange}> </Input>
+                                    <Button onClick={updateEmail}> Update Email</Button>
                                 </CardContent>
                             </Card>
                         </Modal>
