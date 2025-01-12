@@ -62,13 +62,13 @@ export const isAuthenticated = (req:any, res:any) => {
 };
 
 
-export const profileUser = (req: any, res: any) => {
+export const profileUser = async (req: any, res: any) => {
     try {
-        const token = req.user.id;
-        const userId = jwt.decode(token)
-        const user: any = User.findById(userId)
+        const userId = req.user.id;
+        const user = await User.findById(userId);
 
-    } catch (err) {
-        res.status(500).json({err: "Failed to retrieve user's profile: " + err})
+        res.status(200).json(user);
+    } catch (err:any) {
+        res.status(500).json({ error: "Failed to retrieve user's profile: " + err.message });
     }
-}
+};
