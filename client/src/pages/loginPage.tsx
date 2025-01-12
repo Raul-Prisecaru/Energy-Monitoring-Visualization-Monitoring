@@ -30,8 +30,8 @@ function LoginPage() {
             });
 
             if (response.ok) {
-                const token = await response.json()
-                localStorage.setItem('token', JSON.stringify(token));
+                const data = await response.json()
+                localStorage.setItem('token', data.token);
 
                 alert("Logged in")
 
