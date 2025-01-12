@@ -40,5 +40,9 @@ export const signUser = async (req: any, res: any)=> {
         if (findExistingUser) {
             return res.status(403).json({err: "User Already Exists"})
         }
+
+        const newUser = new User({firstName, lastName, username, email, password})
+        await newUser.save();
+        res.status(201).json({success: "Created User"})
     }
 }
