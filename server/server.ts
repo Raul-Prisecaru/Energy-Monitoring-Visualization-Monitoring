@@ -6,10 +6,10 @@ import cors from "cors";
 import express from "express";
 import userRouters from "./routes/userRoute";
 import deviceRouters from "./routes/deviceRoute";
+import authRoute from "./routes/authRouter"
 import mongoose from "mongoose";
 const app = express();
 const PORT = process.env.PORT
-
 
 
 
@@ -24,6 +24,7 @@ app.use(cors({
 
 app.use("/api/user", userRouters)
 app.use("/api/device", deviceRouters)
+app.use("/api/auth/", authRoute)
 
 app.listen(PORT, () => {
     console.log(`Listening to Port ${PORT}`)
