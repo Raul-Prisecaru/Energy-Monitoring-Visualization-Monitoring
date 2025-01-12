@@ -21,7 +21,7 @@ export const loginUser = async (req: any, res: any ) => {
 
         const token = jwt.sign(foundUser.username, "test");
 
-        res.json({ message: 'Login successful', token });
+        res.json(token);
 
     } catch (err) {
         res.status(500).json({err: "An Error occurred during login"})
@@ -40,8 +40,9 @@ export const signUser = async (req: any, res: any)=> {
         if (findExistingUser) {
             return res.status(403).json({err: "User Already Exists"})
         }
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const newUser = new User({firstName, lastName, username, email, password: hashedPassword})
 
-        const newUser = new User({firstName, lastName, username, email, password})
         await newUser.save();
         res.status(201).json({success: "Created User"})
 
