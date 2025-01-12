@@ -499,12 +499,13 @@ export const getMonthEnergyUsageProgress = async (req: any, res:any) => {
 export const getDayCostDevice = async (req:any, res: any) => {
     try {
         const deviceCost: { [key: string]: number } = {}
-        const todayDay:number = new Date().getDay();
-        const todayMonth:number = new Date().getMonth()
+        const todayDay: number = new Date().getDay();
+        const todayMonth: number = new Date().getMonth()
+        const todayYear: number = new Date().getFullYear();
         const oneDevice: any = await virtualDevice.findById(req.params.id)
 
         const totalEnergy = oneDevice.energyHistory.reduce((total: any, next: any) => {
-            if (next.energyDate.getDay() == todayDay && next.energyDate.getMonth() == todayMonth) {
+            if (next.energyDate.getDay() == todayDay && next.energyDate.getMonth() == todayMonth && next.energyDate.getFullYear() == 2024) {
                 if (next.energyUsage) {
                     return total + next.energyUsage
                 }
@@ -512,7 +513,8 @@ export const getDayCostDevice = async (req:any, res: any) => {
             return total
         }, 0)
 
-        deviceCost[oneDevice.deviceName] = (totalEnergy / 1000) * 0.22;
+        deviceCost[oneDevice.deviceName] = Number(((totalEnergy / 1000) * 0.22).toFixed(2));
+        console.log(deviceCost[oneDevice.deviceName])
         res.status(201).json(deviceCost);
 
     } catch (err) {
@@ -571,10 +573,11 @@ export const getDayEnergyUsageDevice = async (req: any, res: any) => {
         const deviceCost: { [key: string]: number } = {}
         const todayDay:number = new Date().getDay();
         const todayMonth:number = new Date().getMonth()
+        const todayYear: number = new Date().getFullYear()
         const oneDevice: any = await virtualDevice.findById(req.params.id)
 
         const totalEnergy = oneDevice.energyHistory.reduce((total: any, next: any) => {
-            if (next.energyDate.getDay() == todayDay && next.energyDate.getMonth() == todayMonth) {
+            if (next.energyDate.getDay() == todayDay && next.energyDate.getMonth() == todayMonth && next.energyDate.getFullYear() == 2024) {
                 if (next.energyUsage) {
                     return total + next.energyUsage
                 }
@@ -582,7 +585,7 @@ export const getDayEnergyUsageDevice = async (req: any, res: any) => {
             return total
         }, 0)
 
-        deviceCost[oneDevice.deviceName] = totalEnergy
+        deviceCost[oneDevice.deviceName] = Number((totalEnergy / 1000).toFixed(2))
         res.status(201).json(deviceCost);
 
     } catch (err) {
