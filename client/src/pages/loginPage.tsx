@@ -1,9 +1,16 @@
 import "./styles/loginPageStyle.css"
 import {useState} from "react";
+import Card from "@mui/joy/Card";
+import CardContent from "@mui/joy/CardContent";
+import {Typography} from "@mui/joy";
+import Button from "@mui/joy/Button";
+import {useNavigate} from "react-router-dom";
 
 function LoginPage() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const navigate = useNavigate();
+
 
     const handleUsernameChange = (e) => {
         setUsername(e.target.value)
@@ -33,8 +40,7 @@ function LoginPage() {
                 const data = await response.json()
                 localStorage.setItem('token', data.token);
 
-                alert("Logged in")
-
+                navigate("/dashboard")
             } else {
                 alert("Unable to login")
             }
@@ -46,18 +52,30 @@ function LoginPage() {
     return (
         <div className={"Input-Form"}>
             <form>
-                <div>
-                    <label>Username</label>
-                    <input onChange={handleUsernameChange} type={"text"}/> <br/>
-                </div>
+                <Card size="lg" style={{ width: "600px", height: "500px" }}>
 
-                <div>
-                    <label>password</label>
-                    <input onChange={handlePasswordChange} type={"text"}/>
-                </div>
+                    <CardContent>
+
+                        <h1 className={"loginFormLabel"}>Login Form</h1>
 
 
-                <button onClick={buttonPress}>Login</button>
+                        <div>
+                            <label>Username</label>
+                            <input onChange={handleUsernameChange} type={"text"}/> <br/>
+                        </div>
+
+                        <div>
+                            <label>password</label>
+                            <input onChange={handlePasswordChange} type={"text"}/>
+                        </div>
+
+
+                        <Button size={"lg"} onClick={buttonPress}>Login</Button>
+                    </CardContent>
+
+
+                </Card>
+
             </form>
         </div>
     )
