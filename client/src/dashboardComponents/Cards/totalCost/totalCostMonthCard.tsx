@@ -8,7 +8,13 @@ import "../../styles/totalCostMonthChartStyle.css"
 function TotalCostMonthCard() {
     const [data, setData] = useState()
     useEffect(() => {
-        fetch("http://localhost:3001/api/device/getCurrentMonthCost")
+        const token = localStorage.getItem("token")
+
+        fetch("http://localhost:3001/api/device/getCurrentMonthCost", {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
             .then((response) => response.json())
             .then((energyDevice) => {
                 setData(energyDevice);
@@ -23,7 +29,7 @@ function TotalCostMonthCard() {
             }}>
                 <Card>
                     <CardContent orientation={"horizontal"}>
-                        <h3>Currently Paying: </h3>
+                        <h3>This month paying: </h3>
                         <h2 className={"priceData"}>£{data}</h2>
                     </CardContent>
 

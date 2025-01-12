@@ -5,10 +5,16 @@ import CardContent from '@mui/joy/CardContent';
 
 import "../styles/totalCostMonthChartStyle.css"
 
-function TotalCostMonthChart() {
+function TotalEnergyUsageMonthCard() {
     const [data, setData] = useState()
     useEffect(() => {
-        fetch("http://localhost:3001/api/device/getCurrentMonthEnergyUsage")
+        const token = localStorage.getItem("token")
+
+        fetch("http://localhost:3001/api/device/getCurrentMonthEnergyUsage", {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
             .then((response) => response.json())
             .then((energyDevice) => {
                 setData(energyDevice);
@@ -24,7 +30,7 @@ function TotalCostMonthChart() {
                 <Card>
                     <CardContent orientation={"horizontal"}>
                         <h3>Energy Used This Month: </h3>
-                        <h2 className={"priceData"}>{data}</h2>
+                        <h2 className={"priceData"}>{data} kWh</h2>
                     </CardContent>
 
                 </Card>
@@ -39,4 +45,4 @@ function TotalCostMonthChart() {
 }
 
 
-export default TotalCostMonthChart;
+export default TotalEnergyUsageMonthCard;
