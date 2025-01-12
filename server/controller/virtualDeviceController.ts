@@ -1,4 +1,5 @@
 import virtualDevice from "../model/iotDevice";
+import Device from "../model/iotDevice";
 
 /**
  * Function Responsible for retrieving all Devices
@@ -6,7 +7,7 @@ import virtualDevice from "../model/iotDevice";
  */
 export const getAllDevices = async (req: any, res:any) => {
     try {
-        const allDevices = await virtualDevice.find()
+        const allDevices = await virtualDevice.find({userId: req.user.id})
         res.status(201).json(allDevices)
     } catch (err) {
         res.status(500).json( {message: "Failed to retrieve all Devices" + err} )
@@ -20,7 +21,7 @@ export const getAllDevices = async (req: any, res:any) => {
  */
 export const getOneDevice = async (req: any, res:any) => {
     try {
-        const oneDevice = await virtualDevice.findById(req.params.id)
+        const oneDevice = await virtualDevice.findById(req.user.id)
         res.status(201).json(oneDevice)
     } catch (err) {
         res.status(500).json( { message: "Failed to retrieve the Device" + err })
@@ -687,7 +688,10 @@ export const getCostHistoryDevice = async (req: any, res: any) => {
  * @param res - 201 response else 500 response
  */
 export const createDevice = async (req: any, res:any) => {
-    const newDevice = new virtualDevice({
+    // console.log("req.user.id: " + req.user.id)
+    // console.log("req.user: " + req.user)
+    const newDevice = new Device({
+        userId: req.user.id,
         deviceName: req.body.deviceName,
         deviceType: req.body.deviceType,
         energyHistory: req.body.energyHistory
