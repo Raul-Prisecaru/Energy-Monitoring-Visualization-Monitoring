@@ -12,6 +12,10 @@ function ProfileManagementPage() {
     const [usernameModal, setUsernameModal] = useState(false);
     const [emailModal, setEmailModal] = useState(false);
 
+    const [firstNameInput, setFirstNameInput] = useState(null)
+    const [lastNameInput, setLastNameInput] = useState(null)
+    const [usernameInput, setUsernameInput] = useState(null)
+    const [emailInput, setEmailInput] = useState(null)
 
 
     useEffect(() => {
@@ -38,8 +42,48 @@ function ProfileManagementPage() {
         }
     }, []);
 
-    const updateFirstName = (newUsername: string) => {
+    const handleFirstNameChange = (event: any) => {
+        setFirstNameInput(event.target.value)
+    }
 
+    const handleLastNameChange = (event: any) => {
+        setFirstNameInput(event.target.value)
+    }
+
+    const handleUsernameChange = (event: any) => {
+        setFirstNameInput(event.target.value)
+    }
+
+    const handleEmailChange = (event: any) => {
+        setFirstNameInput(event.target.value)
+    }
+
+
+
+
+
+    const updateFirstName = async () => {
+        try {
+            const token = localStorage.getItem("token");
+            const response = await fetch(`http://localhost:3001/api/user/`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    firstName: firstNameInput
+                }),
+            })
+
+            if (response.ok) {
+                console.log("Success")
+            } else {
+                console.log(response.json())
+            }
+        } catch (error) {
+            alert("An error occurred while fetching profile data: " + error.message);
+        }
     }
 
     return (
@@ -59,8 +103,8 @@ function ProfileManagementPage() {
                             <Card>
                                 <CardContent>
                                     <Typography level="h2">Update First Name</Typography>
-                                    <Input placeholder={"Enter your new First Name here"}> </Input>
-                                    <Button> Update First Name</Button>
+                                    <Input value={firstNameInput} placeholder={"Enter your new First Name here"} onChange={handleFirstNameChange}> </Input>
+                                    <Button onClick={updateFirstName}> Update First Name</Button>
                                 </CardContent>
                             </Card>
                         </Modal>
