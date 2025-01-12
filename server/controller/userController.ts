@@ -50,6 +50,16 @@ export const updateUser = async (req: any, res:any) => {
     }
 };
 
+
+export const patchUser = async (req: any, res: any) => {
+    try {
+        await User.findByIdAndUpdate(req.user.id, req.body)
+        res.status(200).json({message: "Successfully found and updated the user's information"})
+    } catch (err) {
+        res.status(500).json({err: "Failed to update user's information"})
+    }
+}
+
 // Function to Delete User
 export const deleteUser = async (req: any, res:any) => {
     try {
