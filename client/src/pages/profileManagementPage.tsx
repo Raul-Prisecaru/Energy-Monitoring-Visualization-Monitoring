@@ -12,8 +12,8 @@ function ProfileManagementPage() {
     const [usernameModal, setUsernameModal] = useState(false);
     const [emailModal, setEmailModal] = useState(false);
 
-    const [firstNameInput, setFirstNameInput] = useState(null)
-    const [lastNameInput, setLastNameInput] = useState(null)
+    const [firstNameInput, setFirstNameInput] = useState("")
+    const [lastNameInput, setLastNameInput] = useState("")
     const [usernameInput, setUsernameInput] = useState(null)
     const [emailInput, setEmailInput] = useState(null)
 
@@ -47,15 +47,15 @@ function ProfileManagementPage() {
     }
 
     const handleLastNameChange = (event: any) => {
-        setFirstNameInput(event.target.value)
+        setLastNameInput(event.target.value)
     }
 
     const handleUsernameChange = (event: any) => {
-        setFirstNameInput(event.target.value)
+        setUsernameInput(event.target.value)
     }
 
     const handleEmailChange = (event: any) => {
-        setFirstNameInput(event.target.value)
+        setEmailInput(event.target.value)
     }
 
 
@@ -240,7 +240,7 @@ function ProfileManagementPage() {
                             <Card>
                                 <CardContent>
                                     <Typography level="h2">Update Email</Typography>
-                                    <Input placeholder={"Enter your new Email here"} onchange={handleEmailChange}> </Input>
+                                    <Input placeholder={"Enter your new Email here"} onChange={handleEmailChange}> </Input>
                                     <Button onClick={updateEmail}> Update Email</Button>
                                 </CardContent>
                             </Card>
