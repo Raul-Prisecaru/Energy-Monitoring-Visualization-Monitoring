@@ -16,3 +16,8 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+.loginFormLabel {
+    display: flex;
+    justify-content: center;
+}
