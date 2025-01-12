@@ -111,7 +111,7 @@ function DashboardPage() {
                     ) : currentMonth == null && currentYear != null ? (
                         <TotalCostYearCard />
 
-                        ) : null
+                        ) : <TotalCostMonthCard/>
                     }
                 </div>
 
