@@ -52,8 +52,8 @@ function DeviceManagementPage() {
     };
 
     const generateDataset = async (deviceID: string) => {
-        const startDate: Date = new Date(`${2023}-01-01`);
-        const endDate: Date = new Date(`${2023}-12-31`);
+        const startDate: Date = new Date(`${2020}-01-01`);
+        const endDate: Date = new Date(`${2024}-12-31`);
         let currentDate: Date = new Date(startDate);
 
         while (currentDate <=endDate) {
@@ -65,7 +65,7 @@ function DeviceManagementPage() {
                 body: JSON.stringify({
                     energyHistory: [
                         {
-                            energyUsage: Math.floor(Math.random() * 101) + 100,
+                            energyUsage: (Math.floor(Math.random() * 101) + 100) * 24,
                             energyDate: currentDate,
                         },
                     ],
@@ -106,7 +106,7 @@ function DeviceManagementPage() {
                 const data = await response.json()
                 const device = data.device
 
-                // await generateDataset(device._id);
+                await generateDataset(device._id);
 
                 alert("Data submitted successfully")
             } else {
