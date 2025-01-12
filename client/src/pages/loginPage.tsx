@@ -30,7 +30,11 @@ function LoginPage() {
             });
 
             if (response.ok) {
+                const token = await response.json()
+                localStorage.setItem('token', JSON.stringify(token));
+
                 alert("Logged in")
+
             } else {
                 alert("Unable to login")
             }
