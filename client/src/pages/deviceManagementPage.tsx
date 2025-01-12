@@ -9,6 +9,9 @@ import CostCard from "./deviceVisualComponents/Card/costCard.tsx";
 import EnergyCard from "./deviceVisualComponents/Card/energyCard.tsx";
 import EnergyHistoryBarChart from "./deviceVisualComponents/BarChart/EnergyHistoryBarChart.tsx";
 import CostHistoryLineChart from "./deviceVisualComponents/LineChart/CostHistoryLineChart.tsx";
+import Card from "@mui/joy/Card";
+import CardContent from "@mui/joy/CardContent";
+import {Typography} from "@mui/joy";
 
 function DeviceManagementPage() {
     const [isOpen, setIsOpen] = useState(false);
@@ -135,11 +138,17 @@ function DeviceManagementPage() {
                         <div className={"modalContent"}>
                             {viewDevice ? (
                                 <div>
-                                    {viewDevice.deviceName}
-                                    <CostCard deviceID={viewDevice._id}/>
-                                    <EnergyCard deviceID={viewDevice._id}/>
-                                    {/*<EnergyHistoryBarChart deviceID={viewDevice._id} />*/}
-                                    <CostHistoryLineChart deviceID={viewDevice._id}/>
+                                    <Card>
+                                        <CardContent>
+                                            <Typography level={"h2"}>{viewDevice.deviceName}</Typography>
+                                            <CostCard deviceID={viewDevice._id}/>
+                                            <EnergyCard deviceID={viewDevice._id}/>
+                                            <EnergyHistoryBarChart deviceID={viewDevice._id} />
+                                            <CostHistoryLineChart deviceID={viewDevice._id}/>
+
+
+                                        </CardContent>
+                                    </Card>
                                 </div>
 
 
@@ -147,33 +156,39 @@ function DeviceManagementPage() {
 
 
                                 <div>
-                                    <div className={"modalHeader"}>
-                                        <h1>Add Device</h1>
-                                    </div>
+
 
                                     <div className={"modalForm"}>
 
-                                        <form>
-                                            <div className={"modalDeviceNameLabel"}>
-                                                <label>Device Name</label>
-                                            </div>
+                                        <Card>
+                                            <CardContent>
+                                                <div className={"modalHeader"}>
+                                                    <h1>Add Device</h1>
+                                                </div>
+                                                
+                                                <div className={"modalDeviceNameLabel"}>
+                                                    <label>Device Name</label>
+                                                </div>
 
-                                            <div className={"modalDeviceNameInput"}>
-                                                <input type={"textext"} onChange={handleDeviceNameChange}/>
-                                            </div>
+                                                <div className={"modalDeviceNameInput"}>
+                                                    <input type={"textext"} onChange={handleDeviceNameChange}/>
+                                                </div>
 
 
-                                            <div className={"modalDeviceTypeLabel"}>
-                                                <label>Device Type</label>
-                                            </div>
+                                                <div className={"modalDeviceTypeLabel"}>
+                                                    <label>Device Type</label>
+                                                </div>
 
-                                            <div className={"modalDeviceTypeInput"}>
-                                                <input type={"text"} onChange={handleDeviceTypeChange}/>
-                                            </div>
+                                                <div className={"modalDeviceTypeInput"}>
+                                                    <input type={"text"} onChange={handleDeviceTypeChange}/>
+                                                </div>
 
-                                        </form>
+                                                <button onClick={addDeviceButton}>Confirm Changes</button>
 
-                                        <button onClick={addDeviceButton}>Confirm Changes</button>
+                                            </CardContent>
+                                        </Card>
+
+
                                     </div>
                                 </div>
                             )}
@@ -188,9 +203,13 @@ function DeviceManagementPage() {
                 <div className={"device-grid"}>
                     {devicesList.map((device, index) => (
                         <div key={index} className="device-card">
-                            <h1>{device.deviceName}</h1>
-                            <h3>Device Type: {device.deviceType}</h3>
-                            <button onClick={() => handleViewDevice(device)}>View Details</button>
+                            <Card>
+                                <CardContent>
+                                    <h1>{device.deviceName}</h1>
+                                    <h3>Device Type: {device.deviceType}</h3>
+                                    <button onClick={() => handleViewDevice(device)}>View Details</button>
+                                </CardContent>
+                            </Card>
                         </div>
                     ))}
                 </div>
