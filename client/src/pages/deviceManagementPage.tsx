@@ -20,7 +20,13 @@ function DeviceManagementPage() {
     const [viewDevice, setViewDevice] = useState(null)
 
     useEffect(() => {
-        fetch("http://localhost:3001/api/device/")
+        const token = localStorage.getItem("token")
+        fetch("http://localhost:3001/api/device/", {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
             .then((response) => response.json())
             .then((data) => setDevicesList(data))
             .catch((error) => console.error("Failed to fetch Devices" + error))
