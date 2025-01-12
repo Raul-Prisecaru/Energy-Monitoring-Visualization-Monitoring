@@ -17,14 +17,18 @@ function EnergyUsageProgressGauge({width, height}: {width: number, height: numbe
     const [data, setData] = useState<formattedData>({});
 
     useEffect(() => {
-        fetch("http://localhost:3001/api/device/getEnergyUsageProgress")
+        const token = localStorage.getItem("token")
+        fetch("http://localhost:3001/api/device/getMonthEnergyUsageProgress", {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
             .then((response) => response.json())
             .then((data) => {
                 const formattedData: formattedData = {
                     dataTotal: data.limit,
                     dataCurrent: data.total
                 };
-
 
                 setData(formattedData);
             })

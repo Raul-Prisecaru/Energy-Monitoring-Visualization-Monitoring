@@ -17,9 +17,9 @@ function TotalEnergyUsageMonthCard() {
         })
             .then((response) => response.json())
             .then((energyDevice) => {
+                console.log(energyDevice)
                 setData(energyDevice);
             })
-            .catch((error) => console.error("Failed to fetch Devices: " + error));
     }, []);
 
     return (

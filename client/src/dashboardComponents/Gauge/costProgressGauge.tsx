@@ -17,7 +17,12 @@ function EnergyUsageProgressGauge({width, height}: {width: number, height: numbe
     const [data, setData] = useState<formattedData>({});
 
     useEffect(() => {
-        fetch("http://localhost:3001/api/device/getCurrentMonthCost")
+        const token = localStorage.getItem("token")
+        fetch("http://localhost:3001/api/device/getCurrentMonthCost", {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
             .then((response) => response.json())
             .then((data) => {
                 setData(data)

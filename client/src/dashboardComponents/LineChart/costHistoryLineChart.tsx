@@ -10,7 +10,12 @@ function CostHistoryLineChart({width, height}: {width: number, height: number}) 
     const [data, setData] = useState<formattedData[]>([])
 
     useEffect(() => {
-        fetch("http://localhost:3001/api/device/getCostHistoryMonthly")
+        const token = localStorage.getItem("token")
+        fetch("http://localhost:3001/api/device/getCostHistoryMonthly", {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
             .then((response) => response.json())
             .then((devices) => {
                 const formattedData: formattedData[] = Object.keys(devices).map((month) => ({
