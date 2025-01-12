@@ -16,7 +16,7 @@ router.post("/", userController.createUser)
 // Router to update User, Takes ID Param
 router.put("/:id", userController.updateUser)
 
-router.patch("/:id",authMiddleware , userController.patchUser)
+router.patch("/",authMiddleware , userController.patchUser)
 
 // Router to delete User, Takes ID Param
 router.delete("/:id", userController.deleteUser)
