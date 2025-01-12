@@ -36,7 +36,7 @@ export const getEnergyOfEachCategory = async (req: any, res:any) => {
     try {
         const categoryJSONUsage: any = {}
 
-        const allDevices = await virtualDevice.find()
+        const allDevices = await virtualDevice.find({userId: req.user.id})
 
         allDevices.forEach((device) => {
             const deviceCategory = device.deviceType;
@@ -261,16 +261,21 @@ export const getSpecifiedYearCost = async (req: any, res:any) => {
 /** Function Responsible for retrieving cost of each month
  * @param res - 201 if successful, else 500
  */
-export const getEnergyAndCostAveragePerDevice = async (req: any, res: any) => {
+export const getMonthlyEnergyAndCostAveragePerDevice = async (req: any, res: any) => {
     try {
         let costJson: any  = {}
-
-        const allDevice = await virtualDevice.find();
+        const currentMonth = new Date().getMonth()
+        const allDevice = await virtualDevice.find({userId: req.user.id});
         allDevice.forEach((device) => {
             let totalCount: number = device.energyHistory.length;
             const totalEnergy: number = device.energyHistory.reduce((total:number, next:any) => {
-                if (next.energyUsage) {
-                    return total + next.energyUsage
+                if (next.energyDate) {
+                    if (next.energyDate.getMonth() === currentMonth && next.energyDate.getFullYear() === 2024) {
+                        if (next.energyUsage) {
+                            return total + next.energyUsage
+                        }
+                    }
+                    return total
                 }
             }, 0);
 
@@ -278,7 +283,7 @@ export const getEnergyAndCostAveragePerDevice = async (req: any, res: any) => {
                 costJson[device.deviceName] = [];
             }
 
-                costJson[device.deviceName].push((totalEnergy / totalCount), (totalEnergy / totalCount) * 0.22);
+                costJson[device.deviceName].push((((totalEnergy / totalCount)) / 1000).toFixed(2), (((totalEnergy / totalCount) / 1000) * 0.22).toFixed(2));
         });
 
         res.status(201).json(costJson);
@@ -296,7 +301,7 @@ export const getDeviceActiveStatusAndUsage = async (req: any, res:any) => {
 
         let deviceStatus: any= {};
 
-        const allDevice = await virtualDevice.find();
+        const allDevice = await virtualDevice.find({userId: req.user.id});
 
         allDevice.forEach((device) => {
             if (device.deviceStatus) {
@@ -324,21 +329,23 @@ export const getCostHistoryMonthly = async (req: any, res: any) => {
 
 
         let costJson: { [key: string]: number } = {}
-        const allDevice = await virtualDevice.find();
+        const allDevice = await virtualDevice.find({userId: req.user.id});
         allDevice.forEach((device) => {
                 device.energyHistory.forEach((next) => {
-                    if(next.energyDate){
-                        const date = new Date(next.energyDate);
-                    const month = date.toLocaleString("default", {month: "long"})
-                    if (!costJson[month]) {
-                        costJson[month] = 0;
-                    }
-                    if (next.energyUsage) {
-                        costJson[month] += (next.energyUsage * 0.22);
-                    }
+                    if(next.energyDate) {
+                        if (next.energyDate.getFullYear() === 2024) {
+                            const date = new Date(next.energyDate);
+                            const month = date.toLocaleString("default", {month: "long"})
+                            if (!costJson[month]) {
+                                costJson[month] = 0;
+                            }
+                            if (next.energyUsage) {
+                                costJson[month] += ((next.energyUsage / 1000) * 0.22);
+                            }
+
+                        }
                 }});
             });
-
         res.status(201).json(costJson)
     } catch (err) {
         res.status(500).json({err: "Failed to retrieve the history data of devices: " + err})
@@ -353,27 +360,26 @@ export const getCostHistoryMonthly = async (req: any, res: any) => {
  */
 export const getCurrentMonthEnergyUsage = async (req: any, res: any) => {
     try {
-        const allDevices = await virtualDevice.find();
+        const allDevices = await virtualDevice.find({ userId: req.user.id });
         let totalEnergy: number = 0
         const currentMonth: number = new Date().getMonth();
         const currentYear: number = new Date().getFullYear();
 
         allDevices.forEach((device) => {
 
-            totalEnergy += device.energyHistory.reduce((total, next) => {
+            totalEnergy += device.energyHistory.reduce((total: number, next: any) => {
                 if (next.energyDate) {
                     if (next.energyDate.getMonth() === currentMonth && next.energyDate.getFullYear() === 2024) {
                         if (next.energyUsage) {
                             return total + next.energyUsage
                         }
                     }
+                    return total
                 }
-                return total
             }, 0);
 
         })
-
-        res.status(201).json(((totalEnergy) / 1000).toFixed(0));
+        res.status(200).json((totalEnergy / 1000).toFixed(0));
 
     } catch (err) {
         res.status(201).json({err: "Failed to retrieve the current month energy Usage: " + err})
@@ -452,30 +458,37 @@ export const getCostPerDevice = async (req: any, res: any) => {
 }
 
 /**
- * Function Responsible for retrieving amount of energy user has used with targeted energy Usage
+ * Function Responsible for retrieving amount of energy user has used with targeted energy Usage for current month
  * @param res - 201 Response with json else 500 response
  */
-export const getEnergyUsageProgress = async (req: any, res:any) => {
+export const getMonthEnergyUsageProgress = async (req: any, res:any) => {
     try {
         const energyProgress = {
             total: 0,
             limit: 1500
         }
 
-        const allDevices = await virtualDevice.find()
+        const currentMonth = new Date().getMonth()
+
+        const allDevices = await virtualDevice.find({userId: req.user.id})
 
         allDevices.forEach((device) => {
-            energyProgress["total"] = device.energyHistory.reduce((total: number, next: any) => {
-                if (next.energyUsage) {
-                    return total + next.energyUsage
+            energyProgress["total"] += device.energyHistory.reduce((total: number, next: any) => {
+                if (next.energyDate) {
+                    if (next.energyDate.getMonth() === currentMonth && next.energyDate.getFullYear() === 2024) {
+                        if (next.energyUsage) {
+                            return total + next.energyUsage
+                        }
+                    }
+                    return total
+
                 }
+
             }, 0)
 
         })
-
+        energyProgress["total"] = Number((energyProgress["total"] / 1000).toFixed(0))
         res.status(201).json(energyProgress)
-
-
 
     } catch (err) {
         res.status(500).json({error: "There has been an error: " + err})
