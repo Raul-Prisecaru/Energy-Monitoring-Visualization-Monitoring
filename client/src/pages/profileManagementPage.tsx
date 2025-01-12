@@ -9,6 +9,8 @@ function ProfileManagementPage() {
     const [data, setData] = useState({});
     const [firstNameModal, setFirstNameModal] = useState(false);
     const [lastNameModal, setLastNameModal] = useState(false);
+    const [usernameModal, setUsernameModal] = useState(false);
+    const [emailModal, setEmailModal] = useState(false);
 
 
 
@@ -79,7 +81,7 @@ function ProfileManagementPage() {
                                 <CardContent>
                                     <Typography level="h2">Update Last Name</Typography>
                                     <Input placeholder={"Enter your new Last Name here"}> </Input>
-                                    <Button> Update First Name</Button>
+                                    <Button> Update Last Name</Button>
                                 </CardContent>
                             </Card>
                         </Modal>
@@ -91,6 +93,18 @@ function ProfileManagementPage() {
                     <CardContent>
                         <Typography level={"h2"}>Username</Typography>
                         <Typography level={"h4"}>{data.username}</Typography>
+
+                        <Button onClick={() => setUsernameModal(true)}>Change Username</Button>
+
+                        <Modal open={usernameModal} onClose={() => setUsernameModal(false)}>
+                            <Card>
+                                <CardContent>
+                                    <Typography level="h2">Update Username</Typography>
+                                    <Input placeholder={"Enter your new username here"}> </Input>
+                                    <Button> Update username</Button>
+                                </CardContent>
+                            </Card>
+                        </Modal>
                     </CardContent>
                 </Card>
 
@@ -98,6 +112,18 @@ function ProfileManagementPage() {
                     <CardContent>
                         <Typography level={"h2"}>Email</Typography>
                         <Typography level={"h4"}>{data.email}</Typography>
+
+                        <Button onClick={() => setEmailModal(true)}>Change Email</Button>
+
+                        <Modal open={emailModal} onClose={() => setEmailModal(false)}>
+                            <Card>
+                                <CardContent>
+                                    <Typography level="h2">Update Email</Typography>
+                                    <Input placeholder={"Enter your new Email here"}> </Input>
+                                    <Button> Update Email</Button>
+                                </CardContent>
+                            </Card>
+                        </Modal>
                     </CardContent>
                 </Card>
             </div>
