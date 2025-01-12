@@ -1,5 +1,6 @@
 import * as jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
+import jwt_decode from 'jwt-decode';
 import User from "../model/userAccount"
 
 export const loginUser = async (req: any, res: any) => {
@@ -59,3 +60,15 @@ export const isAuthenticated = (req:any, res:any) => {
         res.status(401).json({ message: 'Not authenticated' });
     }
 };
+
+
+export const profileUser = (req: any, res: any) => {
+    try {
+        const token = req.user.id;
+        const userId = jwt.decode(token)
+        const user: any = User.findById(userId)
+
+    } catch (err) {
+        res.status(500).json({err: "Failed to retrieve user's profile: " + err})
+    }
+}
