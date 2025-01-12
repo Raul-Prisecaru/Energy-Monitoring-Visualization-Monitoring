@@ -7,12 +7,21 @@ import DeviceManagementPage from "./pages/deviceManagementPage.tsx";
 import ProfileManagementPage from "./pages/profileManagementPage.tsx";
 import DashboardPage from "./pages/dashboardPage.tsx";
 import SettingsPage from "./pages/settingsPage.tsx";
+import {useState} from "react";
+import DashboardNavBar from "./pages/dashboardNavBar.tsx";
 function App() {
+    const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("token") !== null);
 
   return (
       <>
         <BrowserRouter>
-            <LoginNavBar />
+
+            {isLoggedIn ? (
+                <DashboardNavBar />
+            ) : (
+                <LoginNavBar />
+            )}
+
             <Routes>
                 <Route path={"/"} element={<HomePage />}></Route>
                 <Route path={"login"} element={<LoginPage />}></Route>
