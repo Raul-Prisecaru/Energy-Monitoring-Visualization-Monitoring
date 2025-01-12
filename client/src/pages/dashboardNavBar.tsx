@@ -20,7 +20,10 @@ function DashboardNavBar() {
                         <MenuButton>Menu</MenuButton>
                         <Menu>
                             <MenuItem onClick={() => navigate("/ProfileManagement")}>Profile Management</MenuItem>
-                            <MenuItem onClick={() => localStorage.removeItem("token")}>Logout</MenuItem>
+                            <MenuItem onClick={() => {
+                                localStorage.removeItem("token")
+                                navigate("/")
+                            }}>Logout</MenuItem>
                         </Menu>
                     </Dropdown>
 
