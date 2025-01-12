@@ -23,16 +23,17 @@
 }
 
 .styleBoxModal {
-    position: fixed;
+    position: absolute;
 
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 
-    width: 1000px;
-    height: 500px;
+    width: 1500px;
+    height: 800px;
 
-    background-color: lightblue;
+    overflow-y: auto;
+
 }
 
 .modalContent {
