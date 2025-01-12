@@ -44,5 +44,8 @@ export const signUser = async (req: any, res: any)=> {
         const newUser = new User({firstName, lastName, username, email, password})
         await newUser.save();
         res.status(201).json({success: "Created User"})
+
+    } catch (err: any) {
+        res.status(500).json({err: "Failed to create user: " + err})
     }
 }
