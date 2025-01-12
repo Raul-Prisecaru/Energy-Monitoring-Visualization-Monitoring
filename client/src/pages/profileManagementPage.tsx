@@ -86,6 +86,83 @@ function ProfileManagementPage() {
         }
     }
 
+
+    const updateLastName = async () => {
+        try {
+            const token = localStorage.getItem("token");
+            const response = await fetch(`http://localhost:3001/api/user/`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    lastName: lastNameInput
+                }),
+            })
+
+            if (response.ok) {
+                console.log("Success")
+            } else {
+                console.log(response.json())
+            }
+        } catch (error) {
+            alert("An error occurred while fetching profile data: " + error.message);
+        }
+    }
+
+
+
+    const updateUsername = async () => {
+        try {
+            const token = localStorage.getItem("token");
+            const response = await fetch(`http://localhost:3001/api/user/`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    username: usernameInput
+                }),
+            })
+
+            if (response.ok) {
+                console.log("Success")
+            } else {
+                console.log(response.json())
+            }
+        } catch (error) {
+            alert("An error occurred while fetching profile data: " + error.message);
+        }
+    }
+
+
+    const updateEmail = async () => {
+        try {
+            const token = localStorage.getItem("token");
+            const response = await fetch(`http://localhost:3001/api/user/`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    email: emailInput
+                }),
+            })
+
+            if (response.ok) {
+                console.log("Success")
+            } else {
+                console.log(response.json())
+            }
+        } catch (error) {
+            alert("An error occurred while fetching profile data: " + error.message);
+        }
+    }
+
+
     return (
         <div className={"profileComponent"}>
             <div>
