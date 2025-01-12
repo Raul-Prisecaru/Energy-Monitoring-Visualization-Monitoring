@@ -9,18 +9,18 @@ const router: Router = express.Router();
 router.get("/", authMiddleware, deviceController.getAllDevices)
 
 // Router to get all energy Usage of every Category
-router.get("/getEnergyOfEachCategory", deviceController.getEnergyOfEachCategory)
+router.get("/getEnergyOfEachCategory", authMiddleware, deviceController.getEnergyOfEachCategory)
 
 // Router to get cost produced per device
 router.get("/getCostPerDevice", deviceController.getCostPerDevice)
 
 // Router to get the total energy Usage of the month
-router.get("/getCurrentMonthEnergyUsage", deviceController.getCurrentMonthEnergyUsage)
+router.get("/getCurrentMonthEnergyUsage", authMiddleware,  deviceController.getCurrentMonthEnergyUsage)
 
 
 
 // Router to get current paying cost of the current month
-router.get("/getCurrentMonthCost", deviceController.getCurrentMonthCost)
+router.get("/getCurrentMonthCost", authMiddleware, deviceController.getCurrentMonthCost)
 
 router.get("/getSpecifiedMonthCost/:month/:year", deviceController.getSpecifiedMonthCost)
 
@@ -36,14 +36,14 @@ router.get("/getEnergyUsageCostPerMonth", deviceController.getEnergyUsageCostPer
 router.get("/getTopEnergyUsageDevices", deviceController.getTopEnergyUsageDevices)
 
 // Router to get the energy Usage progress
-router.get("/getEnergyUsageProgress", deviceController.getEnergyUsageProgress)
+router.get("/getMonthEnergyUsageProgress", authMiddleware, deviceController.getMonthEnergyUsageProgress)
 
 // Router to get the cost history Monthly
-router.get("/getCostHistoryMonthly", deviceController.getCostHistoryMonthly)
+router.get("/getCostHistoryMonthly",authMiddleware, deviceController.getCostHistoryMonthly)
 
-router.get("/getEnergyAndCostAveragePerDevice", deviceController.getEnergyAndCostAveragePerDevice)
+router.get("/getMonthlyEnergyAndCostAveragePerDevice", authMiddleware ,deviceController.getMonthlyEnergyAndCostAveragePerDevice)
 
-router.get("/getDeviceActiveStatusAndUsage", deviceController.getDeviceActiveStatusAndUsage)
+router.get("/getDeviceActiveStatusAndUsage", authMiddleware, deviceController.getDeviceActiveStatusAndUsage)
 
 // Router to get one device
 router.get("/:id", authMiddleware ,deviceController.getOneDevice)
