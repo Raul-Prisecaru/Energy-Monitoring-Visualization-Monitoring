@@ -49,3 +49,12 @@ export const signUser = async (req: any, res: any)=> {
         res.status(500).json({err: "Failed to create user: " + err})
     }
 }
+
+
+export const isAuthenticated = (req:any, res:any) => {
+    if (req.user) {
+        res.json({ message: 'Authenticated', user: req.user });
+    } else {
+        res.status(401).json({ message: 'Not authenticated' });
+    }
+};
