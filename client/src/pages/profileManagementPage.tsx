@@ -4,7 +4,7 @@ import Card from "@mui/joy/Card";
 import CardContent from "@mui/joy/CardContent";
 import {Typography} from "@mui/joy";
 function ProfileManagementPage() {
-    const [data, setData] = useState({}); // State to store user profile data
+    const [data, setData] = useState({});
 
     useEffect(() => {
         try {
