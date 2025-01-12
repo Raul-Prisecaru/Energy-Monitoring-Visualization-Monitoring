@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
-
+import "./styles/profileManagementStyle.css"
+import Card from "@mui/joy/Card";
+import CardContent from "@mui/joy/CardContent";
+import {Typography} from "@mui/joy";
 function ProfileManagementPage() {
     const [data, setData] = useState({}); // State to store user profile data
 
@@ -28,13 +31,42 @@ function ProfileManagementPage() {
     }, []);
 
     return (
-        <div>
-            <h1>Profile</h1>
+        <div className={"profileComponent"}>
             <div>
-                <p><strong>First Name:</strong> {data.firstName}</p>
-                <p><strong>Last Name:</strong> {data.lastName}</p>
-                <p><strong>Username:</strong> {data.username}</p>
-                <p><strong>Email:</strong> {data.email}</p>
+                <h1 className={"profileTitle"}>Profile</h1>
+
+            </div>
+            <div className={"userData"}>
+
+                <Card sx={{ width: "600px", margin: "0 auto" }}>
+                    <CardContent>
+                        <Typography level="h2">First Name</Typography>
+                        <Typography level={"h4"}>{data.firstName}</Typography>
+                    </CardContent>
+                </Card>
+
+                <Card sx={{ width: "600px", margin: "0 auto" }}>
+                    <CardContent>
+                        <Typography level={"h2"}>Last Name</Typography>
+                        <Typography level={"h4"}>{data.lastName}</Typography>
+                    </CardContent>
+                </Card>
+
+
+
+                <Card sx={{ width: "600px", margin: "0 auto" }}>
+                    <CardContent>
+                        <Typography level={"h2"}>Username</Typography>
+                        <Typography level={"h4"}>{data.username}</Typography>
+                    </CardContent>
+                </Card>
+
+                <Card sx={{ width: "600px", margin: "0 auto" }}>
+                    <CardContent>
+                        <Typography level={"h2"}>Email</Typography>
+                        <Typography level={"h4"}>{data.email}</Typography>
+                    </CardContent>
+                </Card>
             </div>
         </div>
     );
