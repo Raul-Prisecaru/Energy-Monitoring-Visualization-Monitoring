@@ -119,13 +119,13 @@ function DashboardPage() {
                     <TotalEnergyUsageCard/>
                 </div>
 
-                <div className={"dailyStreakCard"}>
-                    <DailyStreakCard/>
-                </div>
+                {/*<div className={"dailyStreakCard"}>*/}
+                {/*    <DailyStreakCard/>*/}
+                {/*</div>*/}
 
-                <div className={"emptyCard"}>
-                    <EmptyCard/>
-                </div>
+                {/*<div className={"emptyCard"}>*/}
+                {/*    <EmptyCard/>*/}
+                {/*</div>*/}
 
             </div>
 
