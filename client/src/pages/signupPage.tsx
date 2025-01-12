@@ -1,5 +1,10 @@
 import "./styles/loginPageStyle.css"
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
+import Card from "@mui/joy/Card";
+import CardContent from "@mui/joy/CardContent";
+import Button from "@mui/joy/Button";
+
 function SignupPage() {
 
     const [firstName, setFirstName] = useState("")
@@ -11,6 +16,10 @@ function SignupPage() {
     const [email, setEmail] = useState("")
 
     const [password, setPassword] = useState("")
+    const navigate = useNavigate();
+
+
+
 
 
     const buttonPress = async (e) => {
@@ -32,7 +41,8 @@ function SignupPage() {
             });
 
             if (response.ok) {
-                alert("Data submitted successfully")
+
+                navigate("/login")
             } else {
                 alert("Failed to submit data")
             }
@@ -66,33 +76,41 @@ function SignupPage() {
     return (
         <div className={"Input-Form"}>
             <form>
-                <div>
-                    <label>First Name</label>
-                    <input type={"text"} onChange={handleFirstNameChange}/> <br/>
-                </div>
+                <Card size="lg" style={{ width: "600px", height: "500px" }}>
+                    <CardContent>
+                        <h1 className={"loginFormLabel"}>Sign-Up Form</h1>
+                        <div>
+                            <label>First Name</label>
+                            <input type={"text"} onChange={handleFirstNameChange}/> <br/>
+                        </div>
 
-                <div>
-                    <label>Last Name</label>
-                    <input type={"text"} onChange={handleLastNameChange}/> <br/>
-                </div>
+                        <div>
+                            <label>Last Name</label>
+                            <input type={"text"} onChange={handleLastNameChange}/> <br/>
+                        </div>
 
-                <div>
-                    <label>Username</label>
-                    <input type={"text"} onChange={handleUsernameChange}/> <br/>
-                </div>
+                        <div>
+                            <label>Username</label>
+                            <input type={"text"} onChange={handleUsernameChange}/> <br/>
+                        </div>
 
-                <div>
-                    <label>Email</label>
-                    <input type={"text"} onChange={handleEmailChange}/> <br/>
-                </div>
+                        <div>
+                            <label>Email</label>
+                            <input type={"text"} onChange={handleEmailChange}/> <br/>
+                        </div>
 
-                <div>
-                    <label>password</label>
-                    <input type={"text"} onChange={handlePasswordChange}/>
-                </div>
+                        <div>
+                            <label>password</label>
+                            <input type={"text"} onChange={handlePasswordChange}/>
+                        </div>
 
 
-                <button onClick={buttonPress}>Signup</button>
+                        <Button size={"lg"} onClick={buttonPress}>Sign-Up</Button>
+                    </CardContent>
+
+
+                </Card>
+
             </form>
         </div>
     )
