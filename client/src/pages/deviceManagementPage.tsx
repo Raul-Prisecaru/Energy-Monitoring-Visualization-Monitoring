@@ -79,12 +79,13 @@ function DeviceManagementPage() {
 
     const addDeviceButton = async (e) => {
         e.preventDefault()
-
+        const token = localStorage.getItem("token")
         try {
             const response = await fetch("http://localhost:3001/api/device", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
                 },
                 body: JSON.stringify({
                     deviceName: deviceName,
@@ -99,11 +100,11 @@ function DeviceManagementPage() {
                 const data = await response.json()
                 const device = data.device
 
-                await generateDataset(device._id);
+                // await generateDataset(device._id);
 
                 alert("Data submitted successfully")
             } else {
-                const errorDetail = response.json()
+                const errorDetail = await response.json()
                 alert("There has been an Error: " + errorDetail)
                 console.error("There has been an Error: ", errorDetail)
             }
