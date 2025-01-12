@@ -653,7 +653,7 @@ export const getEnergyHistoryDevice = async (req: any, res: any) => {
                 energyHistory[month] = 0
             }
 
-            energyHistory[month] += next.energyUsage
+            energyHistory[month] += (next.energyUsage / 1000)
 
         }, 0)
 
