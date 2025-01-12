@@ -1,5 +1,6 @@
 import * as express from "express";
 
+import {authMiddleware} from "../middleware/authMiddleware";
 import * as deviceController from "../controller/virtualDeviceController";
 import {Router} from "express";
 const router: Router = express.Router();
@@ -45,7 +46,7 @@ router.get("/getEnergyAndCostAveragePerDevice", deviceController.getEnergyAndCos
 router.get("/getDeviceActiveStatusAndUsage", deviceController.getDeviceActiveStatusAndUsage)
 
 // Router to get one device
-router.get("/:id", deviceController.getOneDevice)
+router.get("/:id", authMiddleware ,deviceController.getOneDevice)
 
 // Router to get cost history of the current day
 router.get("/getDayCostDevice/:id", deviceController.getDayCostDevice)
@@ -72,7 +73,7 @@ router.get("/getEnergyHistoryDevice/:id", deviceController.getEnergyHistoryDevic
 router.get("/getCostHistoryDevice/:id", deviceController.getCostHistoryDevice)
 
 // Router to create device
-router.post("/", deviceController.createDevice)
+router.post("/", authMiddleware , deviceController.createDevice)
 
 router.patch("/:id", deviceController.addEnergyHistory)
 
