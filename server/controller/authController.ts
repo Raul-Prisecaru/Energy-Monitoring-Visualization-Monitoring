@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
 import User from "../model/userAccount"
 
-export const loginUser = async (req, res) => {
+export const loginUser = async (req: any, res: any ) => {
     const username = req.body.username;
     const password = req.body.password;
 
@@ -27,3 +27,18 @@ export const loginUser = async (req, res) => {
         res.status(500).json({err: "An Error occurred during login"})
     }
 };
+
+export const signUser = async (req: any, res: any)=> {
+    const username: string = req.body.username;
+    const password: string = req.body.password;
+    const email: string = req.body.password;
+    const firstName: string = req.body.firstName;
+    const lastName: string = req.body.lastName;
+
+    try {
+        const findExistingUser = await User.findOne( {username} )
+        if (findExistingUser) {
+            return res.status(403).json({err: "User Already Exists"})
+        }
+    }
+}
