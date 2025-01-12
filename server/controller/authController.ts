@@ -32,7 +32,7 @@ export const loginUser = async (req: any, res: any) => {
 export const signUser = async (req: any, res: any)=> {
     const username: string = req.body.username;
     const password: string = req.body.password;
-    const email: string = req.body.password;
+    const email: string = req.body.email;
     const firstName: string = req.body.firstName;
     const lastName: string = req.body.lastName;
 
@@ -66,6 +66,7 @@ export const profileUser = async (req: any, res: any) => {
     try {
         const userId = req.user.id;
         const user = await User.findById(userId);
+        console.log(user)
 
         res.status(200).json(user);
     } catch (err:any) {
