@@ -22,7 +22,6 @@ function CostCard({deviceID}: {deviceID: string}) {
                         cost: dataSet[device]
                     })
                 );
-                console.log(formattedData)
                 setData(formattedData)
             })
     }, []);
