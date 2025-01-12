@@ -23,6 +23,7 @@ function DashboardNavBar() {
                             <MenuItem onClick={() => {
                                 localStorage.removeItem("token")
                                 navigate("/")
+                                location.reload()
                             }}>Logout</MenuItem>
                         </Menu>
                     </Dropdown>

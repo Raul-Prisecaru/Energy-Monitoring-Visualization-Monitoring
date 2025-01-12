@@ -41,6 +41,7 @@ function LoginPage() {
                 localStorage.setItem('token', data.token);
 
                 navigate("/dashboard")
+                location.reload()
             } else {
                 alert("Unable to login")
             }
