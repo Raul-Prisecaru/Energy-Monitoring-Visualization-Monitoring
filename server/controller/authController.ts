@@ -1,6 +1,7 @@
+import dotenv from "dotenv";
+dotenv.config();
 import * as jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
-import jwt_decode from 'jwt-decode';
 import User from "../model/userAccount"
 
 export const loginUser = async (req: any, res: any) => {
@@ -20,7 +21,11 @@ export const loginUser = async (req: any, res: any) => {
             return res.status(401).json({ message: 'Invalid username or password' });
         }
 
-        const token = jwt.sign({ id: foundUser._id.toString() }, "test", { expiresIn: "1h" });
+        if (!process.env.JWT_SECRET) {
+            return res.status(500).json({ message: 'Server configuration error' });
+        }
+
+        const token = jwt.sign({ id: foundUser._id.toString() }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
         res.status(200).json({token});
 
@@ -66,7 +71,6 @@ export const profileUser = async (req: any, res: any) => {
     try {
         const userId = req.user.id;
         const user = await User.findById(userId);
-        console.log(user)
 
         res.status(200).json(user);
     } catch (err:any) {
