@@ -19,7 +19,7 @@ router.put("/:id", userController.updateUser)
 router.patch("/",authMiddleware , userController.patchUser)
 
 // Router to delete User, Takes ID Param
-router.delete("/:id", userController.deleteUser)
+router.delete("/", authMiddleware, userController.deleteUser)
 
 // Export Router
 export default router
