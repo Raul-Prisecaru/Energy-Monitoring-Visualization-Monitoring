@@ -87,6 +87,25 @@ function ProfileManagementPage() {
     }
 
 
+    const deleteAccount = async () => {
+        try {
+            const token = localStorage.getItem("token");
+            const response = await fetch(`http://localhost:3001/api/user/`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+
+            })
+        } catch (err) {
+            console.log("Failed to delete account " + err)
+        }
+    }
+
+
+
+
+
     const updateLastName = async () => {
         try {
             const token = localStorage.getItem("token");
@@ -247,6 +266,15 @@ function ProfileManagementPage() {
                         </Modal>
                     </CardContent>
                 </Card>
+
+                <div className={"deleteButton"}>
+                    <Card>
+                        <CardContent>
+                            <Button onClick={deleteAccount}>Delete Account</Button>
+                        </CardContent>
+                    </Card>
+                </div>
+
             </div>
         </div>
     );
