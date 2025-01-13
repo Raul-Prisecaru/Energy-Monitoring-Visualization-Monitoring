@@ -5,6 +5,7 @@ import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
 
 import "../styles/energyUsageProgressGaugeStyle.css"
+import {Typography} from "@mui/joy";
 
 
 
@@ -38,8 +39,9 @@ function EnergyUsageProgressGauge({width, height}: {width: number, height: numbe
 
     return (
         <div className={"gaugeChart"}>
-            <Box sx={{width: 300}}>
+            <Box sx={{width: 250}}>
                 <Card>
+            <Typography level={"h3"}>Currently Paying Over Goal </Typography>
                     <CardContent>
                         <Gauge
                             value={data.dataCurrent}
