@@ -76,7 +76,6 @@ function DeviceManagementPage() {
             });
 
             const result = await response.json();
-            console.log(result);
 
             currentDate.setDate(currentDate.getDate() + 1)
 
