@@ -63,7 +63,9 @@ export const patchUser = async (req: any, res: any) => {
 // Function to Delete User
 export const deleteUser = async (req: any, res:any) => {
     try {
-        await User.findByIdAndDelete(req.params.id)
+       await User.findByIdAndDelete(req.user.id)
+
+        localStorage.removeItem("token")
         res.status(200).json({message: "Successfully found and deleted the user"})
     } catch (err) {
         res.status(500).json({message: "Failed to find or delete user: " + err})
