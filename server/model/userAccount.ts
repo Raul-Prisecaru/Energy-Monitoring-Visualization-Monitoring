@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt"
+import {Float} from "@chakra-ui/react";
 
 const userSchema = new mongoose.Schema({
 
@@ -46,7 +47,34 @@ const userSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Device'
         }
-    ]
+    ],
+
+    settings: {
+        monthlyCostGoal: {
+            type: Number,
+            default: 200
+        },
+
+        yearlyCostGoal: {
+            type: Number,
+            default: 2400
+        },
+
+        monthlyEnergyUsageGoal: {
+            type: Number,
+            default: 225
+        },
+
+        yearlyEnergyUsageGoal: {
+            type: Number,
+            default: 2700
+        },
+
+        pricePerkWh: {
+            type: Float,
+            default: 0.22
+        }
+    }
 })
 
 
