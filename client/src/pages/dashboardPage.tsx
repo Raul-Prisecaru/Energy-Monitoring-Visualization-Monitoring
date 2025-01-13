@@ -135,7 +135,11 @@ function DashboardPage() {
                 </div>
 
                 <div className={"energyUsageLineChart"}>
-                    <EnergyUsageLineChart width={1200} height={300}/>
+                    <Card>
+                        <CardContent>
+                            <EnergyUsageLineChart width={1200} height={300}/>
+                        </CardContent>
+                    </Card>
                 </div>
             </div>
 
@@ -146,14 +150,24 @@ function DashboardPage() {
                 </div>
 
                 <div>
-                    <CostHistoryLineChart width={1200} height={300}/>
+                    <Card>
+                        <CardContent>
+                            <CostHistoryLineChart width={1200} height={300}/>
+                        </CardContent>
+                    </Card>
                 </div>
 
             </div>
 
             <div className={"bottomRelatedVisuals"}>
                 <div className={"deviceTable"}>
-                    <DeviceTable width={500} height={500}/>
+                    <Card>
+                        <CardContent>
+
+                        <DeviceTable width={500} height={500}/>
+
+                    </CardContent>
+                    </Card>
                 </div>
 
                 <div className={"energyUsageCategoryPieChart"}>
