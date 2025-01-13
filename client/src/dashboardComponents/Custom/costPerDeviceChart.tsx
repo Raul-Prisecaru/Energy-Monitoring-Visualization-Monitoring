@@ -5,7 +5,12 @@ import Box from '@mui/material/Box';
 function CostPerDeviceChart() {
     const [data, setData] = useState({})
     useEffect(() => {
-        fetch("http://localhost:3001/api/device/getCostPerDevice")
+        const token = localStorage.getItem("token")
+        fetch("http://localhost:3001/api/device/getCostPerDevice", {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
             .then(response => response.json())
             .then((data) => {
                 setData(data)

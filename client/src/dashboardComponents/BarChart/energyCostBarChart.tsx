@@ -10,7 +10,12 @@ function EnergyCostBarChart({width, height}: {width: number, height: number}) {
     const [data, setData] = useState<formattedData[]>([])
 
     useEffect(() => {
-        fetch("http://localhost:3001/api/device/getEnergyUsageCostPerMonth")
+        const token = localStorage.getItem("token")
+        fetch("http://localhost:3001/api/device/getEnergyUsageCostPerMonth", {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
             .then((response) => response.json())
             .then((energyDevice) => {
                 const formattedData: formattedData[] = Object.keys(energyDevice).map((energy) => ({

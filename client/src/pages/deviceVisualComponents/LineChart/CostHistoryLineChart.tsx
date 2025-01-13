@@ -8,7 +8,12 @@ function CostHistoryLineChart({deviceID}: {deviceID: string}) {
     const [data, setData] = useState([])
 
     useEffect(() => {
-        fetch("http://localhost:3001/api/device/getCostHistoryDevice/" + deviceID)
+        const token = localStorage.getItem("token")
+        fetch("http://localhost:3001/api/device/getCostHistoryDevice/" + deviceID, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
             .then(response => response.json())
             .then(dataSet => {
                 const formattedData = Object.keys(dataSet).map(month => ({

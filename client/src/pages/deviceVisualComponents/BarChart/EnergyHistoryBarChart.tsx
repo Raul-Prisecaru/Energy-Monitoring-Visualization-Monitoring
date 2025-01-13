@@ -13,7 +13,12 @@ function EnergyHistoryBarChart({deviceID}: {deviceID: string}) {
     const [data, setData] = useState<formattedData[]>([])
 
     useEffect(() => {
-        fetch("http://localhost:3001/api/device/getEnergyHistoryDevice/" + deviceID)
+        const token = localStorage.getItem("token")
+        fetch("http://localhost:3001/api/device/getEnergyHistoryDevice/" + deviceID, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
             .then(response => response.json())
             .then(dataSet => {
                 const formattedData: formattedData[] = Object.keys(dataSet).map((dataMonth) => ({

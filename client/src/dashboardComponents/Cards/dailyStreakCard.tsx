@@ -8,7 +8,12 @@ import "../styles/totalCostMonthChartStyle.css"
 function TotalCostMonthChart() {
     const [data, setData] = useState()
     useEffect(() => {
-        fetch("http://localhost:3001/api/device/getCurrentMonthEnergyUsage")
+        const token = localStorage.getItem("token")
+        fetch("http://localhost:3001/api/device/getCurrentMonthEnergyUsage" ,{
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
             .then((response) => response.json())
             .then((energyDevice) => {
                 setData(energyDevice);

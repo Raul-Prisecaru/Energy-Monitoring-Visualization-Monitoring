@@ -14,7 +14,12 @@ function CostCard({deviceID}: {deviceID: string}) {
     const [data, setData] = useState([])
 
     useEffect(() => {
-        fetch("http://localhost:3001/api/device/getDayCostDevice/"+ deviceID)
+        const token = localStorage.getItem("token")
+        fetch("http://localhost:3001/api/device/getDayCostDevice/"+ deviceID, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
             .then(response => response.json())
             .then(dataSet => {
                 const formattedData: formattedData[] = Object.keys(dataSet).map((device) => ({

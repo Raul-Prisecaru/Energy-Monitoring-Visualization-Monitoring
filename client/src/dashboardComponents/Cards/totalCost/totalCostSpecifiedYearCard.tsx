@@ -8,7 +8,12 @@ import "../../styles/totalCostMonthChartStyle.css"
 function TotalCostSpecifiedYearCard({yearValue}: {yearValue: number}) {
     const [data, setData] = useState()
     useEffect(() => {
-        fetch("http://localhost:3001/api/device/getSpecifiedYearCost/" + yearValue)
+        const token = localStorage.getItem("token")
+        fetch("http://localhost:3001/api/device/getSpecifiedYearCost/" + yearValue, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
             .then((response) => response.json())
             .then((energyDevice) => {
                 setData(energyDevice);
