@@ -7,7 +7,7 @@ interface formattedData {
     energyUsage: number;
 }
 
-function EnergyUsageLineChart({ width, height }: { width: number; height: number }) {
+function EnergyUsageBarChart({ width, height }: { width: number; height: number }) {
     const [data, setData] = useState<formattedData[]>([]);
 
     useEffect(() => {
@@ -25,7 +25,6 @@ function EnergyUsageLineChart({ width, height }: { width: number; height: number
                         averageCost: devices[data][1]
                     })
                 );
-                console.log(formattedData)
                 setData(formattedData);
             })
             .catch((error) => console.error("Failed to fetch devices: " + error));
@@ -45,4 +44,4 @@ function EnergyUsageLineChart({ width, height }: { width: number; height: number
     );
 }
 
-export default EnergyUsageLineChart;
+export default EnergyUsageBarChart;
