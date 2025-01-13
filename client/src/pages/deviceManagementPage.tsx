@@ -24,7 +24,9 @@ function DeviceManagementPage() {
     const [startDay, setStartDay] = useState(null);
     const [startMonth, setStartMonth] = useState(null);
     const [startYear, setStartYear] = useState(null);
-
+    const [endDay, setEndDay] = useState(null);
+    const [endMonth, setEndMonth] = useState(null);
+    const [endYear, setEndYear] = useState(null);
 
 
     const [viewDevice, setViewDevice] = useState(null)
@@ -48,14 +50,25 @@ function DeviceManagementPage() {
         setCheckBox(event.target.checked);
     };
 
-    const handleDateChange = (event) => {
+    const handleStartDateChange = (event) => {
         const dateValue = event.target.value;
 
         if (dateValue) {
             const dateObj = new Date(dateValue);
-            setStartDay(dateObj.getDate()); // Day of the month
-            setStartMonth(dateObj.getMonth() + 1); // Months are zero-indexed
-            setStartYear(dateObj.getFullYear()); // Year
+            setStartDay(dateObj.getDate());
+            setStartMonth(dateObj.getMonth() + 1);
+            setStartYear(dateObj.getFullYear());
+        }
+    };
+
+    const handleEndDateChange = (event) => {
+        const dateValue = event.target.value;
+
+        if (dateValue) {
+            const dateObj = new Date(dateValue);
+            setEndDay(dateObj.getDate());
+            setEndMonth(dateObj.getMonth() + 1);
+            setEndYear(dateObj.getFullYear());
         }
     };
 
@@ -76,11 +89,11 @@ function DeviceManagementPage() {
         handleOpen();
     };
 
-    const generateDataset = async (deviceID: string, year: number, month: number, day: number) => {
+    const generateDataset = async (deviceID: string, startYear: number, startMonth: number, startDay: number, endYear: number, endMonth: number, endDay: number) => {
         const minWatts = 0;
         const maxWatts = 200;
-        const startDate: Date = new Date(`${year}-${month}-${day}`);
-        const endDate: Date = new Date(`${2025}-12-31`);
+        const startDate: Date = new Date(`${startYear}-${startMonth}-${startDay}`);
+        const endDate: Date = new Date(`${endYear}-${endMonth}-${endDay}`);
         let currentDate: Date = new Date(startDate);
         const token = localStorage.getItem("token")
 
@@ -134,7 +147,7 @@ function DeviceManagementPage() {
                 const device = data.device
 
                 if (checkBox) {
-                    await generateDataset(device._id, startYear, startMonth, startDay);
+                    await generateDataset(device._id, startYear, startMonth, startDay, endYear, endMonth, endDay);
 
                 }
 
@@ -210,11 +223,14 @@ function DeviceManagementPage() {
                                                     <input type={"text"} onChange={handleDeviceTypeChange}/>
                                                 </div>
 
-                                                <Checkbox checked={checkBox} onChange={handleCheckboxChange} />
+                                                <Checkbox checked={checkBox} onChange={handleCheckboxChange} label={"Generate Dataset"}/>
 
                                                 {checkBox && (
                                                     <div className={"modalDeviceDateInput"}>
-                                                        <input onChange={handleDateChange} type={"date"} />
+                                                        <Typography>Start Date</Typography>
+                                                        <input onChange={handleStartDateChange} type={"date"} />
+                                                        <Typography>End Date</Typography>
+                                                        <input onChange={handleEndDateChange} type={"date"} />
                                                     </div>
                                                 )}
 
