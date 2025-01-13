@@ -4,8 +4,7 @@
 
 .topRelatedVisuals {
     display: flex;
-    background-color: lightgreen;
-    padding-top: 100px;
+    padding-top: 20px;
 
 }
 
@@ -23,7 +22,7 @@
 
 .deviceRelatedVisuals {
     display: flex;
-    background-color: lightgrey;
+    /*background-color: lightgrey;*/
     padding-top: 100px;
 }
 
