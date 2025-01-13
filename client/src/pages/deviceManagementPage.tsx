@@ -21,9 +21,9 @@ function DeviceManagementPage() {
     const [deviceType, setDeviceType] = useState("");
 
     const [checkBox, setCheckBox] = useState(false)
-    const [day, setDay] = useState(null);
-    const [month, setMonth] = useState(null);
-    const [year, setYear] = useState(null);
+    const [startDay, setStartDay] = useState(null);
+    const [startMonth, setStartMonth] = useState(null);
+    const [startYear, setStartYear] = useState(null);
 
 
 
@@ -49,14 +49,13 @@ function DeviceManagementPage() {
     };
 
     const handleDateChange = (event) => {
-        const dateValue = event.target.value; // e.g., "2025-01-13"
-        setSelectedDate(dateValue);
+        const dateValue = event.target.value;
 
         if (dateValue) {
             const dateObj = new Date(dateValue);
-            setDay(dateObj.getDate()); // Day of the month
-            setMonth(dateObj.getMonth() + 1); // Months are zero-indexed
-            setYear(dateObj.getFullYear()); // Year
+            setStartDay(dateObj.getDate()); // Day of the month
+            setStartMonth(dateObj.getMonth() + 1); // Months are zero-indexed
+            setStartYear(dateObj.getFullYear()); // Year
         }
     };
 
@@ -74,14 +73,13 @@ function DeviceManagementPage() {
 
     const handleViewDevice = (device) => {
         setViewDevice(device);
-        console.log("Device + ID: " + device._id)
         handleOpen();
     };
 
-    const generateDataset = async (deviceID: string) => {
+    const generateDataset = async (deviceID: string, year: number, month: number, day: number) => {
         const minWatts = 0;
         const maxWatts = 200;
-        const startDate: Date = new Date(`${2022}-01-01`);
+        const startDate: Date = new Date(`${year}-${month}-${day}`);
         const endDate: Date = new Date(`${2025}-12-31`);
         let currentDate: Date = new Date(startDate);
         const token = localStorage.getItem("token")
@@ -112,9 +110,7 @@ function DeviceManagementPage() {
 
         }
 
-
-
-    const addDeviceButton = async (e) => {
+    const createDeviceButton = async (e) => {
         e.preventDefault()
         const token = localStorage.getItem("token")
         try {
@@ -137,7 +133,10 @@ function DeviceManagementPage() {
                 const data = await response.json()
                 const device = data.device
 
-                await generateDataset(device._id);
+                if (checkBox) {
+                    await generateDataset(device._id, startYear, startMonth, startDay);
+
+                }
 
                 alert("Data submitted successfully")
             } else {
@@ -219,7 +218,7 @@ function DeviceManagementPage() {
                                                     </div>
                                                 )}
 
-                                                <button onClick={addDeviceButton}>Confirm Changes</button>
+                                                <button onClick={createDeviceButton}>Confirm Changes</button>
 
                                             </CardContent>
                                         </Card>
