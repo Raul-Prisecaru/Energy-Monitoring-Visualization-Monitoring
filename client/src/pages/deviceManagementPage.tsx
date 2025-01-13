@@ -5,19 +5,26 @@ import Modal from '@mui/joy/Modal';
 import ModalDialog from '@mui/joy/ModalDialog';
 import DialogTitle from '@mui/joy/DialogTitle';
 import DialogContent from '@mui/joy/DialogContent';
+import Checkbox from '@mui/joy/Checkbox';
 import CostCard from "./deviceVisualComponents/Card/costCard.tsx";
 import EnergyCard from "./deviceVisualComponents/Card/energyCard.tsx";
 import EnergyHistoryBarChart from "./deviceVisualComponents/BarChart/EnergyHistoryBarChart.tsx";
 import CostHistoryLineChart from "./deviceVisualComponents/LineChart/CostHistoryLineChart.tsx";
 import Card from "@mui/joy/Card";
 import CardContent from "@mui/joy/CardContent";
-import {Typography} from "@mui/joy";
+import {Input, TextField, Typography} from "@mui/joy";
 
 function DeviceManagementPage() {
     const [isOpen, setIsOpen] = useState(false);
     const [devicesList, setDevicesList] = useState([]);
     const [deviceName, setDeviceName] = useState("");
     const [deviceType, setDeviceType] = useState("");
+
+    const [checkBox, setCheckBox] = useState(false)
+    const [day, setDay] = useState(null);
+    const [month, setMonth] = useState(null);
+    const [year, setYear] = useState(null);
+
 
 
     const [viewDevice, setViewDevice] = useState(null)
@@ -35,6 +42,23 @@ function DeviceManagementPage() {
             .catch((error) => console.error("Failed to fetch Devices" + error))
     }, [])
 
+
+
+    const handleCheckboxChange = (event) => {
+        setCheckBox(event.target.checked);
+    };
+
+    const handleDateChange = (event) => {
+        const dateValue = event.target.value; // e.g., "2025-01-13"
+        setSelectedDate(dateValue);
+
+        if (dateValue) {
+            const dateObj = new Date(dateValue);
+            setDay(dateObj.getDate()); // Day of the month
+            setMonth(dateObj.getMonth() + 1); // Months are zero-indexed
+            setYear(dateObj.getFullYear()); // Year
+        }
+    };
 
     const handleOpen = () => setIsOpen(true);
 
@@ -186,6 +210,14 @@ function DeviceManagementPage() {
                                                 <div className={"modalDeviceTypeInput"}>
                                                     <input type={"text"} onChange={handleDeviceTypeChange}/>
                                                 </div>
+
+                                                <Checkbox checked={checkBox} onChange={handleCheckboxChange} />
+
+                                                {checkBox && (
+                                                    <div className={"modalDeviceDateInput"}>
+                                                        <input onChange={handleDateChange} type={"date"} />
+                                                    </div>
+                                                )}
 
                                                 <button onClick={addDeviceButton}>Confirm Changes</button>
 
