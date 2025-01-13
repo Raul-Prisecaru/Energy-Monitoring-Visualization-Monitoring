@@ -67,7 +67,7 @@ function LoginPage() {
 
                         <div>
                             <label>password</label>
-                            <input onChange={handlePasswordChange} type={"text"}/>
+                            <input  onChange={handlePasswordChange} type={"password"}/>
                         </div>
 
 
