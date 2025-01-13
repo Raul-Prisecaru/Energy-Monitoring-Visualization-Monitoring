@@ -55,20 +55,25 @@ function DeviceManagementPage() {
     };
 
     const generateDataset = async (deviceID: string) => {
-        const startDate: Date = new Date(`${2020}-01-01`);
-        const endDate: Date = new Date(`${2024}-12-31`);
+        const minWatts = 0;
+        const maxWatts = 200;
+        const startDate: Date = new Date(`${2022}-01-01`);
+        const endDate: Date = new Date(`${2025}-12-31`);
         let currentDate: Date = new Date(startDate);
+        const token = localStorage.getItem("token")
 
         while (currentDate <=endDate) {
             const response = await fetch("http://localhost:3001/api/device/" + deviceID, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+
                 },
                 body: JSON.stringify({
                     energyHistory: [
                         {
-                            energyUsage: (Math.floor(Math.random() * 101) + 100) * 24,
+                            energyUsage: (Math.floor(Math.random() * (maxWatts - minWatts)) + minWatts) * 24,
                             energyDate: currentDate,
                         },
                     ],
