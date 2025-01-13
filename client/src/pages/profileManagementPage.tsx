@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import "./styles/profileManagementStyle.css"
+import { useNavigate } from "react-router-dom";
 import Card from "@mui/joy/Card";
 import CardContent from "@mui/joy/CardContent";
 import {Input, Typography} from "@mui/joy";
 import Button from "@mui/joy/Button";
 import Modal from "@mui/joy/Modal";
 function ProfileManagementPage() {
+    const navigate = useNavigate();
     const [data, setData] = useState({});
     const [firstNameModal, setFirstNameModal] = useState(false);
     const [lastNameModal, setLastNameModal] = useState(false);
@@ -97,6 +99,9 @@ function ProfileManagementPage() {
                 },
 
             })
+            navigate("/")
+            localStorage.removeItem("token")
+            location.reload()
         } catch (err) {
             console.log("Failed to delete account " + err)
         }
