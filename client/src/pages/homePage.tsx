@@ -1,15 +1,18 @@
 import "./styles/homePageStyle.css"
 import "./styles/background.css"
 import Box from '@mui/joy/Box';
+import {useNavigate} from "react-router-dom";
 import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
 import {Typography} from "@mui/joy";
 import Divider from '@mui/joy/Divider';
 import forestLoopGIF from './assets/Forest_Loop_GIF.webp';
+import Button from "@mui/joy/Button";
 
 
 
 function HomePage() {
+    const navigate = useNavigate();
     return (
         <div>
             <div className={"Title"}>
@@ -19,7 +22,7 @@ function HomePage() {
                 <img src={forestLoopGIF}  />
             </div>
             <div className={"getStartedButton"}>
-                <button>Get Started</button>
+                <Button onClick={() => navigate("/sign-up")}>Get Started</Button>
 
             </div>
 
