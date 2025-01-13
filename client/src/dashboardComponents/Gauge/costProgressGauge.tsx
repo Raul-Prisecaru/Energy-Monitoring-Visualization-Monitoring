@@ -3,9 +3,7 @@ import { Gauge } from '@mui/x-charts/Gauge';
 import Box from '@mui/joy/Box';
 import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
-
-import "../styles/energyUsageProgressGaugeStyle.css"
-
+import {Typography} from "@mui/joy";
 
 
 interface formattedData {
@@ -33,12 +31,13 @@ function EnergyUsageProgressGauge({width, height}: {width: number, height: numbe
 
     return (
         <div className={"gaugeChart"}>
-            <Box sx={{width: 300}}>
+            <Box sx={{width: 250}}>
                 <Card>
+                    <Typography level={"h3"}>Currently Paying Over Goal </Typography>
                     <CardContent>
                         <Gauge
                             value={data}
-                            valueMax={100}
+                            valueMax={300}
                             startAngle={-110}
                             endAngle={110}
                             width={width}
