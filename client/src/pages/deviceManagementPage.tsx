@@ -13,6 +13,7 @@ import CostHistoryLineChart from "./deviceVisualComponents/LineChart/CostHistory
 import Card from "@mui/joy/Card";
 import CardContent from "@mui/joy/CardContent";
 import {Input, TextField, Typography} from "@mui/joy";
+import Button from "@mui/joy/Button";
 
 function DeviceManagementPage() {
     const [isOpen, setIsOpen] = useState(false);
@@ -123,6 +124,26 @@ function DeviceManagementPage() {
 
         }
 
+
+    const deleteDeviceButton = async (deviceID: string) => {
+        const token = localStorage.getItem("token")
+        const response = await fetch("http://localhost:3001/api/device/" + deviceID, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+        });
+
+        if (response.ok) {
+            console.log("Successfully Deleted Device")
+        } else {
+            const errorDetail = await response.json()
+            console.error("There has been an Error: ", errorDetail)
+        }
+    }
+
+
     const createDeviceButton = async (e) => {
         e.preventDefault()
         const token = localStorage.getItem("token")
@@ -185,6 +206,7 @@ function DeviceManagementPage() {
                                             <EnergyCard deviceID={viewDevice._id}/>
                                             <EnergyHistoryBarChart deviceID={viewDevice._id} />
                                             <CostHistoryLineChart deviceID={viewDevice._id}/>
+                                            <Button onClick={() => deleteDeviceButton(viewDevice._id)}>Delete Device</Button>
 
 
                                         </CardContent>
@@ -234,7 +256,7 @@ function DeviceManagementPage() {
                                                     </div>
                                                 )}
 
-                                                <button onClick={createDeviceButton}>Confirm Changes</button>
+                                                <Button onClick={createDeviceButton}>Confirm Changes</Button>
 
                                             </CardContent>
                                         </Card>
