@@ -1,0 +1,5 @@
+Username: Customer1
+Password: Customer1
+
+Username: Customer2
+Password: Customer2
