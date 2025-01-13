@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt"
-import {Float} from "@chakra-ui/react";
 
 const userSchema = new mongoose.Schema({
 
@@ -15,12 +14,6 @@ const userSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-
-    // To Be Used Later when implemented basic logic
-    // dateOfBirth: {
-    //   type: Date,
-    //   required: true
-    // },
 
     username: {
         type: String,
@@ -71,7 +64,7 @@ const userSchema = new mongoose.Schema({
         },
 
         pricePerkWh: {
-            type: Float,
+            type: Number,
             default: 0.22
         }
     }
