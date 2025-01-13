@@ -9,7 +9,7 @@ import {Typography} from "@mui/joy";
 
 
 interface formattedData {
-    dataTotal: number,
+    dataLimit: number,
     dataCurrent: number
 }
 
@@ -26,7 +26,7 @@ function EnergyUsageProgressGauge({width, height}: {width: number, height: numbe
             .then((response) => response.json())
             .then((data) => {
                 const formattedData: formattedData = {
-                    dataTotal: data.limit,
+                    dataLimit: data.limit,
                     dataCurrent: data.total
                 };
 
@@ -44,7 +44,7 @@ function EnergyUsageProgressGauge({width, height}: {width: number, height: numbe
                     <CardContent>
                         <Gauge
                             value={data.dataCurrent}
-                            valueMax={data.dataTotal}
+                            valueMax={data.dataLimit}
                             startAngle={-110}
                             endAngle={110}
                             width={width}
