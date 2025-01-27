@@ -1,8 +1,26 @@
 import mongoose from "mongoose";
-import bcrypt from "bcrypt"
+import bcrypt from "bcrypt";
 
-const userSchema = new mongoose.Schema({
+interface UserSchema extends mongoose.Document {
+    firstName: string;
+    lastName: string;
+    username: string;
+    email: string;
+    password: string;
+    devices: mongoose.Types.ObjectId[];
+    settings?: {
+        monthlyCostGoal: number;
+        yearlyCostGoal: number;
+        monthlyEnergyUsageGoal: number;
+        yearlyEnergyUsageGoal: number;
+        pricePerkWh: number;
+    } | null;
 
+    validatePassword(password: string): Promise<boolean>;
+    changePassword(password: string): Promise<void>;
+}
+
+const userSchema = new mongoose.Schema<UserSchema>({
     firstName: {
         type: String,
         required: true,
@@ -68,15 +86,16 @@ const userSchema = new mongoose.Schema({
             default: 0.22
         }
     }
-})
+});
 
+userSchema.methods.validatePassword = async function (password: string): Promise<boolean> {
+    return bcrypt.compare(password, this.password);
+};
 
-const User = mongoose.model("User", userSchema)
+userSchema.methods.changePassword = async function (password: string): Promise<void> {
+    this.password = await bcrypt.hash(password, 10);
+    await this.save();
+};
 
-
-userSchema.methods.validatePassword = async function (password: string) {
-    return await bcrypt.compare(password, this.password)
-}
-
-
-export default User
+const User = mongoose.model<UserSchema>("User", userSchema);
+export default User;
