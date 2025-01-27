@@ -13,11 +13,14 @@ function ProfileManagementPage() {
     const [lastNameModal, setLastNameModal] = useState(false);
     const [usernameModal, setUsernameModal] = useState(false);
     const [emailModal, setEmailModal] = useState(false);
+    const [passwordModal, setPasswordModal] = useState(false);
 
     const [firstNameInput, setFirstNameInput] = useState("")
     const [lastNameInput, setLastNameInput] = useState("")
     const [usernameInput, setUsernameInput] = useState(null)
     const [emailInput, setEmailInput] = useState(null)
+    const [currentPasswordInput, setCurrentPasswordInput] = useState()
+    const [newPasswordInput, setNewPasswordInput] = useState()
 
 
     useEffect(() => {
@@ -162,6 +165,33 @@ function ProfileManagementPage() {
     }
 
 
+    const updatePassword = async () => {
+        try {
+            const token = localStorage.getItem("token");
+            const response = await fetch(`http://localhost:3001/api/auth/changePassword`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    currentPassword: currentPasswordInput,
+                    newPassword: newPasswordInput
+                }),
+            })
+
+            if (response.ok) {
+                alert("Successfully Changed Password")
+            } else {
+                alert("Failed to reset password");
+                console.log("failed to reset password:", response.json());
+            }
+        } catch (error:any) {
+            alert("An error occurred while fetching profile data: " + error.message);
+        }
+    }
+
+
     const updateEmail = async () => {
         try {
             const token = localStorage.getItem("token");
@@ -200,8 +230,12 @@ function ProfileManagementPage() {
                         <Typography level={"h4"}>{data.firstName}</Typography>
                         <Button onClick={() => setFirstNameModal(true)}>Change First Name</Button>
 
-                        <Modal open={firstNameModal} onClose={() => setFirstNameModal(false)}>
-                            <Card>
+                        <Modal
+                            open={firstNameModal}
+                            onClose={() => setFirstNameModal(false)}
+                            sx={{display: "flex", justifyContent: "center", alignItems: "center"}}
+                        >
+                            <Card sx={{width: "500px", height: "150px"}}>
                                 <CardContent>
                                     <Typography level="h2">Update First Name</Typography>
                                     <Input placeholder={"Enter your new First Name here"} onChange={handleFirstNameChange}> </Input>
@@ -221,8 +255,12 @@ function ProfileManagementPage() {
 
                         <Button onClick={() => setLastNameModal(true)}>Change Last Name</Button>
 
-                        <Modal open={lastNameModal} onClose={() => setLastNameModal(false)}>
-                            <Card>
+                        <Modal
+                            open={lastNameModal}
+                            onClose={() => setLastNameModal(false)}
+                            sx={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+                            <Card sx={{width: "500px", height: "150px"}}>
+
                                 <CardContent>
                                     <Typography level="h2">Update Last Name</Typography>
                                     <Input placeholder={"Enter your new Last Name here"} onChange={handleLastNameChange}> </Input>
@@ -241,8 +279,12 @@ function ProfileManagementPage() {
 
                         <Button onClick={() => setUsernameModal(true)}>Change Username</Button>
 
-                        <Modal open={usernameModal} onClose={() => setUsernameModal(false)}>
-                            <Card>
+                        <Modal
+                            open={usernameModal}
+                            onClose={() => setUsernameModal(false)}
+                            sx={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+
+                            <Card sx={{width: "500px", height: "150px"}}>
                                 <CardContent>
                                     <Typography level="h2">Update Username</Typography>
                                     <Input placeholder={"Enter your new username here"} onChange={handleUsernameChange}> </Input>
@@ -260,8 +302,12 @@ function ProfileManagementPage() {
 
                         <Button onClick={() => setEmailModal(true)}>Change Email</Button>
 
-                        <Modal open={emailModal} onClose={() => setEmailModal(false)}>
-                            <Card>
+                        <Modal
+                            open={emailModal}
+                            onClose={() => setEmailModal(false)}
+                            sx={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+
+                            <Card sx={{width: "500px", height: "150px"}}>
                                 <CardContent>
                                     <Typography level="h2">Update Email</Typography>
                                     <Input placeholder={"Enter your new Email here"} onChange={handleEmailChange}> </Input>
@@ -272,10 +318,34 @@ function ProfileManagementPage() {
                     </CardContent>
                 </Card>
 
+
+                <Card sx={{ width: "600px", margin: "0 auto" }}>
+                    <CardContent>
+                        <Typography level={"h2"}>Change Password</Typography>
+                        <Typography level={"h4"}>***********</Typography>
+                        <Button onClick={() => setPasswordModal(true)}>Change Password</Button>
+
+                        <Modal
+                            open={passwordModal}
+                            onClose={() => setPasswordModal(false)}
+                            sx={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+
+                            <Card sx={{width: "500px", height: "150px"}}>
+                                <CardContent>
+                                    <Typography level="h2">Update Password</Typography>
+                                    <Input placeholder={"Enter your current password"} onChange={(e) => setCurrentPasswordInput(e.target.value)}> </Input>
+                                    <Input placeholder={"Enter your new password"} onChange={(e) => setNewPasswordInput(e.target.value)}> </Input>
+                                    <Button onClick={updatePassword}> Update Password</Button>
+                                </CardContent>
+                            </Card>
+                        </Modal>
+                    </CardContent>
+                </Card>
+
                 <div className={"deleteButton"}>
                     <Card>
                         <CardContent>
-                            <Button onClick={deleteAccount}>Delete Account</Button>
+                            <Button color="danger" onClick={deleteAccount}>Delete Account</Button>
                         </CardContent>
                     </Card>
                 </div>
