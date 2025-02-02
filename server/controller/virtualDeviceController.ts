@@ -41,19 +41,24 @@ export const getEnergyOfEachCategory = async (req: any, res:any) => {
 
         allDevices.forEach((device) => {
             const deviceCategory = device.deviceType;
-            const totalEnergyUsage = device.energyHistory.reduce((total: number, next: any) => {
-                if (next.energyUsage) {
+            const totalEnergyUsage = device.energyHistory.reduce((total: any, next: any) => {
+                if (next.energyUsage && next.energyDate) {
+                    const todayDate = new Date()
+                    if (next.energyDate.getMonth() == todayDate.getMonth() && next.energyDate.getFullYear() == todayDate.getFullYear())
                     return total + next.energyUsage
                 }
+
+                return total
             }, 0)
 
             if(!categoryJSONUsage[deviceCategory]) {
                 categoryJSONUsage[deviceCategory] = 0;
             }
 
-            categoryJSONUsage[deviceCategory] += totalEnergyUsage
+            categoryJSONUsage[deviceCategory] += (totalEnergyUsage / 1000)
         })
 
+        console.log(categoryJSONUsage)
         res.status(201).json(categoryJSONUsage)
 
     } catch (err) {
