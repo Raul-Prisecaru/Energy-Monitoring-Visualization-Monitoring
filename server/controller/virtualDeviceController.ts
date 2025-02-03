@@ -66,6 +66,21 @@ export const getEnergyOfEachCategory = async (req: any, res:any) => {
     }
 }
 
+export const getTotalConnectedDevices = async (req: any, res: any) => {
+    try {
+        let counter: number = 0;
+        const allDevices = await virtualDevice.find({userId: req.user.id})
+
+        allDevices.forEach((device) => {
+            counter++
+        })
+
+        res.status(200).json(counter)
+    } catch (err) {
+        res.status(500).json({error: "There has been an error trying to retrieve total devices for the user"})
+    }
+}
+
 /**
  * Function Responsible for retrieving the top devices based on energyUsage
  * @param res - 201 response with json else 500 response
