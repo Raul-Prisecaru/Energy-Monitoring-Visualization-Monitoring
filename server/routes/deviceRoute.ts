@@ -3,6 +3,7 @@ import * as express from "express";
 import {authMiddleware} from "../middleware/authMiddleware";
 import * as deviceController from "../controller/virtualDeviceController";
 import {Router} from "express";
+
 const router: Router = express.Router();
 
 // Router to get all devices
@@ -17,7 +18,7 @@ router.get("/getCostPerDevice", authMiddleware, deviceController.getCostPerDevic
 // Router to get the total energy Usage of the month
 router.get("/getCurrentMonthEnergyUsage", authMiddleware,  deviceController.getCurrentMonthEnergyUsage)
 
-
+router.get("/getTotalConnectedDevices", authMiddleware, deviceController.getTotalConnectedDevices)
 
 // Router to get current paying cost of the current month
 router.get("/getCurrentMonthCost", authMiddleware, deviceController.getCurrentMonthCost)
