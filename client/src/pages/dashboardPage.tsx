@@ -23,6 +23,7 @@ import CardContent from "@mui/joy/CardContent";
 import TotalCostSpecifiedMonthCard from "../dashboardComponents/Cards/totalCost/totalCostSpecifiedMonthCard.tsx";
 import TotalCostSpecifiedYearCard from "../dashboardComponents/Cards/totalCost/totalCostSpecifiedYearCard.tsx";
 import TotalCostYearCard from "../dashboardComponents/Cards/totalCost/totalCostYearCard.tsx";
+import TotalNumberDevices from "../dashboardComponents/Cards/totalCost/totalNumberDevices.tsx";
 
 function DashboardPage() {
     const [yearModal, setYearModal] = useState(false)
@@ -41,6 +42,10 @@ function DashboardPage() {
 
                 <div className={"totalEnergyUsageCard"}>
                     <TotalEnergyUsageCard/>
+                </div>
+
+                <div className={"totalEnergyUsageCard"}>
+                    <TotalNumberDevices/>
                 </div>
 
 
