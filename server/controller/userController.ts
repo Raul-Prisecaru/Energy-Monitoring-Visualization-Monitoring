@@ -1,4 +1,5 @@
 import User from "../model/userAccount";
+import virtualDevice from "../model/iotDevice";
 
 // Function to get all users
 
@@ -19,6 +20,34 @@ export const getOneUser = async (req: any, res:any) => {
         res.status(500).json( { message: "Failed to retrieve the user" + err })
     }
 }
+
+export const getUserPriceCostSettings = async (req: any, res: any) => {
+    try {
+        const foundUser = await User.findById(req.user.id)
+        const userSettings = {
+            pricePerkWh: 0,
+            costGoals: 0,
+            energyGoals: 0
+        }
+        if (!foundUser) {
+            return res.status(500).json("Unable to find user")
+        }
+        if (!foundUser.settings) {
+            return res.status(500).json("User does not have a price configured")
+        }
+
+
+        userSettings["pricePerkWh"] = foundUser.settings.pricePerkWh
+        userSettings["costGoals"] = foundUser.settings.monthlyCostGoal
+        userSettings["energyGoals"] = foundUser.settings.monthlyEnergyUsageGoal
+
+
+        res.status(201).json(userSettings);
+    } catch (err) {
+        res.status(500).json({err: "Failed to retrieve user current paying price: " + err})
+    }
+}
+
 
 
 // Function to Create User
