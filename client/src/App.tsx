@@ -9,6 +9,7 @@ import DashboardPage from "./pages/dashboardPage.tsx";
 import SettingsPage from "./pages/settingsPage.tsx";
 import {useState} from "react";
 import DashboardNavBar from "./pages/dashboardNavBar.tsx";
+import CostGoalsPage from "./pages/costGoalsPage.tsx";
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("token") !== null);
 
@@ -30,6 +31,7 @@ function App() {
                 <Route path={"dashboard"} element={<DashboardPage  />}></Route>
                 <Route path={"ProfileManagement"} element={<ProfileManagementPage />}> </Route>
                 <Route path={"Settings"} element={<SettingsPage />}> </Route>
+                <Route path={"costGoalsPage"} element={<CostGoalsPage />}> </Route>
             </Routes>
 
 
