@@ -24,7 +24,7 @@ function SettingsPage() {
                     <CardContent>
                         <Typography level={"h1"}>Cost/Goals</Typography>
 
-                        <Button onClick={() => navigate("/ProfileManagement")}> Cost/Goals </Button>
+                        <Button onClick={() => navigate("/costGoalsPage")}> Cost/Goals </Button>
                     </CardContent>
                 </Card>
             </div>
