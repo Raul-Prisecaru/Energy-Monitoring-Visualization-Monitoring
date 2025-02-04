@@ -1,14 +1,17 @@
 import express from "express";
 import {authMiddleware} from "../middleware/authMiddleware";
+
 import * as userController from "../controller/userController";
 
 const router = express.Router();
 
-// Router to get all users
-router.get("/", userController.getAllUsers)
+// // Router to get all users
+// router.get("/", userController.getAllUsers)
 
 // Router to get one user
-router.get("/:id", userController.getOneUser)
+router.get("/", userController.getOneUser)
+
+router.get("/getUserPriceCostSettings", authMiddleware, userController.getUserPriceCostSettings)
 
 // Router to create user
 router.post("/", userController.createUser)
