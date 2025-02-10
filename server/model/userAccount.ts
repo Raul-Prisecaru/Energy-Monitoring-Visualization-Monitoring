@@ -18,6 +18,7 @@ interface UserSchema extends mongoose.Document {
 
     validatePassword(password: string): Promise<boolean>;
     changePassword(password: string): Promise<void>;
+    updatePricePerkWh(newPricePerkWh: number): Promise<void>
 }
 
 const userSchema = new mongoose.Schema<UserSchema>({
@@ -96,6 +97,11 @@ userSchema.methods.changePassword = async function (password: string): Promise<v
     this.password = await bcrypt.hash(password, 10);
     await this.save();
 };
+
+userSchema.methods.updatePricePerkWh = async function (newPricePerkWh: number) {
+    this.settings.pricePerkWh = newPricePerkWh
+    await this.save()
+}
 
 const User = mongoose.model<UserSchema>("User", userSchema);
 export default User;
