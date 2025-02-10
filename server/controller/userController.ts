@@ -48,7 +48,22 @@ export const getUserPriceCostSettings = async (req: any, res: any) => {
     }
 }
 
-
+export const updateUserCostEnergyPaying = async (req: any, res: any) => {
+    try {
+        const newCost = req.params.newCost
+        const foundUser =  await User.findById(req.user.id)
+        if (!foundUser) {
+            return res.status(500).json({error: "Failed to Find User"})
+        }
+        if(!foundUser.settings) {
+            return res.status(500).json({error: "Failed to Find User Settings"})
+        }
+        await foundUser.updatePricePerkWh(Number(newCost))
+        res.status(200).json({success: "Successfully updated user paying price"})
+    } catch (err) {
+        res.status(500).json({error: "Failed to update user's settings for energy paying price"})
+    }
+}
 
 // Function to Create User
 export const createUser = async (req: any, res:any) => {
