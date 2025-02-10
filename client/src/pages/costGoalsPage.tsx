@@ -79,6 +79,23 @@ function CostsGoalsPage() {
 
             <div>
                 <Modal
+                open={userCostGoalModal}
+                onClose={() => setUserCostGoalModal(false)}
+                sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <Card>
+                    <CardContent>
+                        <Typography level={"h1"}>Update User Payment</Typography>
+                        <Typography>How much are you paying now?</Typography>
+                        <Input />
+                        <Button>Update</Button>
+                    </CardContent>
+                </Card>
+                </Modal>
+            </div>
+
+
+            <div>
+                <Modal
                 open={energyGoalModal}
                 onClose={() => setEnergyGoalModal(false)}
                 sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
