@@ -13,8 +13,12 @@ router.get("/", userController.getOneUser)
 
 router.get("/getUserPriceCostSettings", authMiddleware, userController.getUserPriceCostSettings)
 
+// router.patch("")
+
 // Router to create user
 router.post("/", userController.createUser)
+
+router.patch("/updateUserCostEnergyPaying/:newCost", authMiddleware, userController.updateUserCostEnergyPaying)
 
 // Router to update User, Takes ID Param
 router.put("/:id", userController.updateUser)
