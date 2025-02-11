@@ -50,7 +50,9 @@ export const getUserPriceCostSettings = async (req: any, res: any) => {
 
 export const updateUserCostEnergyPaying = async (req: any, res: any) => {
     try {
-        const newCost = req.params.newCost
+        const newCost = req.body.newCost
+
+        console.log(newCost)
         const foundUser =  await User.findById(req.user.id)
         if (!foundUser) {
             return res.status(500).json({error: "Failed to Find User"})
@@ -61,7 +63,50 @@ export const updateUserCostEnergyPaying = async (req: any, res: any) => {
         await foundUser.updatePricePerkWh(Number(newCost))
         res.status(200).json({success: "Successfully updated user paying price"})
     } catch (err) {
-        res.status(500).json({error: "Failed to update user's settings for energy paying price"})
+        res.status(500).json({error: "Failed to update user's settings for energy paying price: " + err})
+    }
+}
+
+export const updateUserUsageEnergyGoal = async (req: any, res: any) => {
+    try {
+        const newCostGoal = req.body.newCostGoal;
+
+        const foundUser = await User.findById(req.user.id)
+
+        if(!foundUser) {
+            return res.status(500).json({error: "Failed to find user"})
+        }
+
+        if(!foundUser.settings) {
+            return res.status(500).json({error: "Failed to find user settings"})
+        }
+
+        await foundUser.updateMonthlyEnergyUsageGoal(newCostGoal)
+        res.status(200).json({success: "Successfully updated user energy goal"})
+
+    } catch (err) {
+        res.status(500).json({error: "Failed to update user's settings for energy paying goals: " + err})
+    }
+}
+
+export const updateUserCostGoal = async (req: any, res: any)=> {
+    try {
+        const userCostGoal = req.body.userCostGoal;
+        const foundUser = await User.findById(req.user.id)
+
+        if(!foundUser) {
+            return res.status(500).json({error: "Failed to find user"})
+        }
+
+        if(!foundUser.settings) {
+            return res.status(500).json({error: "Failed to find user settings"})
+        }
+
+        await foundUser.updateMonthlyCostGoal(userCostGoal)
+        res.status(200).json({success: "Successfully updated user energy goal"})
+
+    } catch (err) {
+        res.status(500).json({error: "Failed to update user's settings for energy paying goals: " + err})
     }
 }
 
