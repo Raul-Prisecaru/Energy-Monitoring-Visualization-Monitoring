@@ -18,7 +18,10 @@ interface UserSchema extends mongoose.Document {
 
     validatePassword(password: string): Promise<boolean>;
     changePassword(password: string): Promise<void>;
-    updatePricePerkWh(newPricePerkWh: number): Promise<void>
+    updatePricePerkWh(newPricePerkWh: number): Promise<void>;
+    updateMonthlyEnergyUsageGoal(monthlyEnergyUsageGoal: number): Promise<void>;
+    updateMonthlyCostGoal(monthlyCostGoal: number): Promise<void>
+
 }
 
 const userSchema = new mongoose.Schema<UserSchema>({
@@ -100,6 +103,16 @@ userSchema.methods.changePassword = async function (password: string): Promise<v
 
 userSchema.methods.updatePricePerkWh = async function (newPricePerkWh: number) {
     this.settings.pricePerkWh = newPricePerkWh
+    await this.save()
+}
+
+userSchema.methods.updateMonthlyEnergyUsageGoal = async function (monthlyEnergyUsageGoal: number) {
+    this.settings.monthlyEnergyUsageGoal = monthlyEnergyUsageGoal
+    await this.save()
+}
+
+userSchema.methods.updateMonthlyCostGoal = async function (monthlyCostGoal: number) {
+    this.settings.monthlyCostGoal = monthlyCostGoal
     await this.save()
 }
 
