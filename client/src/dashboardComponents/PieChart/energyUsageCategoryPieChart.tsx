@@ -35,6 +35,13 @@ function TopDevicesBarChart({width, height}: {width: number, height: number}) {
             <Card>
                 <CardContent>
                     <PieChart width={width} height={height}>
+                        <text
+                            x={width / 2}
+                            y={10}
+                            textAnchor="middle"
+                            dominantBaseline="middle"
+                            style={{ fontSize: '20px'}}>
+                            Energy Usage Breakdown by category </text>
                         <Pie
                             data={data}
                             dataKey="energyUsage"

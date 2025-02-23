@@ -31,6 +31,13 @@ function CostHistoryLineChart({width, height}: {width: number, height: number}) 
     return (
         <div>
             <LineChart width={width} height={height} data={data}>
+                <text
+                    x={width / 2}
+                    y={10}
+                    textAnchor="middle"
+                    dominantBaseline="middle"
+                    style={{ fontSize: '20px'}}>
+                    Cost History by Months </text>
                 <XAxis dataKey={"month"} />
                 <YAxis dataKey={"cost"}/>
                 <Line type="monotone" dataKey="cost" />

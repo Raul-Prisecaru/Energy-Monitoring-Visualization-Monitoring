@@ -33,6 +33,13 @@ function EnergyUsageBarChart({ width, height }: { width: number; height: number 
     return (
         <div>
             <BarChart width={width} height={height} data={data}>
+                <text
+                    x={width / 2}
+                    y={10}
+                    textAnchor="middle"
+                    dominantBaseline="middle"
+                    style={{ fontSize: '20px'}}>
+                    Energy and Cost Breakdown by device </text>
                 <XAxis dataKey="deviceName" />
                 <YAxis />
                 <Tooltip />
