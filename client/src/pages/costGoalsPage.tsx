@@ -114,7 +114,7 @@ function CostsGoalsPage() {
             <div>
                 <Card>
                     <CardContent>
-                        <Typography level={"h1"}>Paying Cost Goals</Typography>
+                        <Typography level={"h1"}>Energy Cost Rate</Typography>
                         <Typography>Currently Paying Rate towards Energy: £{currentUserEnergyCost} / 1000h</Typography>
                         <Button onClick={() => setUserCostGoalModal(true)}>Update</Button>
                     </CardContent>
@@ -150,10 +150,12 @@ function CostsGoalsPage() {
                 sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <Card>
                     <CardContent>
-                        <Typography level={"h1"}>Update User Payment</Typography>
-                        <Typography>How much are you paying now?</Typography>
-                        <Input onChange={(e) => setNewUserCurrentEnergyCost(Number(e.target.value))}/>
-                        <Button onClick={() => updateUserPayment}>Update</Button>
+                        <Typography level={"h1"}>Update Energy Rate Cost</Typography>
+                        <Typography>How much is the Energy Rate Now?</Typography>
+                        <Input onChange={(e) => {
+                            setNewUserCurrentEnergyCost(Number(e.target.value))
+                        }}/>
+                        <Button onClick={() => updateUserPayment()}>Update</Button>
                     </CardContent>
                 </Card>
                 </Modal>
