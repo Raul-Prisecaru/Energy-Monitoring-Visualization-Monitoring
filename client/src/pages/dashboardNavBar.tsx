@@ -21,6 +21,7 @@ function DashboardNavBar() {
                         <Menu>
                             <MenuItem onClick={() => navigate("/ProfileManagement")}>Profile Management</MenuItem>
                             <MenuItem onClick={() => navigate("/devices")}>Devices</MenuItem>
+                            <MenuItem onClick={() => navigate("/settings")}>Settings</MenuItem>
                             <MenuItem onClick={() => {
                                 localStorage.removeItem("token")
                                 navigate("/")
