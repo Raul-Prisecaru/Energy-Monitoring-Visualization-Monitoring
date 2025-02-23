@@ -3,14 +3,14 @@ import "./styles/dashboardPageStyle.css"
 import EnergyUsageBarChart from "../dashboardComponents/LineChart/energyUsageBarChart.tsx";
 import TopDevicesBarChart from "../dashboardComponents/BarChart/topDevicesBarChart.tsx";
 import EnergyCostBarChart from "../dashboardComponents/BarChart/energyCostBarChart.tsx";
-import EnergyUsageProgressGauge from "../dashboardComponents/Gauge/energyUsageProgressGauge.tsx";
+import EnergyUsageProgressStat from "../dashboardComponents/Gauge/energyUsageProgressStat.tsx";
 import EnergyUsageCategoryPieChart from "../dashboardComponents/PieChart/energyUsageCategoryPieChart.tsx";
 import TotalCostMonthCard from "../dashboardComponents/Cards/totalCost/totalCostMonthCard.tsx";
 import TotalEnergyUsageCard from "../dashboardComponents/Cards/totalEnergyUsageMonthCard.tsx";
 import CostPerDeviceChart from "../dashboardComponents/Custom/costPerDeviceChart.tsx"
 import DailyStreakCard from "../dashboardComponents/Cards/dailyStreakCard.tsx";
 import EmptyCard from "../dashboardComponents/Cards/emptyCard.tsx";
-import CostProgressGauge from "../dashboardComponents/Gauge/costProgressGauge.tsx";
+import CostProgressGauge from "../dashboardComponents/Gauge/costProgressStat.tsx";
 import CostHistoryLineChart from "../dashboardComponents/LineChart/costHistoryLineChart.tsx";
 import DeviceTable from "../dashboardComponents/table/deviceTable.tsx";
 
@@ -53,7 +53,7 @@ function DashboardPage() {
 
             <div className={"topMiddleRelatedVisuals"}>
                 <div className={"energyUsageProgressionGauge"}>
-                    <EnergyUsageProgressGauge width={200} height={200}/>
+                    <EnergyUsageProgressStat width={200} height={200}/>
                 </div>
 
                 <div className={"energyUsageLineChart"}>
