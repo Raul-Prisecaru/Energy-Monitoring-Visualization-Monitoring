@@ -383,7 +383,7 @@ export const getMonthlyEnergyAndCostAveragePerDevice = async (req: any, res: any
             }
 
             // Calculate average energy in kWh and cost
-            const avgEnergyKWh = (totalEnergy / totalCount) / 1000;
+            const avgEnergyKWh = (totalEnergy) / 1000;
             if (!foundUser.settings) {
                 return res.status(500).json()
             }
@@ -398,7 +398,7 @@ export const getMonthlyEnergyAndCostAveragePerDevice = async (req: any, res: any
 
         res.status(201).json(costJson);
     } catch (err) {
-        res.status(500).json({ err: "Failed to retrieve the history data of devices: " + err });
+        res.status(500).json({ err: "Failed to retrieve energy usage and cost per device: " + err });
     }
 };
 
