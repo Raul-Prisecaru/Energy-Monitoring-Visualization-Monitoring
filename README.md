@@ -43,3 +43,8 @@ npm install
 
 # Run back-end
 npx ts-node server
+```
+
+---
+## 📦 Showcase
+https://github.com/user-attachments/assets/4b2eb1d0-fc68-4c19-b12f-44d50de3cb23
